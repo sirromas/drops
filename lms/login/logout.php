@@ -39,6 +39,8 @@ if ($login) {
     $redirect = $CFG->wwwroot.'/';
 }
 
+$redirect='http://theberry.us/clientes/drops/';
+
 if (!isloggedin()) {
     // no confirmation, user has already logged out
     require_logout();
