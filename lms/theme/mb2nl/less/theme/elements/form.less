@@ -1,0 +1,335 @@
+
+
+#main-content form {}
+
+label {
+	font-weight: normal;	
+}
+
+
+legend {
+	border-color: @color_border;
+	padding-bottom: 7px;	
+}
+
+form label {
+	cursor: pointer;	
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+	background-color: #fff;
+	color: @textcolor !important;
+	border: solid 1px @color_border;
+	padding: 0 10px;
+	min-height: 30px;
+	.mb2_border_radius(3px);
+	margin: 2px;
+}
+
+.input-group {
+	input[type="text"],
+	input[type="password"],
+	input[type="search"],
+	textarea,
+	select {
+		margin: 0;
+	}
+}
+
+
+
+
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+select {	
+	width: 220px;
+	max-width: 100%;	
+}
+
+
+textarea {
+	min-width: 220px;
+	min-height: 90px;
+	max-width: 100%;	
+}
+
+
+
+.fgroup {
+	
+	input[type="text"],
+	input[type="password"],
+	input[type="search"],
+	select {	
+		width: auto;	
+	}
+	
+	> span {
+		display: inline-block;
+		margin-top: 5px;	
+	}	
+}
+
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {	
+	.mb2_box_shadow(0 0 0 0, transparent);
+	border-color: darken(@color_border,15%);
+	outline: none;
+} 
+
+
+input[disabled], 
+select[disabled], 
+textarea[disabled], 
+input[readonly], 
+select[readonly], 
+textarea[readonly] {
+	cursor: not-allowed;
+	background-color: @color_gray2;	
+}
+
+
+//btn-group
+
+
+button,
+input[type="submit"],
+input[type="button"],
+button[type="submit"],
+input[type="button"] {
+	
+	margin: 5px 10px 5px 0;	
+	
+	.dir-rtl & {
+		margin: 5px 0 5px 10px;		
+	}	
+	
+	.btn-group > & {
+		margin-right: 0;
+	}
+	
+	.dir-rtl .btn-group > & {
+		margin-left: 0;	
+	}	
+	
+}
+
+
+
+
+
+.dark,
+.dark1 {
+
+	input[type="text"],
+	input[type="password"],
+	input[type="search"],
+	textarea,
+	select {
+		border-color: #fff;	
+	}
+	
+	
+	
+	input[type="text"]:focus,
+	input[type="password"]:focus,
+	input[type="search"]:focus,
+	textarea:focus,
+	select:focus {	
+		border-color: #000;	
+	}
+	
+}
+
+
+
+/* Field require description */
+
+.fdescription,
+.felement.fstatic {
+	font-size: @fssmall;	
+}
+
+
+
+
+
+/* Inline form */
+
+.form-inline {
+	margin-bottom: 30px;	
+}
+
+.form-inline {
+	
+	label,
+	input {
+		margin-right: 10px;	
+	}
+		
+}
+
+
+
+.dir-rtl {	
+	
+	.form-inline {
+	
+		label,
+		input {
+			margin-right: 0;
+			margin-left: 10px;	
+		}
+			
+	}
+	
+}
+
+
+/* Inline form */
+
+.form-inline {
+	
+	.mform .fitem .felement {
+		width: auto;
+		margin-left: 0;	
+	}	
+}
+
+
+
+
+
+
+/* File picker */
+
+.fp-btn-choose {
+	margin-bottom: 15px;	
+}
+
+
+.fcontainer {
+	.mb2_collapse_panel();	
+	
+	.fcontainer {
+		border: 0;
+		padding: 0;	
+	}
+}	
+
+
+fieldset.collapsible {
+	margin-bottom: 8px;
+}
+
+.collapsible legend.ftoggler {
+	margin: 0;
+	padding: 0;
+	border: 0;	
+}
+
+
+legend.ftoggler {
+	position: relative;	
+}
+
+legend.ftoggler .fheader {
+	.mb2_collapse();
+}
+
+
+
+
+
+/* Log select form */
+
+.logselecform > select {
+    margin: 0 5px 10px 5px;
+}
+
+
+
+/* Single button */
+
+.singlebutton {
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+
+
+
+/* Submit and cancel buttons */
+
+.submit_buttons {
+	input {
+		margin-right: 10px;	
+	}	
+}
+
+.dir-rtl {	
+	.submit_buttons {
+		input {
+			margin-right: 0;
+			margin-left: 10px;	
+		}	
+	}	
+}
+
+
+
+
+/* Search form */
+
+.searchform {
+	label {
+		display: none;	
+	}	
+}
+
+
+
+
+/* Buttons group */
+
+.buttons {
+	margin-bottom: 20px;
+	text-align: left;	
+}
+
+
+.modal-footer {
+	.buttons {
+		margin-bottom: 0;
+		text-align: right;	
+	}		
+}
+
+
+.dir-rtl {	
+	.buttons {
+		text-align: right;	
+	}
+	
+	.modal-footer {
+		.buttons {
+			text-align: left;	
+		}		
+	}
+}
+
+
+
+
+
+

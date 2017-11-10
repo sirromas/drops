@@ -1,0 +1,132 @@
+
+
+#main-header {
+	
+	.mb2_gradient_vertical(#fff, #f4f4f4, 0%, 100%);	
+	
+	.pagelayout-maintenance & {
+		border-bottom: solid 3px @accent2;	
+		
+		h1 {
+			margin: 20px 0;	
+		}
+	}	
+	
+	
+	/* Dark header */
+	
+	.header-dark & {
+		background-color: lighten(@accent2,3%);	
+		.mb2_gradient_vertical(lighten(@accent2,5%), lighten(@accent2,3%));
+		border-bottom: solid 1px rgba(0,0,0,.3);
+	}
+	
+	
+	
+	/* Light2 header */
+	
+	.header-light2 & {
+		border-bottom: solid 1px rgba(0,0,0,.12);
+	}
+	
+		
+}
+
+
+
+
+
+#page-header {
+	
+	.mb2_gradient_vertical(#fff, #f4f4f4);
+	.inner {
+		padding: 20px 0;	
+	}	
+	
+}
+
+
+
+#page-header.dark {
+	
+	 .inner {
+		/*background-color: @color_bg_ph;	*/	
+	}
+		
+}
+
+
+#page-header {
+	
+	.singlebutton {
+		margin: 0;
+		float: right;	
+	}
+	
+	button,
+	input[type="submit"],
+	input[type="button"],
+	button[type="submit"],
+	input[type="button"] {
+		margin: 0 0 0 10px;
+	}
+		
+}
+
+
+
+.dir-rtl {
+	
+	#page-header {
+	
+		.singlebutton {
+			float: left;
+		}
+		
+		
+		button,
+		input[type="submit"],
+		input[type="button"],
+		button[type="submit"],
+		input[type="button"] {
+			margin: 0 10px 0 0;
+		}
+			
+	}
+		
+}
+
+
+
+@media only screen and (max-width:768px){
+	
+	
+	#page-header {
+				
+		.singlebutton {
+			float: none;
+			text-align: center;	
+		}
+		
+		button,
+		input[type="submit"],
+		input[type="button"],
+		button[type="submit"],
+		input[type="button"] {
+			margin: 5px;	
+		}
+		
+		.dir-rtl & {
+			button,
+			input[type="submit"],
+			input[type="button"],
+			button[type="submit"],
+			input[type="button"] {
+				margin: 5px;	
+			}	
+		}
+			
+	}
+	
+	
+}

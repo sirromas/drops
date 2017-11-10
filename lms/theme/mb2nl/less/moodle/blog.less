@@ -1,0 +1,244 @@
+
+
+.addbloglink {
+	margin-bottom: 20px;	
+}
+
+
+.addbloglink {
+	
+	> a {
+		.mb2_button();
+		.mb2_button_color(@color_success);
+	}
+	
+	> a:hover,
+	> a:focus {
+		.mb2_button_color_hover(@color_success);
+	}
+}
+
+
+
+.blog_entry {
+	
+	.audience {
+		text-align: right;
+		margin-bottom: 20px;
+		font-size: @fssmall;
+		color: @textcolor_lighten;
+	}
+	
+}
+
+
+.dir-rtl {
+	
+	.blog_entry {
+	
+		.audience {
+			text-align: left;
+		}
+		
+	}
+}
+
+
+.blog_entry .attachedimages {
+	margin-bottom: 30px;	
+}
+
+
+.blog_entry .commands,
+.blog_entry .commands + div {
+	text-align: right;	
+	font-size: @fssmall;
+	color: @textcolor_lighten;
+	padding-top: 10px;
+}
+
+.blog_entry .commands {
+	a {
+		margin: 0 3px;	
+	}
+}
+
+
+.dir-rtl {
+	
+	.blog_entry .commands,
+	.blog_entry .commands + div {
+		text-align: left;	
+	}
+}
+
+
+
+/* Comments */
+
+.comment-ctrl h5 {
+    margin: 0;
+    padding: 5px;
+}
+
+
+
+.comment-area {
+	
+	textarea {
+		width: 100%;
+	}
+	
+	.fd {
+		text-align: right;
+	}	
+	
+	.fd > a {
+		.mb2_button();
+		.mb2_button_color(@accent1);
+		.mb2_button_small();
+	}
+	
+	.fd > a:hover,
+	.fd > a:focus {
+		.mb2_button_color_hover(@accent1);
+	}
+
+}
+
+.dir-rtl {
+	.comment-area {		
+		.fd {
+			text-align: left;
+		}	
+	}	
+}
+
+
+
+.comment-meta span {
+    color: gray;
+}
+.comment-link img {
+    vertical-align: text-bottom;
+}
+
+.comment-list {
+    font-size: @fssmall;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comment-list {
+	li {
+		display: block;
+		margin: 0 0 15px 0;
+		padding: 15px;
+		.mb2_border_radius(3px);
+		position: relative;
+		background-color: @color_gray2;
+	}
+}
+
+
+.comment-list li.first {
+    display: none;
+}
+.comment-paging {
+    text-align: center;
+}
+.comment-paging .pageno {
+    padding: 2px;
+}
+.comment-paging .curpage {
+    border: #CCC solid 1px;
+}
+
+
+.comment-message .picture {
+    width: 35px;
+    float: left;
+}
+
+.dir-rtl {
+	.comment-message .picture {
+		float: right;
+	}	
+}
+
+.comment-message .picture img {
+	.mb2_border_radius(999px);	
+}
+
+.comment-message .comment-message-meta {
+	color: @textcolor_lighten;
+	margin-bottom: 10px; 		
+}
+
+
+.comment-message .text {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-message .text p {
+    padding: 0;
+    margin: 0 20px 0 0;
+}
+
+.comment-delete {
+    position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+.dir-rtl {
+	.comment-delete {
+		right: auto;
+		left: 10px;
+	}
+}
+
+.comment-delete-confirm {
+    background: #eee;
+    padding: 2px;
+    width: 5em;
+    text-align: center;
+}
+.comment-container {
+    float: left;
+    margin: 4px;
+}
+.comment-report-selectall {
+    display: none;
+}
+.comment-link {
+    display: none;
+}
+.jsenabled .comment-link {
+    display: block;
+}
+.jsenabled .showcommentsnonjs {
+    display: none;
+}
+.jsenabled .comment-report-selectall {
+    display: inline;
+}
+
+
+
+.blog_entry  .mdl-left {
+	margin-top: 30px;
+	padding: 20px;
+	border: solid 1px @color_border;
+	.mb2_border_radius(3px);	
+}
+
+
+.comment-ctrl {
+	display: none;
+	margin-top: 15px;
+	padding-top: 20px;
+	border-top: solid 1px @color_border;	
+}

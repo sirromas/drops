@@ -1,0 +1,86 @@
+
+
+body {
+	font-family: @ffgeneral, sans-serif;
+	color: @textcolor;	
+	font-size: @fsgeneral;
+	font-weight: @fwgeneral;
+	line-height: ceil(@fsgeneral*1.65);
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+	.mb2_font_family(@ffheadings);
+	margin-bottom: 20px;
+	font-weight: @fwheadings;
+	color: @headingscolor;	
+	text-transform: @ttheadings;
+	font-style: @fstheadings;
+	.mb2_headings();
+}
+
+
+h1 {font-size: @fsheading1;}
+h2 {font-size: @fsheading2;}
+h3 {font-size: @fsheading3;}
+h4 {font-size: @fsheading4;}
+h5 {font-size: @fsheading5;}
+h6 {font-size: @fsheading6;}
+
+
+ul {
+	padding: 0;	
+}
+
+
+a {
+	color: @linkcolor;	
+}
+
+
+a:hover,
+a:focus {
+	text-decoration: none;
+	color: @linkhcolor;	
+}
+
+
+/* List */
+
+ul {
+	list-style: none;	
+}
+
+
+
+
+
+/* table */
+
+
+th,
+th > a,
+th > a:hover,
+th > a:focus {
+	color: @headingscolor;	
+}
+
+.dark1 {
+	th {
+		color: #fff;	
+	}	
+}
+
+
+abbr[title], 
+abbr[data-original-title] {
+	border: 0;	
+	text-decoration: none;
+}
+
+
+/* Hr */
+
+hr {
+	border-color: @color_border;	
+}

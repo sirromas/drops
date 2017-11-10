@@ -1,0 +1,129 @@
+
+
+// Variables overwritten by theme options
+@ddwidth: 200px;
+
+
+
+// Page layout
+@pagewidth: 1170px;			@fx_pagewidth: @pagewidth;
+
+
+
+// Fonts
+@ffgeneral: Roboto;
+@fsgeneral: 15px;
+@fssmall: ceil(@fsgeneral * 0.85);
+@fssmall_lh: ceil(@fssmall * 1.65);
+@fsxsmall: ceil(@fsgeneral*0.75);
+@fsbig: ceil(@fsgeneral*1.1);
+@fsbig_lh: ceil(@fsbig*1.65);
+@fxsbig: ceil(@fsgeneral*1.3);
+@fxsbig_lh: ceil(@fxsbig*1.65);
+@fssmall_lh: ceil(@fssmall*1.65);
+
+
+// General fonts
+@fwgeneral: 400;
+
+
+
+
+// Headings
+@ffheadings: global;		@fsheading1: 26px;	@fsheading4: 20px;
+@ttheadings: none;			@fsheading2: 24px;	@fsheading5: 18px;
+@fstheadings: normal;		@fsheading3: 22px;	@fsheading6: 16px;
+@headingscolor: #242424;
+@fwheadings: normal;
+
+
+
+
+// Main menu fonts
+@ffmenu: global;		@fsmenu: 15px;			@fwmenu: normal;		@ttmenu: none;		@fstmenu: normal;
+@ffddmenu: global;		@fsddmenu: 15px;		@fwddmenu: normal;		@ttddmenu: none;	@fstddmenu: normal;
+
+
+
+// Accent colors
+@accent1: #e63946;		@accent2: #27323a;
+
+
+
+// Links
+@linkcolor: @accent1; 	@linkhcolor: #242424; 
+
+
+
+// Text color
+@textcolor: #4c4c4c;							@textcolor_lighten: lighten(@textcolor,35%);		
+@textcolor_darken: darken(@textcolor,35%); 		@textcolor_dark: desaturate(lighten(@accent2, 46%), 12%);
+
+
+
+// Page background
+@pbgcolor: transparent;		@pbgrepeat: no-repeat;			@pbgpos: center center; 
+@pbgattach: scroll;			@pbgsize: cover;		
+
+
+// Login page background
+@loginbgcolor: #f4f4f4;		@loginbgrepeat: no-repeat;			@loginbgpos: center center; 
+@loginbgattach: scroll;		@loginbgsize: cover;	
+
+
+
+// Before content style
+@bcbgcolor: transparent;		@bcbgrepeat: no-repeat;			@bcbgpos: center center; 
+@bcbgattach: scroll;			@bcbgsize: cover;
+
+
+
+// After content style
+@acbgcolor: transparent;		@acbgrepeat: no-repeat;			@acbgpos: center center; 
+@acbgattach: scroll;			@acbgsize: cover;
+
+
+
+// After slider style
+@asbgcolor: transparent;		@asbgrepeat: no-repeat;			@asbgpos: center center; 
+@asbgattach: scroll;			@asbgsize: cover;
+
+
+
+// Loading screen
+@loadingscrbg: rgba(255,255,255,.95);
+
+
+// Calendar colors
+@color_event_user: #CCFFCC;
+@color_event_global: #99CCFF;
+@color_event_course: #FFCC99;
+@color_event_group: #FFCCCC;
+
+
+@color_border: #d5d5d5;
+@color_gray1: #cccccc;
+@color_gray2: #f4f4f4;
+@color_gray3: #e8e8e8;
+@color_bg_ph: rgba(31,31,31,.5);
+@color_default: desaturate(lighten(@accent1, 41%), 20%);
+@color_success: #119d65;
+@color_warning: #fb8b24;
+@color_danger: @btn-danger-bg;
+@color_info: #31668E;
+@color_box_border: #dbdbdb;
+@color_box_bg: #fcfcfc;
+@color_block_heading_bg: @color_gray2;
+
+
+
+
+
+
+// Social icons colors
+
+@color_android: #a4c639;			@color_dribbble: #ea4c89;			@color_dropbox: #7b8994;			@color_facebook: #3b5998;
+@color_flickr: #0063dc;				@color_github: #4078c0;				@color_google: #dd4b39;				@color_instagram: #c13584;
+@color_linkedin: #0077b5;			@color_pinterest: #bd081c;			@color_rss: #f26522;				@color_skype: #00aff0;
+@color_tumblr: #35465c;				@color_twitter: #1da1f2;			@color_vimeo: #1ab7ea;				@color_xing: #026466;
+@color_youtube: #cd201f;

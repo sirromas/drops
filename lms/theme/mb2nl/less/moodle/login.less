@@ -1,0 +1,215 @@
+.loginbox {}
+
+.loginbox.twocolumns {
+	
+	margin-left: -15px;
+	margin-right: -15px;
+	
+	.loginpanel,
+	.signuppanel {		
+		float: left;
+		padding-left: 15px;
+		padding-right: 15px;
+		
+		> h2 {
+			margin-bottom: 30px;
+			margin-top: 0;	
+		}
+	}
+	
+	.loginpanel {
+		width: 40%;
+	}
+	
+	.signuppanel {
+		width: 60%;
+		padding-left: 60px;
+	}
+	
+	
+	.dir-rtl & {
+		.loginpanel,
+		.signuppanel {
+			float: right;
+		}		
+		
+		.signuppanel {
+			padding-left: 15px;
+			padding-right: 60px;	
+		}		
+	}
+	
+}
+
+
+
+
+
+
+@media only screen and (max-width:768px){	
+	
+	.loginbox.twocolumns {		
+		.loginpanel,
+		.signuppanel {
+			width: 100%;
+			float: none;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		
+		
+		.dir-rtl & {		
+			.loginpanel,
+			.signuppanel {
+				float: none;
+				padding-left: 15px;
+				padding-right: 15px;
+			}		
+		}
+		
+	}	
+		
+	
+}
+
+
+
+
+
+
+.loginbox .loginpanel {
+		
+	.loginsub {
+				
+		form {
+			
+			background-color: @color_gray3;
+			border-top: 0;
+			padding: 30px;
+			margin-bottom: 30px;
+			.mb2_box_shadow(7px 7px 0 0, rgba(0,0,0,.2));
+		
+			input[type="text"],
+			input[type="password"],
+			input[type="submit"] {
+				width: 100%;	
+			}	
+		}
+		
+		
+		.forgetpass,
+		.loginerrors {
+			font-size: @fssmall;	
+		}
+		
+	}
+	
+	.form-input,
+	.rememberpass,
+	input[type="submit"],
+	.subcontent.guestsub > div {
+		margin-bottom: 10px;
+	}
+	
+	.guestsub {
+		margin-top: 15px;
+		
+		.dec {
+			margin: 0;	
+		}	
+	}
+	
+}
+
+
+
+
+
+
+
+/*
+.loginbox h2,
+.loginbox .subcontent {
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.loginbox .loginpanel .desc {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.loginbox .signuppanel .subcontent {
+    text-align: left;
+}
+.dir-rtl .loginbox .signuppanel .subcontent {
+    text-align: right;
+}
+
+.loginbox .loginsub {
+    margin-left: 0;
+    margin-right: 0;
+}
+.loginbox .guestsub,
+.loginbox .forgotsub,
+.loginbox .potentialidps {
+    margin: 5px 12%;
+}
+.loginbox .potentialidps .potentialidplist {
+    margin-left: 40%;
+}
+.loginbox .potentialidps .potentialidplist div {
+    text-align: left;
+}
+.loginbox .loginform {
+    margin-top: 1em;
+    text-align: left;
+}
+.loginbox .loginform .form-label {
+    float: left;
+    text-align: right;
+    width: 49%;
+    white-space: nowrap;
+}
+.loginbox .loginform .form-input {
+    float: right;
+    width: 50%;
+}
+.dir-rtl .loginbox .loginform .form-input {
+    margin-right: 1%;
+}
+.loginbox .loginform .form-input input {
+    width: 6em;
+}
+.loginbox .signupform {
+    margin-top: 1em;
+    text-align: center;
+}
+.loginbox.twocolumns .loginpanel {
+    float: left;
+    width: 49.5%;
+    border-right: 1px solid;
+}
+.loginbox.twocolumns .signuppanel {
+    float: right;
+    width: 50%;
+}
+.loginbox .potentialidp .smallicon {
+    vertical-align: text-bottom;
+    margin: 0 0.3em;
+}
+.dir-rtl .loginbox.twocolumns .loginpanel,
+.dir-rtl.loginbox.twocolumns .signuppanel {
+    float: right;
+}
+
+.dir-rtl .loginbox .loginform .form-label {
+    float: right;
+    text-align: left;
+}
+.dir-rtl .loginbox .loginform .form-input {
+    text-align: right;
+}*/

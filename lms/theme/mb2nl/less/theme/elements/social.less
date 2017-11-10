@@ -1,0 +1,89 @@
+
+
+.social-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: right;	
+}
+
+
+
+.dir-rtl {
+	
+	.social-list {
+		float: left;	
+	}
+		
+}
+
+
+
+@media only screen and (max-width:768px){
+	
+	.social-list {
+		float: none;
+		text-align: center;	
+		margin: 0 !important;
+	}
+	
+	#main-header .social-list {
+		margin-bottom: 20px !important;	
+	}
+	
+	
+	.dir-rtl {
+	
+		.social-list {
+			float: none;	
+		}
+			
+	}
+	
+}
+
+
+
+.social-list {
+	
+	li {
+		margin: 0;
+		padding: 0;
+		display: inline-block;	
+	}
+	
+	
+	a {
+		text-decoration: none;
+		color: #fff;
+		display: block;	
+		width: 31px;
+		height: 31px;
+		line-height: 31px;
+		text-align: center;
+		font-size: 17px;
+		margin: 2px 3px 2px 2px;
+		.mb2_border_radius(3px);
+		.mb2_transition1(all, .15s);
+		position: relative;
+		/*.mb2_box_shadow(3px 3px 0 0, rgba(0,0,0,.2));*/
+	}
+	
+	
+	
+	a:hover,
+	a:focus {
+		.mb2_trabsform_y(-3px);	
+		outline: none;
+	}	
+	
+}
+
+
+
+.li-android a {background-color: @color_android;} 		.li-dribbble a {background-color: @color_dribbble;} 	.li-dropbox a {background-color: @color_dropbox;}
+.li-facebook a {background-color: @color_facebook;}		.li-flickr a {background-color: @color_flickr;}			.li-github a {background-color: @color_github;}		
+.li-google-plus a {background-color: @color_google;}	.li-instagram a {background-color: @color_instagram;}	.li-linkedin a {background-color: @color_linkedin;}
+.li-pinterest a {background-color: @color_pinterest;}	.li-rss a {background-color: @color_rss;}				.li-skype a {background-color: @color_skype;}
+.li-tumblr a {background-color: @color_tumblr;}			.li-twitter a {background-color: @color_twitter;}		.li-vimeo a {background-color: @color_vimeo;}
+.li-xing a {background-color: @color_xing;}				.li-youtube-play a {background-color: @color_youtube;}

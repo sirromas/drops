@@ -1,0 +1,183 @@
+
+.modal {
+	overflow: visible;	
+}
+
+.modal-content {
+	border-color: @color_border;
+	background-color: #fff;
+	.mb2_border_radius(3px);
+	.mb2_box_shadow(0 0 20px 0, rgba(0,0,0,.1));
+	overflow: hidden;
+	
+	
+	.modal.fade & {
+		border-color: transparent;	
+	}
+				
+}
+
+
+
+
+.modal-header,
+.modal-footer  {
+	border-color: lighten(@color_border, 7%);
+	padding: 10px 15px;	
+}
+
+.modal-header {
+	h1,h2,h3,h4,h5,h6 {
+		margin: 0;
+		
+		&:focus {
+			outline: none;	
+		}	
+	}	
+	
+	> button {
+		background-color: transparent !important;
+		border: 0 !important;
+		font-size: 26px;
+		
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: transparent !important;
+			border: 0 !important;
+			color: #000 !important;	
+		}	
+	}
+}
+
+.modal-footer {
+	background-color: @color_gray2; 	
+}
+
+.modal-footer {
+	.singlebutton {
+		margin-left: 10px;
+	}	
+}
+
+.dir-rtl {
+	.modal-footer {
+		.singlebutton {
+			margin-left: 0;
+			margin-right: 10px;
+		}	
+	}
+}
+
+
+
+
+/* Popup window */
+
+.role_buttons > input[type="button"] {
+	margin: 5px;	
+}
+
+
+
+
+
+/* Modal backdrop */
+
+body.modal-open {
+	padding-right: 16px;	
+}
+
+
+
+.modal-container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999999;
+	overflow-x: hidden;
+	overflow-y: auto;
+	
+	> .modal {
+		position: relative;	
+		top: auto;
+		right: auto;
+		bottom: auto;
+		left: auto;
+		background-color: #fff;
+		.mb2_border_radius(3px);
+		.mb2_box_shadow(0 0 20px 0, rgba(0,0,0,.1));
+		overflow: hidden;
+		border-color: @color_border;
+		width: 100%;
+		max-width: 560px;
+		margin: 50px auto 30px;	
+		
+		.modal-header > button {
+			position: relative;
+						
+			&:after {
+				display: block;
+				width: 24px;
+				height: 24px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				content: '\00D7';
+				font-size: 26px;	
+			}	
+		}	
+	}
+	
+	&.show {
+		> .modal {
+			display: block;	
+		}	
+	}
+		
+}
+
+
+
+.dir-rtl {	
+	.modal-container {	
+		> .modal {		
+			.modal-header > button {			
+				&:after {
+					right: auto;
+					left: 0;	
+				}	
+			}	
+		}		
+	}	
+}
+
+
+
+
+
+.modal-backdrop {
+	opacity: .5;	
+}
+
+
+
+
+.popover-title {
+	h1,h2,h3,h4,h5,h6 {
+		margin: 0;	
+	}	
+}
+
+
+.enrolpanel {
+	
+	background-color: rgba(0,0,0,.3);
+	
+	&.visible {
+		z-index: 1;	
+	}
+	
+}

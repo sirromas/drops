@@ -1,0 +1,219 @@
+
+
+.path-mod-forum .discussion-nav {
+	margin: 0 0 30px 0;
+	padding: 4px 0;
+	border-top: solid 1px @color_border;
+	border-bottom: solid 1px @color_border;
+	color: @textcolor_lighten;
+}
+
+#page-mod-forum-discuss .discussioncontrols {
+	margin: 0;
+	padding-bottom: 30px;	
+}
+
+
+#page-header {
+	.forumsearch {
+		float: right;	
+	}
+}
+
+
+@media only screen and (max-width:768px){
+	
+	#page-header {
+		.forumsearch {
+			float: none;
+			text-align: center;
+			margin-top: 20px;	
+		}
+	}
+}
+
+
+
+.dir-rtl {
+	#page-header {
+		.forumsearch {
+			float: left;	
+		}
+	}
+}
+
+
+.movediscussionoption {
+	input[type="submit"] {
+		margin-left: 10px;	
+	}	
+}
+
+
+
+/* Forum post */
+
+.forumpost,
+.notepost {
+	margin-bottom: 30px;
+	border: 0;	
+	
+	
+	&:before {
+		display: none;	
+	}
+}
+
+
+.forumpost,
+.notepost {
+	
+	.row {
+		margin: 0 !important;	
+	}
+	
+	.content {
+		padding-top: 20px;
+	}
+	
+	.content .posting {
+		overflow: visible;
+		width: auto;
+	}
+	
+	.row .left {
+		display: none;
+	}	
+	
+	.header {
+		background-color: @color_gray2;
+		padding: 7px 15px;
+		.mb2_border_radius(3px);	
+	}	
+	
+	.header .header {
+		background-color: transparent;
+		padding: 0;
+		.mb2_border_radius(0);	
+	}
+	
+	.header .picture,
+	.header .topic {
+		display: inline-block;
+		float: none;
+		vertical-align: middle;
+	}
+	
+	.header .topic {
+		margin-left: 15px;
+	}
+	
+	.topic .author,
+	.info {
+		font-size: @fssmall;
+		color: @textcolor_lighten; 	
+	}
+	
+	.topic .subject {
+		color: @headingscolor; 	
+	}	
+	
+	.header .picture img {
+		.mb2_border_radius(999px);
+		margin: 0;	
+	}	
+	
+	.row .options {
+		font-size: @fssmall;
+		color: @textcolor_lighten;
+		margin-top: 10px;
+	}
+	
+	.row .options a {
+		margin: 0 4px;	
+	}
+	
+}
+
+
+
+.notepost {
+	
+	.info {
+		font-size: @fssmall;
+		color: @textcolor_lighten; 	
+	}
+	
+	.user {
+		color: @headingscolor; 	
+	}
+	
+	.user .userpicture {
+		margin-right: 15px;
+		.mb2_border_radius(999px);
+	}
+	
+	.footer {
+		font-size: @fssmall;
+		color: @textcolor_lighten;
+		margin-top: 10px;
+		text-align: right;
+	}
+	
+	.footer {
+		p {
+			margin: 0;	
+		}
+		
+		p > a {
+			margin: 0 4px;	
+		}	
+	}
+}
+
+
+
+.dir-rtl {	
+	.notepost {			
+		.footer {
+			text-align: left;
+		}
+		
+		.user .userpicture {
+			margin-right: 0;
+			margin-left: 15px;
+		}
+	}
+}
+
+
+.page-header-image {
+	margin-bottom: 20px;	
+}
+
+.notestitle {
+    border-bottom: solid 1px @color_border;
+    padding-bottom: 10px;
+}
+
+
+/* Treaded replace */
+
+.path-mod-forum .indent {
+	margin-bottom: 30px;	
+}
+
+.path-mod-forum .indent .indent {
+	margin-bottom: 0;	
+}
+
+.path-mod-forum .indent {
+	.forumthread {
+		font-size: @fssmall;
+	}
+	
+	.forumthread a {
+		font-size: @fsgeneral;
+	}
+
+}

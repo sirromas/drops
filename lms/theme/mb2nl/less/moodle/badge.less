@@ -1,0 +1,218 @@
+#badge-overview h3,
+#badge h3 {
+    clear: both;
+    text-align: left;
+    border-bottom: solid 1px @color_border;
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+
+#badge-overview h3:first-child,
+#badge h3:first-child {
+	padding-top: 0;
+}
+
+.dir-rtl #badge h3 {
+    text-align: right;
+}
+
+#badge-overview .activatebadge {
+	padding-top: 20px;	
+}
+
+#badge-image,
+#badge-details {
+    display: inline-block;
+}
+#badge-image {
+    width: 200px;
+    vertical-align: top;
+}
+#badge-image .singlebutton {
+    padding-top: 5px;
+    margin-left: 20px;
+}
+#badge-overview dl,
+#badge-details dl {
+    margin: 0;
+}
+
+#badge-overview dt,
+#badge-details dt {
+    font-weight: bold;
+    clear: both;
+    float: left;
+    width: 20%;
+}
+#badge-overview dd,
+#badge-details dd {
+    float: left;
+    width: 75%;
+}
+#badge-overview dd,
+#badge-details dd,
+#badge-overview dt,
+#badge-details dt {
+    padding: 3px 0;
+}
+
+/*#page-badges-view table.collection .badgeimage,
+#page-badges-index table.collection .status {
+    width: 15%;
+    text-align: center;
+    vertical-align: middle;
+}
+#page-badges-view table.collection .awards,
+#page-badges-index table.collection .awards {
+    width: 10%;
+    text-align: center;
+    vertical-align: middle;
+}
+#page-badges-view table.collection .description {
+    width: 25%;
+    text-align: left;
+}
+#page-badges-view.dir-rtl table.collection .description {
+    width: 25%;
+    text-align: right;
+}
+table.collection .name {
+    text-align: left;
+    vertical-align: middle;
+}
+.dir-rtl table.collection .name {
+    text-align: right;
+    vertical-align: middle;
+}
+#page-badges-view table.collection .criteria {
+    width: 35%;
+    text-align: left;
+    vertical-align: top;
+}
+#page-badges-view.dir-rtl table.collection .criteria {
+    text-align: right;
+}
+#page-badges-index table.collection .criteria {
+    width: 40%;
+    text-align: left;
+    vertical-align: top;
+}
+#page-badges-index.dir-rtl table.collection .criteria {
+    text-align: right;
+}
+#page-badges-index table.collection .actions {
+    width: 11em;
+    text-align: center;
+    vertical-align: middle;
+}*/
+a.criteria-action {
+    padding: 0 3px;
+    float: right;
+}
+.dir-rtl a.criteria-action {
+    float: left;
+}
+ul.badges {
+    margin: 0;
+    list-style: none;
+}
+.badges li {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2em;
+    text-align: center;
+    vertical-align: top;
+    width: 150px;
+}
+.badges li .badge-name {
+    display: block;
+    padding: 5px;
+}
+.badges li > img {
+    position: absolute;
+}
+.badges li .badge-image {
+    width: 100px;
+    height: 100px;
+    left: 10px;
+    top: 0;
+    z-index: 1;
+}
+.dir-rtl .badges li .badge-image {
+    right: 10px;
+}
+.badges li .badge-actions {
+    position: relative;
+}
+div.badge {
+    position: relative;
+    display: block;
+}
+div.badge .expireimage {
+    width: 100px;
+    height: 100px;
+    left: 0;
+    top: 0;
+}
+.expireimage {
+    width: 100px;
+    height: 100px;
+    left: 25px;
+    top: 0;
+    position: absolute;
+    z-index: 10;
+    opacity: 0.85000002384185791015625;
+}
+.badge-profile {
+    vertical-align: top;
+}
+.connected {
+    color: #006600;
+}
+.notconnected {
+    color: #660000;
+}
+
+#page-badges-award .recipienttable {
+    background-color: @color_gray2;
+    border: solid 1px @color_border;
+    vertical-align: top;
+}
+
+#page-badges-award .recipienttable {
+    
+	td {
+		padding: 20px;	
+	}
+	
+	tr td {
+		vertical-align: top;
+	}
+	
+	tr td.actions {
+		width: 16%;
+		padding-top: 50px;
+	}
+	
+	tr td.existing,
+	tr td.potential {
+		width: 42%;
+	}
+	
+	tr td.actions .actionbutton {
+		margin: 5px 0;
+		padding: 5px 0;
+		width: 100%;
+	}
+}
+
+
+
+
+
+#issued-badge-table .activatebadge {
+    display: inline-block;
+}
+#issued-badge-table div.activatebadge {
+    margin-left: 3px;
+}

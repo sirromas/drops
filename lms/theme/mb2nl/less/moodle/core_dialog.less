@@ -1,0 +1,364 @@
+.moodle-dialogue-base .moodle-dialogue {
+    outline: 0 dotted #000;
+}
+.moodle-dialogue-base .hidden,
+.moodle-dialogue-base .moodle-dialogue-hidden {
+    display: none;
+}
+.moodle-dialogue-base .moodle-dialogue {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    z-index: 600;
+}
+.no-scrolling {
+    overflow: hidden;
+}
+.moodle-dialogue-base .moodle-dialogue-fullscreen {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: -50px;
+    position: fixed;
+}
+.moodle-dialogue-base .moodle-dialogue-fullscreen .moodle-dialogue-content {
+    overflow: auto;
+}
+.moodle-dialogue-base .moodle-dialogue-fullscreen .closebutton {
+    width: 28px;
+    height: 16px;
+    background-size: 100%;
+}
+.moodle-dialogue-base .moodle-dialogue-wrap {
+    margin-top: -3px;
+    margin-left: -3px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+    overflow: hidden;
+	.mb2_border_radius(3px);
+}
+.moodle-dialogue-base h3 {
+    margin: 0;
+    line-height: 20px;
+	font-size: @fsgeneral;
+}
+.moodle-dialogue-base .moodle-dialogue-wrap .moodle-dialogue-hd h1 {
+    padding: 0;
+    display: inline;
+    font-size: 100%;
+    font-weight: bold;
+}
+.moodle-dialogue-base .moodle-dialogue-wrap .moodle-dialogue-hd .yui3-widget-buttons {
+    color: @textcolor;
+}
+.moodle-dialogue-base {
+    
+	.closebutton {		
+		width: 26px;
+		height: 26px;
+		line-height: 26px;
+		padding: 0;
+		margin: 0;
+		border: 0 !important;
+		box-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		-ms-box-shadow: none;
+		background: transparent !important;
+		color: @textcolor !important;
+	}
+	
+	.closebutton:after {
+		content: '\00d7';
+		font-size: @fxsbig;	
+	}
+	
+	
+}
+
+
+.yui3-skin-sam .yui3-panel .yui3-widget-hd {
+	padding: 10px 20px;
+	background-color: @color_gray3;
+	border-bottom: solid 1px @color_border;
+	min-height: 42px;
+	background-image: none;
+	color: @headingscolor;
+	.mb2_border_radius(3px 3px 0 0);	
+}
+
+.dir-rtl .moodle-dialogue-base .moodle-dialogue-wrap .moodle-dialogue-hd .yui3-widget-buttons {
+    left: 0;
+    right: auto;
+}
+.moodle-dialogue-base .moodle-dialogue .moodle-dialogue-bd {
+    padding: 20px;
+    line-height: 2em;
+    color: #555;
+    font-size: @fssmall;
+}
+.moodle-dialogue-base .moodle-dialogue-wrap .moodle-dialogue-content {
+    padding: 0;
+    background: #FFF;
+}
+.moodle-dialogue-base .moodle-dialogue-fullscreen .moodle-dialogue-hd {
+    padding: 10px;
+    font-size: 16px;
+}
+.moodle-dialogue-base .moodle-dialogue-fullscreen .moodle-dialogue-content {
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border: 0;
+}
+.moodle-dialogue-base .moodle-dialogue-fullscreen .moodle-dialogue-hd,
+.moodle-dialogue-base .moodle-dialogue-fullscreen .moodle-dialogue-wrap {
+    border-radius: 0;
+}
+.moodle-dialogue-confirm .confirmation-dialogue {
+    text-align: center;
+}
+.moodle-dialogue-confirm .confirmation-dialogue input {
+    text-align: center;
+}
+.moodle-dialogue-exception .moodle-exception-message {
+    text-align: center;
+}
+.moodle-dialogue-exception .moodle-exception-param label {
+    font-weight: bold;
+}
+.moodle-dialogue-exception .param-stacktrace label {
+    background-color: #EEE;
+    border: #ccc solid 1px;
+    border-bottom-width: 0;
+}
+.moodle-dialogue-exception .param-stacktrace pre {
+    border: #ccc solid 1px;
+    background-color: #fff;
+}
+.moodle-dialogue-exception .param-stacktrace .stacktrace-file {
+    color: navy;
+    font-size: 80%;
+}
+.moodle-dialogue-exception .param-stacktrace .stacktrace-line {
+    color: #AA0000;
+    font-size: 80%;
+}
+.moodle-dialogue-exception .param-stacktrace .stacktrace-call {
+    color: #333;
+    font-size: 90%;
+    border-bottom: 1px solid #eee;
+}
+.moodle-dialogue-base .moodle-dialogue .moodle-dialogue-content .moodle-dialogue-ft {
+    padding: 0;
+    margin: 0.7em 1em;
+    text-align: right;
+    background-color: #FFF;
+    font-size: 12px;
+}
+.moodle-dialogue-confirm .confirmation-message {
+    margin: 0.5em 1em;
+}
+.moodle-dialogue-confirm .confirmation-dialogue input {
+    min-width: 80px;
+}
+.moodle-dialogue-exception .moodle-exception-message {
+    margin: 1em;
+}
+.moodle-dialogue-exception .moodle-exception-param {
+    margin-bottom: 0.5em;
+}
+.moodle-dialogue-exception .moodle-exception-param label {
+    width: 150px;
+}
+.moodle-dialogue-exception .param-stacktrace label {
+    display: block;
+    margin: 0;
+    padding: 4px 1em;
+}
+.moodle-dialogue-exception .param-stacktrace pre {
+    display: block;
+    height: 200px;
+    overflow: auto;
+}
+.moodle-dialogue-exception .param-stacktrace .stacktrace-file {
+    display: inline-block;
+    margin: 4px 0;
+}
+.moodle-dialogue-exception .param-stacktrace .stacktrace-line {
+    display: inline-block;
+    width: 50px;
+    margin: 4px 1em;
+}
+.moodle-dialogue-exception .param-stacktrace .stacktrace-call {
+    padding-left: 25px;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+}
+.moodle-dialogue .moodle-dialogue-bd .content-lightbox {
+    opacity: 0.75;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    text-align: center;
+    padding: 10% 0;
+}
+.moodle-dialogue .tooltiptext {
+    max-height: 300px;
+}
+.moodle-dialogue-base .moodle-dialogue.moodle-dialogue-tooltip {
+    z-index: 3001;
+}
+.moodle-dialogue-base .moodle-dialogue.moodle-dialogue-tooltip .moodle-dialogue-bd {
+    overflow: auto;
+}
+#page-question-edit.dir-rtl a.container-close {
+    right: auto;
+    left: 6px;
+}
+.chooserdialoguebody,
+.choosertitle {
+    display: none;
+}
+.moodle-dialogue.chooserdialogue .moodle-dialogue-content .moodle-dialogue-ft {
+    margin: 0;
+}
+.chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd {
+    padding: 0;
+    background: #F2F2F2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.choosercontainer #chooseform .submitbuttons {
+    padding: 0.7em 0;
+    text-align: center;
+}
+.choosercontainer #chooseform .submitbuttons input {
+    min-width: 100px;
+    margin: 0 0.5em;
+}
+.choosercontainer #chooseform .options {
+    position: relative;
+    border-bottom: 1px solid #BBBBBB;
+}
+.jschooser .choosercontainer #chooseform .alloptions {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 20.3em;
+    box-shadow: 0 0 30px 0 #CCCCCC inset;
+}
+.jschooser .choosercontainer #chooseform .alloptions .option input[type="radio"],
+.jschooser .choosercontainer #chooseform .alloptions .option .modicon {
+    display: inline-block;
+}
+.jschooser .choosercontainer #chooseform .alloptions .option .typename {
+    display: inline-block;
+    width: 65%;
+}
+.dir-rtl.jschooser .choosercontainer #chooseform .alloptions {
+    max-width: 18.3em;
+}
+.choosercontainer #chooseform .moduletypetitle,
+.choosercontainer #chooseform .option,
+.choosercontainer #chooseform .nonoption {
+    margin-bottom: 0;
+    padding: 0 1.6em 0 1.6em;
+}
+.choosercontainer #chooseform .moduletypetitle {
+    text-transform: uppercase;
+    padding-top: 1.2em;
+    padding-bottom: 0.4em;
+}
+.choosercontainer #chooseform .option .typename,
+.choosercontainer #chooseform .option span.modicon img.icon,
+.choosercontainer #chooseform .nonoption .typename,
+.choosercontainer #chooseform .nonoption span.modicon img.icon {
+    padding: 0 0 0 0.5em;
+}
+.dir-rtl .choosercontainer #chooseform .option .typename,
+.dir-rtl .choosercontainer #chooseform .option span.modicon img.icon,
+.dir-rtl .choosercontainer #chooseform .nonoption .typename,
+.dir-rtl .choosercontainer #chooseform .nonoption span.modicon img.icon {
+    padding: 0 0.5em 0 0;
+}
+.chooserdialogue-course-modchooser .choosercontainer #chooseform .option span.modicon img.icon,
+.chooserdialogue-course-modchooser .choosercontainer #chooseform .nonoption span.modicon img.icon {
+    height: 24px;
+    width: 24px;
+}
+.choosercontainer #chooseform .option input[type="radio"],
+.choosercontainer #chooseform .option span.typename,
+.choosercontainer #chooseform .option span.modicon {
+    vertical-align: middle;
+}
+.choosercontainer #chooseform .option label {
+    display: block;
+
+    padding: 0.3em 0 0.1em 0;
+    border-bottom: 1px solid #FFFFFF;
+}
+.choosercontainer #chooseform .nonoption {
+    padding-left: 2.7em;
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
+}
+.dir-rtl .choosercontainer #chooseform .nonoption {
+    padding-right: 2.7em;
+    padding-left: 0;
+}
+.choosercontainer #chooseform .subtype {
+    margin-bottom: 0;
+    padding: 0 1.6em 0 3.2em;
+}
+.dir-rtl .choosercontainer #chooseform .subtype {
+    padding: 0 3.2em 0 1.6em;
+}
+.choosercontainer #chooseform .subtype .typename {
+    margin: 0 0 0 0.2em;
+}
+.dir-rtl .choosercontainer #chooseform .subtype .typename {
+    margin: 0 0.2em 0 0;
+}
+.jschooser .choosercontainer #chooseform .instruction,
+.jschooser .choosercontainer #chooseform .typesummary {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 20.3em;
+    margin: 0;
+    padding: 1.6em;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 2em;
+}
+.dir-rtl.jschooser .choosercontainer #chooseform .instruction,
+.dir-rtl.jschooser .choosercontainer #chooseform .typesummary {
+    left: 0;
+    right: 18.5em;
+    border-right: 1px solid grey;
+}
+.jschooser .choosercontainer #chooseform .instruction,
+.choosercontainer #chooseform .selected .typesummary {
+    display: block;
+}
+.choosercontainer #chooseform .selected {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 0 #CCCCCC;
+}
+.section-modchooser-link img.smallicon {
+    padding-right: 3px;
+}
+.dir-rtl .section-modchooser-link img.smallicon {
+    padding-left: 3px;
+    padding-right: 0;
+}

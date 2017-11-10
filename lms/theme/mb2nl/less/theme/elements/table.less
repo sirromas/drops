@@ -1,0 +1,90 @@
+
+.theme-table-wrap {
+	overflow-x: auto;	
+}
+
+table {
+	width: 99%;	
+	margin-bottom: 20px;
+	border-collapse: initial;
+	
+	th,td {
+		overflow: hidden;
+		
+		&.checkbox {
+			display: table-cell;	
+		}	
+	}
+}
+
+
+table.generaltable,
+.path-mod-forum table.forumheaderlist,
+table.collection,
+table.preference-table,
+table.rolecap,
+table#categoryquestions,
+table.userenrolment {
+	font-size: @fssmall;
+	
+	h1,h2,h3,h4,h5,h6 {
+		margin-top: 10px;
+		margin-bottom: 10px;	
+	}
+	
+	td {
+		padding: 4px;		
+	}
+	
+	.btn,
+	button,
+	.button,
+	input[type="submit"],
+	input[type="button"] {
+		.mb2_button_size(1px, 4px, @fssmall, @fssmall_lh, 3px);	
+	}
+}
+
+table.generaltable,
+.path-mod-forum table.forumheaderlist,
+table.collection {
+	td,
+	th {
+		vertical-align: middle !important;	
+	}	
+}
+
+
+/* Forum table */
+
+.path-mod-forum .forumheaderlist,
+.path-mod-forum .forumheaderlist td {
+	border: 0;	
+}
+
+.path-mod-forum .forumheaderlist td {
+	vertical-align: middle;	
+}
+
+.path-mod-forum .forumheaderlist .picture img {
+	height: auto	
+}
+
+.path-mod-forum .discussionsubscription {
+	margin: 0;	
+}
+
+.path-mod-forum .discussionsubscription > a > img {
+	width: 16px;
+	padding: 0;
+	margin: 0 5px;	
+}
+
+
+
+/* YUI data table resposnive */
+
+.yui3-datatable-content {
+	overflow-x: auto;	
+}
+

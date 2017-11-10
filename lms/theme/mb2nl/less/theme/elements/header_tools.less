@@ -1,0 +1,70 @@
+
+
+.header-tools {
+	
+	position: absolute;
+	right: 15px;
+	bottom: -34px;
+	height: 34px;
+	z-index: 2;
+	
+	a {
+		display: block;
+		float: right;
+		width: 50px;
+		height: 34px;
+		text-align: center;
+		line-height: 34px;
+		background-color: @color_gray1;	
+		color: #fff;
+		text-decoration: none;
+		font-size: 16px;
+		margin-left: 4px;
+	}		
+	
+	a .icon2 {
+		display: none;	
+	}
+		
+	a.active .icon1 {
+		display: none;	
+	}
+	
+	a.active .icon2 {
+		display: inline-block;
+		position: relative;	
+		top: 2px;
+	}	
+	
+	.theme-lfx & {		
+		a {
+			background-color: @accent2;	
+		}		
+	}	
+	
+	.header-dark & {
+		a {
+			background-color: lighten(@accent2,9%);	
+		}	
+	}
+	
+	
+	a.active {
+		background-color: lighten(@accent2,12%);	
+		font-size: 28px;
+	}	
+	
+	.dir-rtl & {
+		right: auto;
+		left: 15px;
+		
+		a {
+			float: left;
+			margin-left: 0;
+			margin-right: 4px;
+		}
+	}	
+		
+}
+
+

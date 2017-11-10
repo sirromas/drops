@@ -1,0 +1,59 @@
+
+
+/* Contaicner width for theme tester plugin */
+
+.container {
+	max-width: 100%;	
+}
+
+.container-fluid {
+	max-width: @pagewidth;
+	
+	
+	.theme-lfx &,
+	.custom-login & {
+		padding-left: 30px;
+		padding-right: 30px;	
+	}
+		
+}
+
+
+
+@media only screen and (max-width:768px){
+	.container-fluid {			
+		.theme-lfx &,
+		.custom-login & {
+			padding-left: 15px;
+			padding-right: 15px;	
+		}			
+	}	
+}
+
+
+
+#page {		
+	#page-a,
+	#page-b {
+		background-color: #fff;	
+	}
+}
+
+
+
+
+
+/* Fixed layout */
+
+.theme-lfx {
+	
+	#page {
+		width: 95%;
+		max-width: @fx_pagewidth;
+		margin: auto;
+		padding: 40px 0;	
+	}
+	
+	background-color: @color_gray2;
+		
+}

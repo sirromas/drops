@@ -1,0 +1,22 @@
+
+
+.paging {
+	margin: 20px 0;	
+}
+
+.paging > span, 
+.paging > a {
+    display: inline-block;
+    border: solid 1px @color_border;
+    padding: 0 5px;
+    color: @textcolor;
+   	.mb2_border_radius(3px);
+    margin: 1px;
+}
+
+
+.paging > span.current-page {
+	border-color: @accent1;
+	background-color: @accent1;
+	color: #fff;	
+}
