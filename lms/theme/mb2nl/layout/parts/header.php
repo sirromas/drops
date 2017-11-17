@@ -32,14 +32,13 @@ $isPageBg = theme_mb2nl_pagebg_image($PAGE);
 
 ?>
 <!-- Additional JS libraries to be used -->
-<script
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
-<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js'></script>
-<script src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'>
-<script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js"></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
+<script type="text/javascript" src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 
 <!-- Additional CSS libraries to be used -->
 <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css'>
