@@ -63,7 +63,7 @@
         </div>
 
         <div class="container" style="text-align: center;">
-            <label><b>Username</b></label>
+            <!--<label><b>Username</b></label>-->
             <input type="text" placeholder="Enter Username" name="username" required style="width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -71,7 +71,7 @@
     border: 1px solid #ccc;
     box-sizing: border-box;">
 
-            <label><b>Password</b></label>
+            <!--<label><b>Password</b></label>-->
             <input type="password" placeholder="Enter Password" name="password" required style="width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -94,5 +94,8 @@
         <div class="container" style="margin: auto;text-align: center;">
             <span class="psw">Forgot <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/login/forgot_password.php" target="_blank">password?</a></span>
         </div>
-    </form>
+        <div class="container" style="margin: auto;text-align: center;">
+            <span class="psw">Don't have an account? Click <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/">here</a></span>
+        </div><br>
+     </form>
 </div>

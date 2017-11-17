@@ -34,7 +34,7 @@ $isLoginPage = theme_mb2nl_is_login($PAGE);
 				<?php echo theme_mb2nl_search_form(); ?>
                 <?php echo !$isLoginPage ? theme_mb2nl_login_form() : ''; ?> 
                 <?php echo theme_mb2nl_theme_links(); ?>
-                <div class="header-tools">
+                <div class="header-tools" style="bottom:-44px;">
                 	<?php if (is_siteadmin()) : ?>
                      	<a href="#" class="toll-links"><i class="icon1 fa fa-cog fa-spin"></i><i class="icon2 pe-7s-close"></i></a>
                     <?php endif; ?>

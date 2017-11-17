@@ -1,3 +1,31 @@
+<div id="bottom" class="dark1">
+    <div class="container-fluid" id="yui_3_17_2_2_1510781966338_212">
+        <div class="row" id="yui_3_17_2_2_1510781966338_211">
+            <div class="col-sm-12" id="yui_3_17_2_2_1510781966338_210">
+                <aside id="block-region-bottom" class="bottom style-bottom block-region" data-blockregion="bottom"
+                       data-droptarget="1">
+                    <div id="inst26" class="block_html  block" role="complementary" data-block="html"
+                         data-instanceid="26" aria-label="HTML">
+                        <div class="content" id="yui_3_17_2_2_1510781966338_214">
+                            <div class="block_action notitle"></div>
+                            <div class="no-overflow" id="yui_3_17_2_2_1510781966338_213">
+                                <div class="row theme-cols" id="yui_3_17_2_2_1510781966338_215">
+                                    <div class="col-sm-4 align-right" id="yui_3_17_2_2_1510781966338_217">
+                                        <h4 style="margin:15px 0 0 0;" id="yui_3_17_2_2_1510781966338_218">
+                                            SUBSCRIBE TO OUR NEWSLETTER</h4></div>
+                                    <div class="col-sm-4" style="margin-top: 8px;"><input type="text" id="subs_email" style="width:100%;"></div>
+                                    <div class="col-sm-4 align-left">
+                                        <a href="#" target="" class="btn btn-success btn-lg btn-icon-before">
+                                            <span class="btn-text">Sign Up</span></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
 <footer id="footer" class="dark1">
     <div class="container-fluid">
         <div class="row">
@@ -5,11 +33,14 @@
                 <div class="footer-content clearfix">
                     <p class="footer-text">Copyright © Learning Drops 2017. All rights reserved.</p>
                     <ul class="social-list">
+                        <!--
                         <li class="li-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li class="li-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li class="li-instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li class="li-youtube-play"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                         <li class="li-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        -->
+                        <div class="sharethis-inline-share-buttons"></div>
                     </ul>
                 </div>
             </div>

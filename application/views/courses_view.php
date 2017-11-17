@@ -64,34 +64,7 @@
             </div>
         </div>
     </div>
-    <div class="coursebox clearfix odd noinfobox" data-courseid="6" data-type="1" id="yui_3_17_2_2_1510338114389_165">
-        <div class="content" id="yui_3_17_2_2_1510338114389_164">
-            <div class="content-inner" id="yui_3_17_2_2_1510338114389_163">
-                <div class="course-content" id="yui_3_17_2_2_1510338114389_162">
-                    <div class="course-heading" id="yui_3_17_2_2_1510338114389_161"><h3 class="coursename"><a
-                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=6">Demo Course
-                                #3</a></h3>
-                        <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
-                        </div>
-                    </div>
-                    <div class="summary" id="yui_3_17_2_2_1510338114389_232">
-                        <div class="no-overflow" id="yui_3_17_2_2_1510338114389_231"><p
-                                    id="yui_3_17_2_2_1510338114389_230">Curabitur aliquet quam id dui posuere blandit.
-                                Curabitur aliquet quam id dui posuere blandit. Cras ultricies ligula sed magna dictum
-                                porta. Donec sollicitudin molestie malesuada.</p></div>
-                    </div>
-                    <ul class="teachers">
-                        <li>Teacher: <a href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
-                                Miller</a></li>
-                    </ul>
-                    <div class="course-readmore" id="yui_3_17_2_2_1510338114389_166"><a class="btn btn-primary"
-                                                                                        href="http://marbol2.com/themes/new-learning/course/view.php?id=6">Enter
-                            this course</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="coursebox clearfix even noinfobox" data-courseid="2" data-type="1" id="yui_3_17_2_2_1510338114389_172">
         <div class="content" id="yui_3_17_2_2_1510338114389_171">
             <div class="content-inner fileandcontent" id="yui_3_17_2_2_1510338114389_170">

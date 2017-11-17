@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $socilaTt = theme_mb2nl_theme_setting($PAGE, 'socialtt', 0) == 1 ? 'top' : '';
-$footThemeContent =  theme_mb2nl_theme_setting($PAGE, 'foottext', 'Copyright &copy; New Learning Theme ' . date('Y') . '. All rights reserved.');
+$footThemeContent =  'Copyright © Learning Drops 2017. All rights reserved.';
 $footContent = format_text($footThemeContent, FORMAT_HTML);
 $footLogin =  theme_mb2nl_theme_setting($PAGE, 'footlogin', 0);
 $footerTools = (is_siteadmin() || $footLogin == 1); 
@@ -40,21 +40,7 @@ $footerTools = (is_siteadmin() || $footLogin == 1);
 						<?php echo theme_mb2nl_social_icons($PAGE, array('tt'=>$socilaTt,'pos'=>'footer')); ?>
                	 	<?php endif; ?>  
                 </div>          
-				<?php if ($footerTools) : ?>
-                    <div class="footer-tools">
-                        <?php if ($footLogin) : ?>
-                            <?php echo $OUTPUT->login_info(); ?>
-                        <?php endif; ?>                        
-                        <?php if ($OUTPUT->course_footer()) : ?>
-                        	<p id="course-footer"><?php echo $OUTPUT->course_footer(); ?></p>
-                        <?php endif; ?>
-                        <?php if ($OUTPUT->page_doc_link()) : ?>
-                        	<p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
-						<?php endif; ?>            			
-                        <?php echo $OUTPUT->standard_footer_html(); ?>
-                    </div>
-                <?php endif; ?>   
-     		</div>           
+     		</div>
         </div>
     </div>    
 </footer>

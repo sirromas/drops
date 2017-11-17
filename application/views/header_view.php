@@ -9,6 +9,12 @@
 
     <script type="text/javascript" src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/jquery.php/core/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js'></script>
+
+
+    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a0ee083cab38e0011129d08&product=inline-share-buttons"></script>
+
 
     <script type="text/javascript">
         //<![CDATA[
@@ -269,22 +275,15 @@
             <div class="container-fluid" id="yui_3_17_2_2_1510321856752_178">
                 <div class="row" id="yui_3_17_2_2_1510321856752_177">
                     <div class="col-sm-12" id="yui_3_17_2_2_1510321856752_176">
+                        <!--
                         <div class="main-logo" style="width:180px;margin:20px 0 20px 0;margin-left:40%;"
                              id="yui_3_17_2_2_1510321856752_244">
                             <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/" title="Learning Drops"
                                id="yui_3_17_2_2_1510321856752_243">
-                                <img src="//marbol2.com/themes/new-learning/pluginfile.php/1/theme_mb2nl/logo/1508612606/logo_20170917.png"
+                                <img src="http://theberry.us/clientes/drops/assets/img/logo.png"
                                      alt="New Learning" id="yui_3_17_2_2_1510321856752_242">
                             </a>
                         </div>
-                        <!--
-                        <ul class="social-list" style="margin:47px 0 0 12px;">
-                            <li class="li-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="li-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="li-instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li class="li-youtube-play"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                            <li class="li-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
                         -->
                     </div>
                 </div>
@@ -314,68 +313,16 @@
 
                                                                                     id="">Register</a>
                                 </li>
+                                <li class="" id=""><a title="News" class=""
+                                                      href="#"
+
+                                                      id="">News</a>
+                                </li>
                                 <li class="" id=""><a title="FAQ" class=""
                                                                                     href="#"
 
-                                                                                    id="">Help</a>
+                                                                                    id="">FAQ</a>
                                 </li>
-
-                                <!--
-                                <li class="dropdown" id="yui_3_17_2_2_1510321856752_180"><a href="#" class="sf-with-ul"
-                                                                                            data-toggle=""
-                                                                                            title="Elements"
-                                                                                            id="yui_3_17_2_2_1510321856752_179">Elements<span
-                                                class="mobile-arrow"></span></a>
-                                    <ul class="dropdown-list" style="display: none;"
-                                        id="yui_3_17_2_2_1510321856752_185">
-                                        <li class="dropdown" id="yui_3_17_2_2_1510321856752_184"><a href="#"
-                                                                                                    class="sf-with-ul"
-                                                                                                    data-toggle=""
-                                                                                                    title=" Elements #1"
-                                                                                                    id="yui_3_17_2_2_1510321856752_183">
-                                                Elements #1<span class="mobile-arrow"></span></a>
-                                            <ul class="dropdown-list" style="display: none;"
-                                                id="yui_3_17_2_2_1510321856752_188">
-                                                <li class="" id="yui_3_17_2_2_1510321856752_187"><a title=" Accordions"
-                                                                                                    class=""
-                                                                                                    href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=2"
-                                                                                                    id="yui_3_17_2_2_1510321856752_186">
-                                                        Accordions</a></li>
-                                                <li class=""><a title=" Buttons" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=4">
-                                                        Buttons</a></li>
-                                                <li class=""><a title=" Highlights" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=5">
-                                                        Highlights</a></li>
-                                                <li class=""><a title=" Icon Boxes" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=6">
-                                                        Icon Boxes</a></li>
-                                                <li class=""><a title=" Image Boxes" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=7">
-                                                        Image Boxes</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#" class="sf-with-ul" data-toggle=""
-                                                                title=" Elements #2"> Elements #2<span
-                                                        class="mobile-arrow"></span></a>
-                                            <ul class="dropdown-list" style="display: none;">
-                                                <li class=""><a title=" Headers" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=8">
-                                                        Headers</a></li>
-                                                <li class=""><a title=" Slider" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=9">
-                                                        Slider</a></li>
-                                                <li class=""><a title=" Tabs" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=3">
-                                                        Tabs</a></li>
-                                                <li class=""><a title=" Video" class=""
-                                                                href="http://marbol2.com/themes/new-learning/mod/page/view.php?id=10">
-                                                        Video</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                -->
 
                                 <li class="" id=""><a title="About" class=""
                                                                                     href="#"
@@ -396,8 +343,6 @@
 
                                 <li class="nav navbar-nav navbar-right"><div class="theme-searchform" style="display:block;margin-top:3px;" id="yui_3_17_2_2_1510339076392_144"><form id="theme-search" action="http://marbol2.com/themes/new-learning/course/search.php" method="GET"><input id="theme-coursesearchbox" type="text" value="" placeholder="Search courses" name="search"><button type="submit" id="yui_3_17_2_2_1510339076392_145"><i class="fa fa-search"></i></button></form></div></li>
 
-
-
                             </ul>
                         </div>
                     </div>
@@ -405,4 +350,5 @@
             </div>
         </div>
     </div><!-- //end #page-a -->
+
 
