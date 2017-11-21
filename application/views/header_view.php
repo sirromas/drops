@@ -315,13 +315,13 @@
                                 </li>
 
                                 <li class="" id=""><a title="FAQ" class=""
-                                                                                    href="#"
+                                                                                    href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/faq/show"
 
                                                                                     id="">FAQ</a>
                                 </li>
 
                                 <li class="" id=""><a title="About" class=""
-                                                                                    href="#"
+                                                                                    href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show"
 
                                                                                     id="">About</a>
                                 </li>

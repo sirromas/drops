@@ -14,6 +14,7 @@ class Index extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('index_model');
     }
 
     /**
@@ -22,9 +23,14 @@ class Index extends CI_Controller
     public function index()
     {
         $this->load->view('header_view');
-        $this->load->view('index_view');
+        $about_section = $this->index_model->get_about_section();
+        $news_section = $this->index_model->get_news_section();
+        $slider_section = $this->index_model->get_slider_section();
+        $data = array('about_section' => $about_section,
+                      'news_section' => $news_section,
+                      'slider_section' => $slider_section);
+        $this->load->view('index_view', $data);
         $this->load->view('footer_view');
-        //$this->output->enable_profiler(TRUE);
     }
 
 }

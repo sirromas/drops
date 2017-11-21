@@ -1,65 +1,9 @@
 <div id="page-b">
-    <div id="slider">
-        <aside id="block-region-slider" class="slider style-none block-region" data-blockregion="slider"
-               data-droptarget="1">
-            <div id="inst19" class="block_mb2slider  block" role="complementary" data-block="mb2slider"
-                 data-instanceid="19" aria-label="Mb2 Slider Block">
-                <div class="content" id="yui_3_17_2_2_1510321856752_116">
-                    <div class="block_action notitle"></div>
 
+    <!-- Slider -->
+    <?php echo $slider_section; ?>
 
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-
-
-                        <div class="carousel-inner">
-                            <div class="item">
-                                <img class="mb2slider-slide-img"
-                                     src="http://marbol2.com/themes/new-learning/pluginfile.php/24/block_mb2slider/content/01_comp_20170917.jpg"
-                                     alt="01_comp_20170917.jpg" style="z-index:0;max-width:100%;">
-                            </div>
-
-                            <div class="item">
-                                <img class="mb2slider-slide-img"
-                                     src="http://marbol2.com/themes/new-learning/pluginfile.php/24/block_mb2slider/content/03_comp_20170917.jpg"
-                                     alt="03_comp_20170917.jpg" style="z-index:0;max-width:100%;">
-                            </div>
-
-                            <div class="item active">
-                                <img class="mb2slider-slide-img"
-                                     src="http://marbol2.com/themes/new-learning/pluginfile.php/24/block_mb2slider/content/02_comp_20170917.jpg"
-                                     alt="02_comp_20170917.jpg" style="z-index:0;max-width:100%;">
-                            </div>
-
-                            <!--
-                            <div class="item active">
-                                <img class="mb2slider-slide-img"
-                                     src="http://theberry.us/clientes/drops/assets/img/baner6.jpg"
-                                     alt="02_comp_20170917.jpg" style="z-index:0;max-width:100%;">
-                            </div>
-                            -->
-                        </div>
-
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
-
-                </div>
-            </div>
-        </aside>
-    </div>
+    <!-- End  of slider-->
 </div>
 
 <!-- Index page content -->
@@ -77,9 +21,17 @@
                                 <div class="block_action notitle"></div>
                                 <div class="no-overflow" id="yui_3_17_2_2_1510781966338_108">
                                     <div class="row theme-cols" id="yui_3_17_2_2_1510781966338_107">
+                                        <?php  echo $news_section; ?>
+
                                         <!-- Images -->
+                                        <!--
                                         <div class="col-sm-6" id="yui_3_17_2_2_1510781966338_125">
+
                                             <div class="theme-boxes col-2 clearfix" id="yui_3_17_2_2_1510781966338_124">
+
+
+
+
                                                 <div class="theme-box" id="yui_3_17_2_2_1510781966338_134"><a href="#"
                                                                                                               target=""
                                                                                                               id="yui_3_17_2_2_1510781966338_133">
@@ -92,6 +44,7 @@
                                                                  style="background-image:url('http://marbol2.com/themes/new-learning/pluginfile.php/25/block_html/content/office-2070806_compressed.jpg');background-repeat:no-repeat;background-position:50% 50%;background-size:cover;"></div>
                                                         </div>
                                                     </a></div>
+
                                                 <div class="theme-box"><a href="#" target="">
                                                         <div class="theme-boximg"><h4>Clean Code</h4>
                                                             <div class="theme-boximg-color"
@@ -100,6 +53,7 @@
                                                                  style="background-image:url('http://marbol2.com/themes/new-learning/pluginfile.php/25/block_html/content/code-1839406_compressed.jpg');background-repeat:no-repeat;background-position:50% 50%;background-size:cover;"></div>
                                                         </div>
                                                     </a></div>
+
                                                 <div class="theme-box" id="yui_3_17_2_2_1510781966338_123"><a href="#"
                                                                                                               target=""
                                                                                                               id="yui_3_17_2_2_1510781966338_122">
@@ -113,6 +67,7 @@
                                                                  style="background-image:url('http://marbol2.com/themes/new-learning/pluginfile.php/25/block_html/content/books-1943625_compressed.jpg');background-repeat:no-repeat;background-position:50% 50%;background-size:cover;"></div>
                                                         </div>
                                                     </a></div>
+
                                                 <div class="theme-box" id="yui_3_17_2_2_1510781966338_129"><a href="#"
                                                                                                               target=""
                                                                                                               id="yui_3_17_2_2_1510781966338_128">
@@ -125,10 +80,16 @@
                                                                  style="background-image:url('http://marbol2.com/themes/new-learning/pluginfile.php/25/block_html/content/apple-1850613_compressed.jpg');background-repeat:no-repeat;background-position:50% 50%;background-size:cover;"></div>
                                                         </div>
                                                     </a></div>
+
+
                                             </div>
+
                                         </div>
+                                        -->
 
                                         <!-- Text -->
+                                        <?php echo $about_section; ?>
+                                        <!--
                                         <div class="col-sm-6" id="yui_3_17_2_2_1510781966338_106">
                                             <div class="theme-title title-left title-n style-1"
                                                  style="margin:0 0 30px 0;" id="yui_3_17_2_2_1510781966338_115"><h4
@@ -145,7 +106,7 @@
                                             <a href="#" target="" class="btn btn-primary btn-lg btn-icon-before"
                                                style="margin:20px 0 0 0"><span class="btn-text">Read more</span></a>
                                         </div>
-
+                                        -->
                                     </div>
                                 </div>
                             </div>
