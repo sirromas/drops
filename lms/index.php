@@ -22,6 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 if (!file_exists('./config.php')) {
     header('Location: install.php');
     die;
@@ -30,6 +31,12 @@ if (!file_exists('./config.php')) {
 require_once('config.php');
 require_once($CFG->dirroot .'/course/lib.php');
 require_once($CFG->libdir .'/filelib.php');
+
+/*
+$location='http://theberry.us/clientes/drops/';
+header("Location: $location");
+exit;
+*/
 
 redirect_if_major_upgrade_required();
 

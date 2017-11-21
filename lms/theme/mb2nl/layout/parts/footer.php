@@ -52,5 +52,7 @@ $footerTools = (is_siteadmin() || $footLogin == 1);
 	<?php echo theme_mb2nl_scrolltt($PAGE); ?>
 <?php endif; ?>
 <?php echo $OUTPUT->standard_end_of_body_html(); ?>
+
+
 </body>
 </html>

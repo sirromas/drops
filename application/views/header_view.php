@@ -313,11 +313,7 @@
 
                                                                                     id="">Register</a>
                                 </li>
-                                <li class="" id=""><a title="News" class=""
-                                                      href="#"
 
-                                                      id="">News</a>
-                                </li>
                                 <li class="" id=""><a title="FAQ" class=""
                                                                                     href="#"
 

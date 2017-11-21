@@ -161,7 +161,7 @@ function theme_mb2nl_theme_scripts ($page, $attribs = array())
 						
 	
 	// jQuery framework
-	$page->requires->jquery();
+	//$page->requires->jquery();
 	//$page->requires->jquery_plugin('ui');
 		
 	

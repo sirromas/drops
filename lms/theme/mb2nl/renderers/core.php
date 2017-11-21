@@ -25,6 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+require_once $_SERVER['DOCUMENT_ROOT'].'/clientes/drops/lms/custom/nav/classes/Nav.php';
 
 class theme_mb2nl_core_renderer extends core_renderer 
 {
@@ -151,22 +152,24 @@ class theme_mb2nl_core_renderer extends core_renderer
         
 		
 		global $CFG, $PAGE, $OUTPUT, $SITE;
-	
+        $nav=new Nav();
+        $homeurl=$nav->homeurl;
+        $custom_menu=$nav->get_menu();
+
 		$content = ''; 
 		$myCourses = (isloggedin() && !isguestuser() && theme_mb2nl_theme_setting($PAGE, 'mycinmenu', 0));
 		
 		
 		$content .= '<div class="menu-bar">';
-		$content .= '<a class="mobile-home" href="' . new moodle_url($CFG->wwwroot) . '" title="' . theme_mb2nl_theme_setting($PAGE, 'logotitle','New Learning') . '"><i class="fa fa-home"></i></a>';
+		$content .= '<a class="mobile-home" href="'.$homeurl.'" title="Learning Drops"><i class="fa fa-home"></i></a>';
 		$content .= '<a class="show-menu" href="#"><i class="fa fa-bars"></i></a>';
 		$content .= '</div>';
-		
-	   
+
 	    $content .= '<ul class="main-menu theme-ddmenu"' . theme_mb2nl_menu_data($PAGE) . '>';
-		
-		
-		$content .= '<li class="home-item"><a href="' . new moodle_url($CFG->wwwroot) . '" title="' . theme_mb2nl_theme_setting($PAGE, 'logotitle','New Learning') . '"><i class="fa fa-home"></i></a></li>';
-		 
+
+		$content .= '<li class="home-item"><a href="'.$homeurl.'" title="Learning Drops"><i class="fa fa-home"></i></a></li>';
+
+        $content .= $custom_menu;
 		
         foreach ($menu->get_children() as $item) 
 		{           

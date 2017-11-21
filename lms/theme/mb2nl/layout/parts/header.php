@@ -22,30 +22,29 @@
  *
  */
 
-defined('MOODLE_INTERNAL') || die(); 
-
+defined('MOODLE_INTERNAL') || die();
 
 $customLoginPage = theme_mb2nl_is_login($PAGE, true);
 $socilaTt = theme_mb2nl_theme_setting($PAGE, 'socialtt', 0) == 1 ? 'top' : '';
 $isPageBg = theme_mb2nl_pagebg_image($PAGE);
 
-
 ?>
+
 <!-- Additional JS libraries to be used -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+<script type="text/javascript" src="//theberry.us/clientes/drops/lms/custom/js/nav.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js"></script>
-<script type="text/javascript" src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
-<script type="text/javascript" src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+<script type="text/javascript" src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
 
 <!-- Additional CSS libraries to be used -->
 <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css'>
 
-
-
 <body <?php echo $OUTPUT->body_attributes(theme_mb2nl_body_cls($PAGE)) . $isPageBg; ?>>
+
 <?php echo $OUTPUT->standard_top_of_body_html(); ?>
 <?php if (theme_mb2nl_theme_setting($PAGE, 'loadingscr',0) == 1) : ?>
 	<?php echo theme_mb2nl_loading_screen($PAGE); ?>
@@ -76,8 +75,8 @@ echo !$customLoginPage ? $OUTPUT->theme_part('sliding_panel') : '';
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12">
-                        <?php echo $OUTPUT->custom_menu(); ?> 
-                    </div>
+                        <?php echo $OUTPUT->custom_menu(); ?>
+                     </div>
                 </div>
             </div>
         </div>
