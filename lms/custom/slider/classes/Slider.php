@@ -13,7 +13,7 @@ class Slider extends Utils
     function get_ops_items($id)
     {
         $list = "";
-        $list .= "<span>";
+        $list .= "<span>&nbsp;&nbsp;&nbsp;&nbsp;";
         $list .= "<i id='slide_upload_$id' title='Upload Slide' style='cursor: pointer;' class='fa fa-pencil-square-o' aria-hidden='true'></i>";
         $list .= "</span>";
         return $list;

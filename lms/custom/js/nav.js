@@ -220,7 +220,6 @@ $(document).ready(function () {
         }
 
         if (event.target.id == 'news_cancel_dialog') {
-            console.log('Cancel clicked ...');
             CKEDITOR.instances['news_content'].destroy(true);
             $("[data-dismiss=modal]").trigger({type: "click"});
             $("#myModal").remove();
@@ -233,6 +232,84 @@ $(document).ready(function () {
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#news_table').DataTable();
+            }); // end of post
+        }
+
+        /*********** Courses section ************/
+
+        if (event.target.id == 'courses') {
+            var url = '/clientes/drops/lms/custom/courses/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#courses_table').dataTable({
+                    "pageLength": 3
+                });
+            }); // end of post
+        }
+
+        if (event.target.id == 'course_update_done') {
+            var id = $('#courseid').val();
+            var cost = $('#cost').val();
+            var top;
+            if ($('#top_status').prop('checked')) {
+                top = 1;
+            } // end if
+            else {
+                top = 0;
+            } // end else
+            if (cost == '') {
+                $('#course_err').html('Please provide course cost');
+            } // end if
+            else {
+                $('#course_err').html('');
+                var url = '/clientes/drops/lms/custom/courses/update.php';
+                var file_data = $('#files').prop('files');
+                var form_data = new FormData();
+                $.each(file_data, function (key, value) {
+                    form_data.append(key, value);
+                });
+                form_data.append('id', id);
+                form_data.append('cost', cost);
+                form_data.append('top', top);
+                $.ajax({
+                    url: url,
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function () {
+                        get_courses_page();
+                    } // end of success
+                }); // end of $.ajax
+                $("[data-dismiss=modal]").trigger({type: "click"});
+                $("#myModal").remove();
+                $('.modal-backdrop').remove();
+                get_courses_page();
+            } // end else
+        }
+
+        if (event.target.id.indexOf("course_edit_") >= 0) {
+            var id = event.target.id.replace("course_edit_", "");
+            var url = '/clientes/drops/lms/custom/courses/dialog.php';
+            $.post(url, {id: id}).done(function (data) {
+                $("body").append(data);
+                $("#myModal").modal('show');
+            });
+        }
+
+        if (event.target.id == 'course_cancel_dialog') {
+            $("[data-dismiss=modal]").trigger({type: "click"});
+            $("#myModal").remove();
+            $('.modal-backdrop').remove();
+        }
+
+        function get_courses_page() {
+            var url = '/clientes/drops/lms/custom/courses/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#courses_table').dataTable({
+                    "pageLength": 3
+                });
             }); // end of post
         }
 

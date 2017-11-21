@@ -39,7 +39,6 @@ class News extends Utils
         $list .= "</div>";
 
         $list .= "<div class='row'>";
-        //$list .= "<span class='span12'>";
         $list .= "<table id='news_table' class='display' cellspacing='0' width='100%'>";
         $list .= "<thead>";
         $list .= "<tr>";
@@ -72,7 +71,6 @@ class News extends Utils
         $list .= "</tbody>";
 
         $list .= "</table>";
-        //$list .= "</span>";
         $list .= "</div>";
         return $list;
     }
