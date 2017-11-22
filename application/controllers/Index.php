@@ -26,11 +26,44 @@ class Index extends CI_Controller
         $about_section = $this->index_model->get_about_section();
         $news_section = $this->index_model->get_news_section();
         $slider_section = $this->index_model->get_slider_section();
+        $this->index_model->create_courses_data();
         $data = array('about_section' => $about_section,
-                      'news_section' => $news_section,
-                      'slider_section' => $slider_section);
+            'news_section' => $news_section,
+            'slider_section' => $slider_section);
         $this->load->view('index_view', $data);
         $this->load->view('footer_view');
+    }
+
+    /**
+     *
+     */
+    public function search()
+    {
+        $item = $this->uri->segment(3);
+        $courses = $this->index_model->get_search_results($item);
+        $data = array('items' => $courses);
+        $this->load->view('header_view');
+        $this->load->view('search_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    /**
+     *
+     */
+    public function get_subs_modal_dialog()
+    {
+        $email = $this->input->post('email');
+        $dialog = $this->index_model->get_subs_modal_dialog($email);
+        echo $dialog;
+    }
+
+    /**
+     * @param $item
+     */
+    public function add_subscriber($item)
+    {
+        $item = $this->input->post('item');
+        $this->index_model->add_subscriber($item);
     }
 
 }

@@ -7,11 +7,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="text/javascript" src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/jquery.php/core/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js'></script>
-
+    <script type='text/javascript' src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/assets/js/custom.js"></script>
 
     <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a0ee083cab38e0011129d08&product=inline-share-buttons"></script>
 
@@ -269,22 +269,20 @@
 
 </head>
 
+<?php
+
+$ci = & get_instance();
+$ci->load->model('courses_model');
+$citems=$ci->courses_model->get_courses_menu_items();
+
+?>
+
 <div id="page">
     <div id="page-a">
         <div id="main-header">
             <div class="container-fluid" id="yui_3_17_2_2_1510321856752_178">
                 <div class="row" id="yui_3_17_2_2_1510321856752_177">
                     <div class="col-sm-12" id="yui_3_17_2_2_1510321856752_176">
-                        <!--
-                        <div class="main-logo" style="width:180px;margin:20px 0 20px 0;margin-left:40%;"
-                             id="yui_3_17_2_2_1510321856752_244">
-                            <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/" title="Learning Drops"
-                               id="yui_3_17_2_2_1510321856752_243">
-                                <img src="http://theberry.us/clientes/drops/assets/img/logo.png"
-                                     alt="New Learning" id="yui_3_17_2_2_1510321856752_242">
-                            </a>
-                        </div>
-                        -->
                     </div>
                 </div>
             </div>
@@ -303,41 +301,17 @@
                                 data-animspeed="450" style="touch-action: pan-y;" id="">
                                 <li class="home-item"><a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/"
                                                          title="New Learning"><i class="fa fa-home"></i></a></li>
-                                <li class="" id=""><a title="Courses" class=""
-                                                                                    href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/courses"
 
-                                                                                    id="">Courses</a>
-                                </li>
-                                <li class="" id=""><a title="Register" class=""
-                                                                                    href="#"
+                                <!-- Courses menu -->
+                                <?php echo $citems; ?>
 
-                                                                                    id="">Register</a>
-                                </li>
+                                <li class="" id=""><a title="Register" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register">Register</a></li>
+                                <li class="" id=""><a title="FAQ" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/faq/show" >FAQ</a></li>
+                                <li class="" id=""><a title="About"  href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show">About</a></li>
+                                <li class="" id=""><a title="Contact" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/contact/contact/contact" >Contact</a></li>
+                                <li class="" id=""><a title="Login" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/login" >Login</a></li>
 
-                                <li class="" id=""><a title="FAQ" class=""
-                                                                                    href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/faq/show"
-
-                                                                                    id="">FAQ</a>
-                                </li>
-
-                                <li class="" id=""><a title="About" class=""
-                                                                                    href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show"
-
-                                                                                    id="">About</a>
-                                </li>
-
-                                <li class="" id=""><a title="Contact" class=""
-                                                                                    href=""
-                                                                                    target=""
-                                                                                    id="">Contact</a>
-                                </li>
-
-                                <li class="" id=""><a title="Login" class=""
-                                                                                    href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/login"
-                                                                                    id="">Login</a>
-                                </li>
-
-                                <li class="nav navbar-nav navbar-right"><div class="theme-searchform" style="display:block;margin-top:3px;" id="yui_3_17_2_2_1510339076392_144"><form id="theme-search" action="http://marbol2.com/themes/new-learning/course/search.php" method="GET"><input id="theme-coursesearchbox" type="text" value="" placeholder="Search courses" name="search"><button type="submit" id="yui_3_17_2_2_1510339076392_145"><i class="fa fa-search"></i></button></form></div></li>
+                                <li class="nav navbar-nav navbar-right"><div class="theme-searchform"><input id="theme-coursesearchbox" type="text" value="" placeholder="Search courses" name="search"><button type="submit" id="index_search"><i class="fa fa-search" id="index_search"></i></button></div></li>
 
                             </ul>
                         </div>

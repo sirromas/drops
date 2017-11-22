@@ -4,8 +4,6 @@
 class Index_model extends CI_Model
 {
 
-    public $host;
-
     /**
      * Index_model_model constructor.
      */
@@ -13,7 +11,7 @@ class Index_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
-
+        $this->load->model('courses_model');
     }
 
     /**
@@ -97,7 +95,7 @@ class Index_model extends CI_Model
         $result = $this->db->query($query);
         $i = 1;
 
-        $list.="<div class='col-sm-6' id=''>
+        $list .= "<div class='col-sm-6' id=''>
 
                                             <div class='theme-boxes col-2 clearfix' id=''>";
 
@@ -108,22 +106,20 @@ class Index_model extends CI_Model
             $http_path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/$path";
             $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
 
-            $list.="<div class='theme-box'>
+            $list .= "<div class='theme-box'>
                              <a href='$url'>
                                    <div class='theme-boximg' >
                                       <h4>$title</h4>
                                       <div class='theme-boximg-color' style='background-color:#e63946;'></div>
-                                      <div class='theme-boximg-img'></div>
+                                      <div class='theme-boximg-img'  style='background-image:url('/clientes/drops/assets/img/n1%20_1.jpg');'>
+                                     
+                                      </div>
                                       </div>
                               </a></div>";
             $i++;
         } // end foreach
 
-
-
-
-
-        $list.="</div></div>";
+        $list .= "</div></div>";
 
         return $list;
     }
@@ -139,7 +135,7 @@ class Index_model extends CI_Model
         foreach ($result->result() as $row) {
             $preface = substr($row->content, 0, 375);
         }
-        $url='http://'.$_SERVER['SERVER_NAME'].'/clientes/drops/index.php/about/show';
+        $url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/index.php/about/show';
         $list .= "<div class='col-sm-6' id=''>
                 <div class='theme-title title-left title-n style-1'style='margin:0 0 30px 0;' id=''>
                 <h4 class='title'><span>Some Word About Us</span></h4></div>
@@ -147,7 +143,93 @@ class Index_model extends CI_Model
                 <a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Read more</span></a>
                 </div>";
         return $list;
-
     }
+
+    /**
+     *
+     */
+    public function create_courses_data()
+    {
+        $query = "select * from mdl_course where category>0 order by fullname";
+        $result = $this->db->query($query);
+        foreach ($result->result() as $row) {
+            $courses[] = mb_convert_encoding($row->fullname, 'UTF-8');
+        }
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/tmp/courses.json';
+        file_put_contents($path, json_encode($courses));
+    }
+
+    public function get_search_results($item)
+    {
+        $list = "";
+        $clear_item = urldecode($item);
+        $query = "select * from mdl_course where fullname like '%$clear_item%'";
+        $result = $this->db->query($query);
+        $num = $result->num_rows();
+        if ($num > 0) {
+            foreach ($result->result() as $row) {
+                $list .= $this->courses_model->get_course_preview($row->id);
+            }
+        } // end if $num>0
+        else {
+            $list .= "<br><div style='margin: auto;width:85%;' id='contact_form_container'>";
+            $list .= "<div class='panel panel-default'>";
+            $list .= "<div class='panel-heading' style='padding-left: 15px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd; '>Search Results</div>";
+            $list .= "<div class='panel-body'>";
+            $list .= "<div class='row' style='text-align: center;font-weight: bold;'>";
+            $list .= "<span class='col-md-12'> Nothing is found :)</span>";
+            $list .= "</div>";
+            $list .= "</div>";
+            $list .= "</div>";
+            $list .= "</div>";
+        }
+        return $list;
+    }
+
+    function get_subs_modal_dialog($email)
+    {
+        $list = "";
+
+        $list .= "<div id='myModal' class='modal fade' role='dialog'>
+          <div class='modal-dialog'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title'>New Subscriber</h4>
+              </div>
+              <div class='modal-body' style=''>
+              <div class='row'>
+              <span class='col-md-4'>Can we ask you some more info?</span> 
+              </div> 
+              <div class='row'>
+              <span class='col-md-1'>Name* </span><span class='col-md-2'><input type='text' id='subs_name' placeholder='Your Name'></span>
+              </div>
+              
+              <div class='modal-body' style=''>
+              <div class='row'>
+              <span class='col-md-1'>Email*</span><span class='col-md-2'><input type='text' id='subs_email' value='$email' placeholder='Your Email' ></span>
+              </div>
+              
+              </div>
+              <div class='modal-footer' style='text-align: center;'>
+                <button type='button' class='btn btn-primary' id='add_new_subscriber'>Make Me Subscriber!</button>
+                <button type='button' class='btn btn-primary' id='course_cancel_dialog'>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>";
+
+        return $list;
+    }
+
+    public function add_subscriber($item)
+    {
+        $data = json_decode($item);
+        $now = time();
+        $query = "insert into mdl_subscribers (name,email,status,added) 
+                values ('$data->name','$data->email','1','$now')";
+        $this->db->query($query);
+    }
+
 
 }

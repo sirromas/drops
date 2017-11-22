@@ -15,13 +15,23 @@ class Contact extends CI_Controller
     /**
      *
      */
-    public function show()
+    public function contact()
     {
         $item = $this->contact_model->get_contact_page();
         $data = array('item' => $item);
         $this->load->view('header_view');
         $this->load->view('contact_view', $data);
         $this->load->view('footer_view');
+    }
+
+    /**
+     *
+     */
+    public function send()
+    {
+        $item = $this->input->post('item');
+        $response = $this->contact_model->add_contact_request($item);
+        echo $response;
     }
 
 
