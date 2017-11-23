@@ -313,6 +313,104 @@ $(document).ready(function () {
             }); // end of post
         }
 
+        /*********** Feedback section ************/
+
+        if (event.target.id == 'contacts') {
+            var url = '/clientes/drops/lms/custom/feedback/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#feedback_table').dataTable();
+            }); // end of post
+        }
+
+        function get_feedback_page() {
+            var url = '/clientes/drops/lms/custom/feedback/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#feedback_table').dataTable();
+            }); // end of post
+        }
+
+        /*********** Subscribers section ************/
+
+        if (event.target.id == 'subscribers') {
+            var url = '/clientes/drops/lms/custom/subscribers/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#subs_table').dataTable();
+            }); // end of post
+        }
+
+        function get_subsribers_page() {
+            var url = '/clientes/drops/lms/custom/subscribers/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#subs_table').dataTable();
+            }); // end of post
+        }
+
+        if (event.target.id.indexOf("subs_edit_") >= 0) {
+            var id = event.target.id.replace("subs_edit_", "");
+            var url = '/clientes/drops/lms/custom/subscribers/dialog.php';
+            $.post(url, {id: id}).done(function (data) {
+                $("body").append(data);
+                $("#myModal").modal('show');
+            });
+        }
+
+        if (event.target.id == 'subs_update_done') {
+            var id = $('#subs_id').val();
+            var vals = $('.status:radio:checked').map(function () {
+                return this.value;
+            }).get();
+            var status = vals.join(",");
+            var item = {id: id, status: status};
+            var url = '/clientes/drops/lms/custom/subscribers/update.php';
+            $.post(url, {item: JSON.stringify(item)}).done(function () {
+                $("[data-dismiss=modal]").trigger({type: "click"});
+                $("#myModal").remove();
+                $('.modal-backdrop').remove();
+                get_subsribers_page();
+            }); // end of post
+        }
+
+
+        if (event.target.id == 'managers') {
+            var roleid = 9;
+            var url = '/clientes/drops/lms/custom/users/list.php';
+            $.post(url, {roleid: roleid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#users_table').dataTable();
+            }); // end of post
+        }
+
+        if (event.target.id == 'partners') {
+            var roleid = 10;
+            var url = '/clientes/drops/lms/custom/users/list.php';
+            $.post(url, {roleid: roleid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#users_table').dataTable();
+            }); // end of post
+        }
+
+        if (event.target.id == 'teachers') {
+            var roleid = 4;
+            var url = '/clientes/drops/lms/custom/users/list.php';
+            $.post(url, {roleid: roleid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#users_table').dataTable();
+            }); // end of post
+        }
+
+        if (event.target.id == 'students') {
+            var roleid = 5;
+            var url = '/clientes/drops/lms/custom/users/list.php';
+            $.post(url, {roleid: roleid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#users_table').dataTable();
+            }); // end of post
+        }
+
 
     }); // end of body click event
 
