@@ -1,8 +1,10 @@
 <?php
 
+
 class Register_model extends CI_Model
 {
 
+    public $enroll_url;
 
     /**
      * Register_model constructor.
@@ -11,7 +13,7 @@ class Register_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
-
+        $this->enroll_url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/lms/custom/enroll/user.php';
     }
 
     /**
@@ -309,23 +311,12 @@ class Register_model extends CI_Model
      * @param $data
      * @return string
      */
-    public function get_payment_confirmation_page($data) {
-
-
+    public function get_payment_confirmation_page($data)
+    {
+        $list = "";
         $session_data = $_SESSION['email'];
         $stdata = json_decode(base64_decode($session_data));
 
-        /*
-        echo "PayPal data<pre>";
-        print_r($data);
-        echo "</pre>----------------------<br>";
-
-        echo "Session data<pre>";
-        print_r($stdata);
-        echo "</pre>----------------------<br>";
-        */
-
-        $newuser=new stdClass();
         $courseid = $stdata->courseid;
         $name = $stdata->name;
         $email = $stdata->email;
@@ -334,18 +325,117 @@ class Register_model extends CI_Model
         $amount = $data['amt'];
         $transactionid = $data['tx'];
 
-        $list = "";
+        $names = explode(' ', $name);
+        $fname = $names[0];
+        $lname = $names[1];
 
-        $list .= "<br><div style='margin: auto;width:85%;' >";
-        $list .= "<div class='panel panel-default'>";
-        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment confirmation</div>";
-        $list .= "<div class='panel-body'>";
-        $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-12'>Thank you for your order! Confirmation email is sent to <span style='font-weight: bold;'>$email</span></span>";
-        $list .= "</div>";
-        $list .= "</div>";
-        $list .= "</div>";
-        $list .= "</div>";
+        $user = new stdClass();
+        $user->courseid = $courseid;
+        $user->name = $name;
+        $user->fname = $fname;
+        $user->lname = $lname;
+        $user->email = $email;
+        $user->phone = $phone;
+        $user->address = $address;
+        $user->amount = $amount;
+        $user->transactionid = $transactionid;
+
+        $huser = base64_encode(json_encode($user));
+        $http_path = $this->enroll_url . "?user=$huser";
+        $userid = file_get_contents($http_path);
+
+        if ($userid > 0) {
+            $status = 0;
+            $list .= "<br><div style='margin: auto;width:85%;' >";
+            $list .= "<div class='panel panel-default'>";
+            $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment confirmation</div>";
+            $list .= "<div class='panel-body'>";
+            $list .= "<div class='row' style='padding-left: 15px;'>";
+            $list .= "<span class='col-md-12'>Thank you for your order! Confirmation email is sent to <span style='font-weight: bold;'>$email</span></span>";
+            $list .= "</div>";
+            $list .= "</div>";
+            $list .= "</div>";
+            $list .= "</div>";
+        } // end if $userid>0
+        else {
+            $status = -1;
+            $list .= "<br><div style='margin: auto;width:85%;' >";
+            $list .= "<div class='panel panel-default'>";
+            $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment status</div>";
+            $list .= "<div class='panel-body'>";
+            $list .= "<div class='row' style='padding-left: 15px;'>";
+            $list .= "<span class='col-md-12'>Sign-up Error Happened. Please contact support team <span style='font-weight: bold;'>info@theberry.us</span></span>";
+            $list .= "</div>";
+            $list .= "</div>";
+            $list .= "</div>";
+            $list .= "</div>";
+        }
+
+        $data = array('page' => $list, 'status' => $status, 'user' => $user);
+        return $data;
+    }
+
+
+    /**
+     * @param $user
+     * @return string
+     */
+    public function get_registration_confirmation_email($user)
+    {
+        $list = "";
+        $course = $this->get_course_data($user->courseid);
+        $coursename = $course->name;
+        $username = $user->email;
+        $pwd = 'strange12';
+
+        $list .= "<html>";
+        $list .= "<body>";
+
+        $list .= "<br>";
+        $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/assets/img/logo.png';
+        $img = "<img src='$img_path'>";
+        $list .= "<table>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>$img</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>Dear $user->fname $user->lname! Thank you for signup. </td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>This receipt is confirmation of your successfull registration.</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;'>Your username</td>";
+        $list .= "<td>$username</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;'>Your password</td>";
+        $list .= "<td>$pwd</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;'>Your course (program)</td>";
+        $list .= "<td>$coursename</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;'>Amount paid (BRL)</td>";
+        $list .= "<td>$user->amount</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;' colspan='2'>Best regards, Learning Drops Team <a href='mailto:info@theberry.us'>info@theberry.us</a></td>";
+        $list .= "</tr>";
+
+        $list .= "</table>";
+
+        $list .= "</body>";
+        $list .= "</html>";
 
         return $list;
     }

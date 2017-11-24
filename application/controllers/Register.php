@@ -11,6 +11,16 @@ class Register extends CI_Controller
         parent::__construct();
         $this->load->model('register_model');
         $this->load->library('session');
+        $this->load->library('email');
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'mail.theberry.us',
+            'smtp_port' => 25,
+            'smtp_user' => 'info@theberry.us',
+            'smtp_pass' => 'aK6SKymc*',
+            'mailtype' => 'html'
+        );
+        $this->email->initialize($config);
     }
 
     /**
@@ -44,10 +54,26 @@ class Register extends CI_Controller
     public function payment_done()
     {
         $data = $_REQUEST;
-        $page = $this->register_model->get_payment_confirmation_page($data);
-        $data = array('page' => $page);
+        $data2 = $this->register_model->get_payment_confirmation_page($data);
+        $page = $data2['page'];
+        $status = $data2['status'];
+        $user = $data2['user'];
+
+        if ($status == 0) {
+            $this->email->from('info@theberry.us', 'Learning Drops Support Team');
+            $this->email->to($user->email);
+            $this->email->cc('sirromas@gmail.com');
+            $this->email->bcc('helainefpsantos@gmail.com');
+
+            $msg = $this->register_model->get_registration_confirmation_email($user);
+            $this->email->subject('Registration Confirmation');
+            $this->email->message($msg);
+            $this->email->send();
+        }
+
+        $vdata = array('page' => $page);
         $this->load->view('header_view');
-        $this->load->view('register_view', $data);
+        $this->load->view('register_view', $vdata);
         $this->load->view('footer_view');
     }
 

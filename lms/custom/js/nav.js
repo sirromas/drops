@@ -412,6 +412,14 @@ $(document).ready(function () {
             }); // end of post
         }
 
+        if (event.target.id == 'revenue_rep') {
+            var url = '/clientes/drops/lms/custom/reports/revenue.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#reports_table').dataTable();
+            }); // end of post
+        }
+
 
     }); // end of body click event
 
