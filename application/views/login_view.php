@@ -95,7 +95,7 @@
             <span class="psw">Forgot <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/login/forgot_password.php" target="_blank">password?</a></span>
         </div>
         <div class="container" style="margin: auto;text-align: center;">
-            <span class="psw">Don't have an account? Click <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/">here</a></span>
+            <span class="psw">Don't have an account? Click <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register/">here</a></span>
         </div><br>
      </form>
 </div>
