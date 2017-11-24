@@ -14,22 +14,38 @@ class Enroll extends Utils
     }
 
 
+    /**
+     * @param $user
+     * @return mixed
+     */
     function enroll_user($user)
     {
         $pwd = 'strange12'; // pwd is same for all users from beginng
         $new_user = create_user_record($user->email, $pwd);
         $id = $new_user->id;
-        $user->id = $id;
-        $query = "update mdl_user set "
-            . "firstname='$user->fname', "
-            . "lastname='$user->lname', "
-            . "email='$user->email', phone1='$user->phone', address='$user->address' where id=$id";
-        $this->db->query($query);
-        $this->assign_roles($id, $user->courseid);
-        $this->add_paypal_payment($user);
+        if ($id > 0) {
+            $user->id = $id;
+            $query = "update mdl_user set "
+                . "firstname='$user->fname', "
+                . "lastname='$user->lname', "
+                . "email='$user->email', phone1='$user->phone', address='$user->address' where id=$id";
+            $this->db->query($query);
+            $this->assign_roles($id, $user->courseid);
+            $pstatus = $this->is_payment_exists($user->transactionid);
+            if ($pstatus == 0) {
+                $this->add_paypal_payment($user);
+            }
+        } // end if
+        else {
+            $id = -1;
+        } // end else
         return $id;
     }
 
+    /**
+     * @param $userid
+     * @param $courseid
+     */
     function assign_roles($userid, $courseid)
     {
         $roleid = 5;
@@ -72,6 +88,10 @@ class Enroll extends Utils
         } // end if $already_endrolled==0
     }
 
+    /**
+     * @param $courseid
+     * @return mixed
+     */
     function getCourseContext($courseid)
     {
         $query = "select id from mdl_context
@@ -84,6 +104,10 @@ class Enroll extends Utils
         return $contextid;
     }
 
+    /**
+     * @param $courseid
+     * @return mixed
+     */
     function getEnrolId($courseid)
     {
         $query = "select id from mdl_enrol
@@ -95,6 +119,11 @@ class Enroll extends Utils
         return $enrolid;
     }
 
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return int
+     */
     function already_enrolled($courseid, $userid)
     {
         $enrolid = $this->getEnrolId($courseid);
@@ -105,6 +134,9 @@ class Enroll extends Utils
         return $num;
     }
 
+    /**
+     * @param $user
+     */
     function add_paypal_payment($user)
     {
         $now = time();
@@ -119,6 +151,17 @@ class Enroll extends Utils
                                 '$user->transactionid',
                                 '$now')";
         $this->db->query($query);
+    }
+
+    /**
+     * @param $transid
+     * @return int
+     */
+    function is_payment_exists($transid)
+    {
+        $query = "select * from mdl_paypal_payments where trans_id='$transid'";
+        $num = $this->db->numrows($query);
+        return $num;
     }
 
 

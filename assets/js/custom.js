@@ -321,4 +321,20 @@ $(document).ready(function () {
 
     }); // end of change event
 
+    $(document).keypress(function (event) {
+
+        if (event.which == 13) {
+            var item = $('#theme-coursesearchbox').val();
+            if (item != '') {
+                var clear_item = encodeURI(item);
+                console.log('Search item: ' + clear_item);
+                var url = 'http://theberry.us/clientes/drops/index.php/index/search/' + clear_item;
+                document.location = url;
+            }
+        }
+
+
+    }); // end of body keypress event
+
+
 }); // end of document ready
