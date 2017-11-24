@@ -374,6 +374,7 @@ $(document).ready(function () {
             }); // end of post
         }
 
+        /*********** Subscribers section ************/
 
         if (event.target.id == 'managers') {
             var roleid = 9;

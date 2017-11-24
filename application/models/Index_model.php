@@ -49,19 +49,19 @@ class Index_model extends CI_Model
                                     <div class='item'>
                                         <img class='mb2slider-slide-img'
                                              src='" . $slides['Slide2'] . "'
-                                             alt='01_comp_20170917.jpg' style='z-index:0;max-width:100%;'>
+                                             alt='Slide2' style='z-index:0;max-width:100%;' id='slide2'>
                                     </div>
         
                                     <div class='item'>
                                         <img class='mb2slider-slide-img'
                                              src='" . $slides['Slide3'] . "'
-                                             alt='03_comp_20170917.jpg' style='z-index:0;max-width:100%;'>
+                                             alt='Slide3' style='z-index:0;max-width:100%;' id='slide3'>
                                     </div>
         
                                     <div class='item active'>
                                         <img class='mb2slider-slide-img'
                                              src='" . $slides['Slide1'] . "'
-                                             alt='02_comp_20170917.jpg' style='z-index:0;max-width:100%;'>
+                                             alt='Slide1' style='max-width:100%;' usemap='#image-map' id='slide1'>
                                     </div>
                                     
                                  </div>
@@ -79,6 +79,7 @@ class Index_model extends CI_Model
                         </div>
                     </div>
                 </aside>
+                
         </div>";
         return $list;
     }
@@ -229,6 +230,49 @@ class Index_model extends CI_Model
         $query = "insert into mdl_subscribers (name,email,status,added) 
                 values ('$data->name','$data->email','1','$now')";
         $this->db->query($query);
+    }
+
+    public function get_map_data()
+    {
+        $list = "";
+        // http://theberry.us/clientes/drops/index.php/courses/full/3
+        $i = 0;
+        $courses = array();
+        $query = "select * from mdl_course where top=1 order by fullname";
+        $result = $this->db->query($query);
+        $num = $result->num_rows();
+        if ($num > 0) {
+            foreach ($result->result() as $row) {
+                $item = new stdClass();
+                $item->id = $row->id;
+                $item->name = $row->fullname;
+                $item->link = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/courses/full/$row->id";
+                $courses[$i] = $item;
+                $i++;
+            }
+
+            $link1=$courses[0]->link;
+            $link2=$courses[1]->link;
+            $link3=$courses[2]->link;
+            $link4=$courses[3]->link;
+            $link5=$courses[4]->link;
+
+            $name1=$courses[0]->name;
+            $name2=$courses[1]->name;
+            $name3=$courses[2]->name;
+            $name4=$courses[3]->name;
+            $name5=$courses[4]->name;
+
+
+            $list .= "<map name='image-map'>
+            <area  alt='$link1' title='$name1' href='$link1' coords='764,573,627,466'    shape='rect'>
+            <area  alt='$link2' title='$name2' href='$link2' coords='849,439,730,323'    shape='rect'>
+            <area  alt='$link3' title='$name3' href='$link3' coords='884,263,1016,402'   shape='rect'>
+            <area  alt='$link4' title='$name4' href='$link4' coords='1045,309,1174,440'  shape='rect'>
+            <area  alt='$link5' title='$name5' href='$link5' coords='1145,456,1281,580'  shape='rect'>
+            </map>";
+        } // end if $num>0
+        return $list;
     }
 
 

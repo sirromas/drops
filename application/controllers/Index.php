@@ -15,6 +15,7 @@ class Index extends CI_Controller
     {
         parent::__construct();
         $this->load->model('index_model');
+        $this->load->helper('url');
     }
 
     /**
@@ -22,16 +23,21 @@ class Index extends CI_Controller
      */
     public function index()
     {
-        $this->load->view('header_view');
         $about_section = $this->index_model->get_about_section();
         $news_section = $this->index_model->get_news_section();
         $slider_section = $this->index_model->get_slider_section();
-        $this->index_model->create_courses_data();
+        $map_data = $this->index_model->get_map_data();
+        $this->index_model->create_courses_data(); // creates courses JSON data
+
         $data = array('about_section' => $about_section,
-            'news_section' => $news_section,
-            'slider_section' => $slider_section);
+                      'news_section' => $news_section,
+                      'slider_section' => $slider_section);
+
+        $data2 = array('map_data' => $map_data);
+
+        $this->load->view('header_view');
         $this->load->view('index_view', $data);
-        $this->load->view('footer_view');
+        $this->load->view('footer_view', $data2);
     }
 
     /**

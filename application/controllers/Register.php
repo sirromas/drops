@@ -10,6 +10,7 @@ class Register extends CI_Controller
     {
         parent::__construct();
         $this->load->model('register_model');
+        $this->load->library('session');
     }
 
     /**
@@ -42,7 +43,7 @@ class Register extends CI_Controller
      */
     public function payment_done()
     {
-        $data = $this->uri->segment(3);
+        $data = $_REQUEST;
         $page = $this->register_model->get_payment_confirmation_page($data);
         $data = array('page' => $page);
         $this->load->view('header_view');
@@ -75,11 +76,23 @@ class Register extends CI_Controller
     public function confirm_order()
     {
         $data = $this->uri->segment(3);
+        $this->session->set_userdata('email', $data);
         $page = $this->register_model->get_order_confirmation_page($data);
         $data = array('page' => $page);
         $this->load->view('header_view');
         $this->load->view('register_view', $data);
         $this->load->view('footer_view');
+    }
+
+
+    /**
+     *
+     */
+    public function is_email_exist()
+    {
+        $email = $this->input->post('email');
+        $status = $this->register_model->is_email_exists($email);
+        echo $status;
     }
 
 

@@ -61,130 +61,27 @@
         src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/Nivo-Lightbox/nivo-lightbox.min.js"></script>
 <script type="text/javascript"
         src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/spectrum/spectrum.min.js"></script>
-<script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/javascript/theme-amd.js"></script>
+
 <script type="text/javascript"
         src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/javascript/theme.js"></script>
 <script type="text/javascript"
         src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/youtube/player_api.js"></script>
 <script type="text/javascript">
-    //<![CDATA[
-    M.str = {
-        "moodle": {
-            "lastmodified": "Last modified",
-            "name": "Name",
-            "error": "Error",
-            "info": "Information",
-            "yes": "Yes",
-            "no": "No",
-            "viewallcourses": "View all courses",
-            "cancel": "Cancel",
-            "morehelp": "More help",
-            "loadinghelp": "Loading...",
-            "confirm": "Confirm",
-            "areyousure": "Are you sure?",
-            "closebuttontitle": "Close",
-            "unknownerror": "Unknown error"
-        },
-        "repository": {
-            "type": "Type",
-            "size": "Size",
-            "invalidjson": "Invalid JSON string",
-            "nofilesattached": "No files attached",
-            "filepicker": "File picker",
-            "logout": "Logout",
-            "nofilesavailable": "No files available",
-            "norepositoriesavailable": "Sorry, none of your current repositories can return files in the required format.",
-            "fileexistsdialogheader": "File exists",
-            "fileexistsdialog_editor": "A file with that name has already been attached to the text you are editing.",
-            "fileexistsdialog_filemanager": "A file with that name has already been attached",
-            "renameto": "Rename to \"{$a}\"",
-            "referencesexist": "There are {$a} alias\/shortcut files that use this file as their source",
-            "select": "Select"
-        },
-        "admin": {
-            "confirmdeletecomments": "You are about to delete comments, are you sure?",
-            "confirmation": "Confirmation"
-        }
-    };
-    //]]>
+
 </script>
 <script type="text/javascript">
-    //<![CDATA[
-    (function () {
-        Y.use("moodle-filter_mathjaxloader-loader", function () {
-            M.filter_mathjaxloader.configure({
-                "mathjaxconfig": "\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n",
-                "lang": "en"
-            });
-        });
-        M.util.help_popups.setup(Y);
-        Y.use("moodle-core-popuphelp", function () {
-            M.core.init_popuphelp();
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst16",
-            "title": "Navigation",
-            "preference": "block16hidden",
-            "tooltipVisible": "Hide Navigation block",
-            "tooltipHidden": "Show Navigation block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst17",
-            "title": "Administration",
-            "preference": "block17hidden",
-            "tooltipVisible": "Hide Administration block",
-            "tooltipHidden": "Show Administration block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst9",
-            "title": "Private files",
-            "preference": "block9hidden",
-            "tooltipVisible": "Hide Private files block",
-            "tooltipHidden": "Show Private files block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst10",
-            "title": "Online users",
-            "preference": "block10hidden",
-            "tooltipVisible": "Hide Online users block",
-            "tooltipHidden": "Show Online users block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst11",
-            "title": "Latest badges",
-            "preference": "block11hidden",
-            "tooltipVisible": "Hide Latest badges block",
-            "tooltipHidden": "Show Latest badges block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst12",
-            "title": "Calendar",
-            "preference": "block12hidden",
-            "tooltipVisible": "Hide Calendar block",
-            "tooltipHidden": "Show Calendar block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst13",
-            "title": "Upcoming events",
-            "preference": "block13hidden",
-            "tooltipVisible": "Hide Upcoming events block",
-            "tooltipHidden": "Show Upcoming events block"
-        });
-        M.util.init_block_hider(Y, {
-            "id": "inst15",
-            "title": "Course overview",
-            "preference": "block15hidden",
-            "tooltipVisible": "Hide Course overview block",
-            "tooltipHidden": "Show Course overview block"
-        });
-        M.util.js_pending('random5a05a9878be1b29');
-        Y.on('domready', function () {
-            M.util.js_complete("init");
-            M.util.js_complete('random5a05a9878be1b29');
-        });
-    })();
-    //]]>
+
 </script>
+
+
+<script type="text/javascript" src='http://theberry.us/clientes/drops/assets/js/resizer.js'></script>
+<?php
+
+if (isset($map_data)) {
+    echo $map_data;
+}
+
+
+?>
 </body>
 </html>

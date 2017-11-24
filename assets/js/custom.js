@@ -1,6 +1,15 @@
 $(document).ready(function () {
     console.log("ready!");
 
+    var current_url = window.location.href;
+
+
+    // Image mapper for resized images
+    if (current_url == 'http://theberry.us/clientes/drops' || current_url == 'http://theberry.us/clientes/drops/') {
+        console.log('Resizer called ....');
+        $('map').imageMapResize();
+    }
+
     $('#phone').mask("(99) 99999-9999");
 
     $.post('http://theberry.us/clientes/drops/lms/custom/tmp/courses.json', {id: 1}, function (data) {
@@ -186,6 +195,11 @@ $(document).ready(function () {
                 return false;
             }
 
+            if (!validateEmail(email)) {
+                $('#reg_err').html('Please provide valid email');
+                return false;
+            }
+
             if (phone == '') {
                 $('#reg_err').html('Please provide phone');
                 return false;
@@ -203,16 +217,26 @@ $(document).ready(function () {
 
             $('#reg_err').html('');
 
-            var user = {
-                courseid: courseid,
-                name: name,
-                email: email,
-                phone: phone,
-                address: address
-            };
-            var item = Base64.encode(JSON.stringify(user));
-            var next_url = 'http://theberry.us/clientes/drops/index.php/register/confirm_order/' + item;
-            document.location = next_url;
+            var email_url = 'http://theberry.us/clientes/drops/index.php/register/is_email_exist';
+            $.post(email_url, {email: email}).done(function (data) {
+                if (data > 0) {
+                    $('#reg_err').html('Email is in use');
+                    return false;
+                } // end if
+                else {
+                    $('#reg_err').html('');
+                    var user = {
+                        courseid: courseid,
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: address
+                    };
+                    var item = Base64.encode(JSON.stringify(user));
+                    var next_url = 'http://theberry.us/clientes/drops/index.php/register/confirm_order/' + item;
+                    document.location = next_url;
+                } // end else
+            });
         }
 
         if (event.target.id == 'send_contact_request') {

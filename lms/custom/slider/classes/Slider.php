@@ -73,7 +73,7 @@ class Slider extends Utils
               <div class='modal-body'>
                 <input type='hidden' id='slide_id' value='$id'>
                 <div class='row' style='text-align: center;margin-left: 25px; '>
-                <input type='file' id='files' accept='image/gif, image/jpeg, image/png'>
+                <input type='file' id='files' accept='image/*'>
                 </div>
                 
                 <div class='row'  id='loader' style='margin-top:10px;margin-bottom: 10px;display: none;'>

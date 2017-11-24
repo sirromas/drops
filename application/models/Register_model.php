@@ -11,6 +11,7 @@ class Register_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
+
     }
 
     /**
@@ -167,8 +168,8 @@ class Register_model extends CI_Model
     public function get_course_register_page($id)
     {
         $list = "";
-        $data=$this->get_course_data($id);
-        $course_name=$data->name;
+        $data = $this->get_course_data($id);
+        $course_name = $data->name;
 
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='row' style=''>";
@@ -177,7 +178,7 @@ class Register_model extends CI_Model
         $list .= "<div class='panel-body'>";
         // -------------------- Course selection section --------------------
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list.="<input type='hidden' id='courses' value='$id'>";
+        $list .= "<input type='hidden' id='courses' value='$id'>";
         $list .= "<span class='col-md-2'>Selected Item</span>";
         $list .= "<span class='col-md-3'>$course_name</span>";
         $list .= "</div>";
@@ -243,14 +244,25 @@ class Register_model extends CI_Model
         return $course;
     }
 
-    public function get_paypal_register_button($data)
+    /**
+     * @param $data
+     * @return string
+     */
+    public function get_sandbox_paypal_button($data)
     {
         $list = "";
+        $coursedata = $this->get_course_data($data->courseid);
+        $cost = $coursedata->cost;
+        $name = $coursedata->name;
+        $email = $data->email;
 
-
-        $list .= "<input type='hidden' name='item_name' value=''>
-        <input type='hidden' name='amount' value=''>
-        <input type='hidden' name='custom' value=''>    
+        $list .= "<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
+        <input type='hidden' name='cmd' value='_xclick'>
+        <INPUT TYPE='hidden' name='charset' value='utf-8'>
+        <input type='hidden' name='business' value='sirromas-facilitator@gmail.com'>
+        <input type='hidden' name='item_name' value='$name'>
+        <input type='hidden' name='amount' value='$cost'>
+        <input type='hidden' name='custom' value='$email'>    
         <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
         <INPUT TYPE='hidden' NAME='return' value='http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/register/payment_done'>
         <input type='image' id='paypal_btn' src='https://www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
@@ -270,7 +282,7 @@ class Register_model extends CI_Model
         $list = "";
         $item = json_decode(base64_decode($data));
         $course = $this->get_course_data($item->courseid);
-        $paypalbtn = $this->get_paypal_register_button($item);
+        $paypalbtn = $this->get_sandbox_paypal_button($item);
 
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='panel panel-default'>";
@@ -292,15 +304,62 @@ class Register_model extends CI_Model
         return $list;
     }
 
+
     /**
      * @param $data
      * @return string
      */
-    public function get_payment_confirmation_page($data)
-    {
+    public function get_payment_confirmation_page($data) {
+
+
+        $session_data = $_SESSION['email'];
+        $stdata = json_decode(base64_decode($session_data));
+
+        /*
+        echo "PayPal data<pre>";
+        print_r($data);
+        echo "</pre>----------------------<br>";
+
+        echo "Session data<pre>";
+        print_r($stdata);
+        echo "</pre>----------------------<br>";
+        */
+
+        $newuser=new stdClass();
+        $courseid = $stdata->courseid;
+        $name = $stdata->name;
+        $email = $stdata->email;
+        $phone = $stdata->phone;
+        $address = $stdata->address;
+        $amount = $data['amt'];
+        $transactionid = $data['tx'];
+
         $list = "";
 
+        $list .= "<br><div style='margin: auto;width:85%;' >";
+        $list .= "<div class='panel panel-default'>";
+        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment confirmation</div>";
+        $list .= "<div class='panel-body'>";
+        $list .= "<div class='row' style='padding-left: 15px;'>";
+        $list .= "<span class='col-md-12'>Thank you for your order! Confirmation email is sent to <span style='font-weight: bold;'>$email</span></span>";
+        $list .= "</div>";
+        $list .= "</div>";
+        $list .= "</div>";
+        $list .= "</div>";
+
         return $list;
+    }
+
+    /**
+     * @param $email
+     * @return mixed
+     */
+    public function is_email_exists($email)
+    {
+        $query = "select * from mdl_user where username='$email'";
+        $result = $this->db->query($query);
+        $num = $result->num_rows();
+        return $num;
     }
 
 }
