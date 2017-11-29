@@ -28,10 +28,11 @@ class Index extends CI_Controller
         $slider_section = $this->index_model->get_slider_section();
         $map_data = $this->index_model->get_map_data();
         $this->index_model->create_courses_data(); // creates courses JSON data
-
+        $announcements=$this->index_model->get_announcements_block();
         $data = array('about_section' => $about_section,
                       'news_section' => $news_section,
-                      'slider_section' => $slider_section);
+                      'slider_section' => $slider_section,
+                       'announcements'=>$announcements) ;
 
         $data2 = array('map_data' => $map_data);
 

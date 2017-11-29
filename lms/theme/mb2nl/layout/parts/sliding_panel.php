@@ -41,7 +41,7 @@ $isLoginPage = theme_mb2nl_is_login($PAGE);
                     <?php if (!$isLoginPage) : ?>
                     	<a href="#" class="toll-login"><i class="icon1 fa fa-user"></i><i class="icon2 pe-7s-close"></i></a>
                     <?php endif; ?>
-                    <a href="#" class="toll-search"><i class="icon1 fa fa-search"></i><i class="icon2 pe-7s-close"></i></a>             
+                     <!--<a href="#" class="toll-search"><i class="icon1 fa fa-search"></i><i class="icon2 pe-7s-close"></i></a>-->
                 </div> 
 			</div>
 		</div>

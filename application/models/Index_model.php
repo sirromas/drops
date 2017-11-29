@@ -95,33 +95,19 @@ class Index_model extends CI_Model
         $query = "select * from mdl_news order by added limit 0,4";
         $result = $this->db->query($query);
         $i = 1;
-
-        $list .= "<div class='col-sm-6' id=''>
-
-                                            <div class='theme-boxes col-2 clearfix' id=''>";
-
         foreach ($result->result() as $row) {
             $title = $row->title;
             $id = $row->id;
-            $path = "n$i.jpg";
-            $http_path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/$path";
             $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
-
             $list .= "<div class='theme-box'>
                              <a href='$url'>
-                                   <div class='theme-boximg' >
+                                   <div class='' style='position: relative;padding: 65px 10px;width:230px;height:180px;overflow: hidden;text-align: center;'>
                                       <h4>$title</h4>
-                                      <div class='theme-boximg-color' style='background-color:#e63946;'></div>
-                                      <div class='theme-boximg-img'  style='background-image:url('/clientes/drops/assets/img/n1%20_1.jpg');'>
-                                     
-                                      </div>
+                                      <div class='theme-boximg-color' style='background-color:#e63946;width:230px;height:180px;'></div>
                                       </div>
                               </a></div>";
             $i++;
         } // end foreach
-
-        $list .= "</div></div>";
-
         return $list;
     }
 
@@ -137,13 +123,26 @@ class Index_model extends CI_Model
             $preface = substr($row->content, 0, 375);
         }
         $url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/index.php/about/show';
-        $list .= "<div class='col-sm-6' id=''>
+        $list .= "
                 <div class='theme-title title-left title-n style-1'style='margin:0 0 30px 0;' id=''>
                 <h4 class='title'><span>Some Word About Us</span></h4></div>
                 <p id='yui_3_17_2_2_1510781966338_114'>$preface</p>
                 <a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Read more</span></a>
-                </div>";
+                ";
         return $list;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get_announcements_block()
+    {
+        $query = "select * from mdl_site_pages where id=5";
+        $result = $this->db->query($query);
+        foreach ($result->result() as $row) {
+            $ann = $row->content;
+        }
+        return $ann;
     }
 
     /**
@@ -160,6 +159,10 @@ class Index_model extends CI_Model
         file_put_contents($path, json_encode($courses));
     }
 
+    /**
+     * @param $item
+     * @return string
+     */
     public function get_search_results($item)
     {
         $list = "";
@@ -187,6 +190,10 @@ class Index_model extends CI_Model
         return $list;
     }
 
+    /**
+     * @param $email
+     * @return string
+     */
     function get_subs_modal_dialog($email)
     {
         $list = "";
@@ -223,6 +230,9 @@ class Index_model extends CI_Model
         return $list;
     }
 
+    /**
+     * @param $item
+     */
     public function add_subscriber($item)
     {
         $data = json_decode($item);
@@ -232,6 +242,9 @@ class Index_model extends CI_Model
         $this->db->query($query);
     }
 
+    /**
+     * @return string
+     */
     public function get_map_data()
     {
         $list = "";
@@ -251,17 +264,17 @@ class Index_model extends CI_Model
                 $i++;
             }
 
-            $link1=$courses[0]->link;
-            $link2=$courses[1]->link;
-            $link3=$courses[2]->link;
-            $link4=$courses[3]->link;
-            $link5=$courses[4]->link;
+            $link1 = $courses[0]->link;
+            $link2 = $courses[1]->link;
+            $link3 = $courses[2]->link;
+            $link4 = $courses[3]->link;
+            $link5 = $courses[4]->link;
 
-            $name1=$courses[0]->name;
-            $name2=$courses[1]->name;
-            $name3=$courses[2]->name;
-            $name4=$courses[3]->name;
-            $name5=$courses[4]->name;
+            $name1 = $courses[0]->name;
+            $name2 = $courses[1]->name;
+            $name3 = $courses[2]->name;
+            $name4 = $courses[3]->name;
+            $name5 = $courses[4]->name;
 
 
             $list .= "<map name='image-map'>
