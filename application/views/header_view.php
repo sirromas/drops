@@ -311,7 +311,19 @@ $citems=$ci->courses_model->get_courses_menu_items();
                                 <li class="" id=""><a title="Contact" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/contact/contact/contact" >Contact</a></li>
                                 <li class="" id=""><a title="Login" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/login" >Login</a></li>
 
-                                <li class="nav navbar-nav navbar-right"><div class="theme-searchform"><input id="theme-coursesearchbox" type="text" value="" placeholder="Search courses" name="search"><button type="submit" id="index_search"><i class="fa fa-search" id="index_search"></i></button></div></li>
+                                <li class="nav navbar-nav navbar-left" style="margin-left:5px;"><div class="theme-searchform"><input id="theme-coursesearchbox" style="" type="text" value="" placeholder="Search courses" name="search"><button type="submit" id="index_search"><i class="fa fa-search" id="index_search"></i></button></div></li>
+
+                                <!-- Google translation bar -->
+                                <li class="nav navbar-nav navbar-right" style="padding-top: 7px;">
+
+                                    <div id="google_translate_element"></div><script type="text/javascript">
+                                        function googleTranslateElementInit() {
+                                            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,fr,it,pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                                        }
+                                    </script>
+                                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                                </li>
 
                             </ul>
                         </div>
