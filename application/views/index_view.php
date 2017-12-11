@@ -1,4 +1,7 @@
-<div id="page-b">
+
+<div id='logo_drops' style='position: absolute;z-index:100;margin-top: 5%;margin-left: 24%;'><img usemap='#image-map' src='http://theberry.us/clientes/drops/assets/img/banner-layout.png'></div>
+
+<div id="page-b" style="">
 
     <!-- Slider -->
     <?php echo $slider_section; ?>

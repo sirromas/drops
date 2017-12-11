@@ -26,29 +26,29 @@ class Contact_model extends CI_Model
         $list .= "<div class='panel-body'>";
 
         $list .= "<div class='form-group' style='text-align:left;'>";
-        $list .= "<label for='name'>Name*</label>";
+        $list .= "<label for='name'>Nome*</label>";
         $list .= "<input type='text' class='form-control' id='name' style='width:100%;'>";
         $list .= "</div>";
 
         $list .= "<div class='form-group' style='text-align:left;'>";
-        $list .= "<label for='email'>Email*</label>";
+        $list .= "<label for='email'>E-mail*</label>";
         $list .= "<input type='text' class='form-control' id='email' style='width:100%;'>";
         $list .= "</div>";
 
         $list .= "<div class='form-group' style='text-align:left;'>";
-        $list .= "<label for='phone'>Phone*</label>";
+        $list .= "<label for='phone'>Telefone*</label>";
         $list .= "<input type='text' class='form-control' id='phone' style='width:100%;'>";
         $list .= "</div>";
 
         $list .= "<div class='form-group' style='text-align:left;'>";
-        $list .= "<label for='email'>Message*</label>";
+        $list .= "<label for='email'>Mensagem*</label>";
         $list .= "<textarea class='form-control' id='msg' rows='5' style='width:100%;'></textarea>";
         $list .= "</div>";
 
         $list .= "<div class='form-group' style='text-align:left;color:red;' id='contact_err' ></div>";
 
         $list .= "<div class='form-group' style='text-align:left;'>";
-        $list .= "<button id='send_contact_request' class='btn btn-primary'>Send</button>";
+        $list .= "<button id='send_contact_request' class='btn btn-primary'>Enviar</button>";
         $list .= "</div>";
 
         $list .= "</div>";
@@ -76,17 +76,17 @@ class Contact_model extends CI_Model
 
         $list .= "<div class='row' style='margin-bottom: 25px;'>";
         $list .= "<span class='col-md-1'><i class='fa fa-envelope fa-lg' aria-hidden='true'></i></span>";
-        $list .= "<span class='col-md-4'><span style='font-weight: bold;'>Email</span><br><a href='mailto:$email'>$email</a></span>";
+        $list .= "<span class='col-md-4'><span style='font-weight: bold;'>E-mail</span><br><a href='mailto:$email'>$email</a></span>";
         $list .= "</div>";
 
         $list .= "<div class='row' style='margin-bottom: 25px;'>";
         $list .= "<span class='col-md-1'><i class='fa fa-phone fa-lg' aria-hidden='true'></i></span>";
-        $list .= "<span class='col-md-4'><span style='font-weight: bold;'>Phone</span><br>$phone</span>";
+        $list .= "<span class='col-md-4'><span style='font-weight: bold;'>Telefone</span><br>$phone</span>";
         $list .= "</div>";
 
         $list .= "<div class='row' style='margin-bottom: 25px;'>";
         $list .= "<span class='col-md-1'><i class='fa fa-flag fa-lg' aria-hidden='true'></i></span>";
-        $list .= "<span class='col-md-6'><span style='font-weight: bold;'>Mailing Address</span><br>$name<br>$addr</span>";
+        $list .= "<span class='col-md-6'><span style='font-weight: bold;'>Endereço</span><br>$name<br>$addr</span>";
         $list .= "</div>";
 
         return $list;

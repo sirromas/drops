@@ -57,7 +57,7 @@ class Nav extends Utils
         $list = "";
 
         $list .= "<li class='dropdown'>";
-        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Site Pages'>Site Pages<span class='mobile-arrow'></span></a>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Site Pages'>Páginas do Site<span class='mobile-arrow'></span></a>";
         $list .= "<ul class='dropdown-list' style='display: none;'>";
 
         $query = "select * from mdl_site_pages order by title";
@@ -85,24 +85,24 @@ class Nav extends Utils
         $pages = $this->get_site_pages();
 
         $list .= "<li class='dropdown'>";
-        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Tools'>Tools<span class='mobile-arrow'></span></a>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Tools'>Ferramentas<span class='mobile-arrow'></span></a>";
         $list .= "<ul class='dropdown-list' style='display: none;'>";
 
-        $list .= "<li class=''><a id='contacts' title='Contacts' class='' href='#' onclick='return false;'>Users Feedback</a></li>";
-        $list .= "<li class=''><a id='courses' title='Courses' class='' href='#' onclick='return false;'>Courses</a></li>";
-        $list .= "<li class=''><a id='subscribers' title='Subscribers' class='' href='#' onclick='return false;'>Subscribers</a></li>";
+        $list .= "<li class=''><a id='contacts' title='Contacts' class='' href='#' onclick='return false;'>Feedback dos Usuários</a></li>";
+        $list .= "<li class=''><a id='courses' title='Courses' class='' href='#' onclick='return false;'>Cursos</a></li>";
+        $list .= "<li class=''><a id='subscribers' title='Subscribers' class='' href='#' onclick='return false;'>Inscrições</a></li>";
 
         $list .= "</ul>";
         $list .= "</li>";
 
         $list .= "<li class='dropdown'>";
-        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Users'>Users<span class='mobile-arrow'></span></a>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Users'>Usuários<span class='mobile-arrow'></span></a>";
         $list .= "<ul class='dropdown-list' style='display: none;'>";
 
-        $list .= "<li class=''><a id='managers' title='Managers' class='' href='#' onclick='return false;'>Managers</a></li>";
-        $list .= "<li class=''><a id='partners' title='Partners' class='' href='#' onclick='return false;'>Partners</a></li>";
-        $list .= "<li class=''><a id='teachers'  title='Teachers' class='' href='#' onclick='return false;'>Teachers</a></li>";
-        $list .= "<li class=''><a id='students' title='Students' class='' href='#' onclick='return false;'>Students</a></li>";
+        $list .= "<li class=''><a id='managers' title='Managers' class='' href='#' onclick='return false;'>Administradores</a></li>";
+        $list .= "<li class=''><a id='partners' title='Partners' class='' href='#' onclick='return false;'>Parceiros</a></li>";
+        $list .= "<li class=''><a id='teachers'  title='Teachers' class='' href='#' onclick='return false;'>Professores</a></li>";
+        $list .= "<li class=''><a id='students' title='Students' class='' href='#' onclick='return false;'>Alunos</a></li>";
 
         $list .= "</ul>";
         $list .= "</li>";
@@ -110,7 +110,7 @@ class Nav extends Utils
         $list .= $pages;
 
         $list .= "<li class='dropdown'>";
-        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Reports'>Reports<span class='mobile-arrow'></span></a>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Reports'>Relatórios<span class='mobile-arrow'></span></a>";
         $list .= "<ul class='dropdown-list' style='display: none;'>";
 
         $list .= "<li class=''><a id='revenue_rep' title='' class='Revenue Report' href='#' onclick='return false;'>Revenue report</a></li>";

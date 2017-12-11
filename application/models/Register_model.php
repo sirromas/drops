@@ -109,29 +109,29 @@ class Register_model extends CI_Model
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='row' style=''>";
         $list .= "<div class='panel panel-default'>";
-        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd;'>Program information</div>";
+        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd;'>Informações</div>";
         $list .= "<div class='panel-body'>";
         // -------------------- Course selection section --------------------
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-2'>Program Category</span>";
+        $list .= "<span class='col-md-2'>Escola a Instituição</span>";
         $list .= "<span class='col-md-3'>$categories</span>";
-        $list .= "<span class='col-md-2'>Program Course</span>";
+        $list .= "<span class='col-md-2'>Escolha a Gota</span>";
         $list .= "<span class='col-md-3' id='courses_span'>$courses</span>";
         $list .= "</div>";
         // ----------------------------------------------------------------
-        $list .= "<div class='panel-heading' style='padding-left: 15px;font-weight: bold; '>User Details</div>";
+        $list .= "<div class='panel-heading' style='padding-left: 15px;font-weight: bold; '>Informações do Usuário</div>";
         // -------------------- User details section --------------------
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-2'>Name*</span>";
+        $list .= "<span class='col-md-2'>Nome Completo*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='name' style='width: 275px;' required></span>";
-        $list .= "<span class='col-md-2'>Email*</span>";
+        $list .= "<span class='col-md-2'>E-mail*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='email' style='width: 275px;' required></span>";
         $list .= "</div>";
 
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-2'>Phone*</span>";
+        $list .= "<span class='col-md-2'>Telefone*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='phone' style='width: 275px;' required placeholder='(xx) xxxxx-xxxx'></span>";
-        $list .= "<span class='col-md-2'>Address*</span>";
+        $list .= "<span class='col-md-2'>Endereço*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='address' style='width: 275px;' required></span>";
         $list .= "</div>";
         // ----------------------------------------------------------------
@@ -145,7 +145,7 @@ class Register_model extends CI_Model
         $list .= "</div>";
 
         $list .= "<div class='row' style='text-align: center;'>";
-        $list .= "<span class='col-md-12' style='font-weight:bold;'><input type='checkbox' id='terms'> Terms And Conditions</span>";
+        $list .= "<span class='col-md-12' style='font-weight:bold;'><input type='checkbox' id='terms'> Termos e Condições</span>";
         $list .= "</div>";
 
         $list .= "<div class='row' style='text-align: center;>";
@@ -176,28 +176,28 @@ class Register_model extends CI_Model
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='row' style=''>";
         $list .= "<div class='panel panel-default'>";
-        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd; '>Program information</div>";
+        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd; '>Informações</div>";
         $list .= "<div class='panel-body'>";
         // -------------------- Course selection section --------------------
         $list .= "<div class='row' style='padding-left: 15px;'>";
         $list .= "<input type='hidden' id='courses' value='$id'>";
-        $list .= "<span class='col-md-2'>Selected Item</span>";
+        $list .= "<span class='col-md-2'>Item Selecionado</span>";
         $list .= "<span class='col-md-3'>$course_name</span>";
         $list .= "</div>";
         // ----------------------------------------------------------------
-        $list .= "<div class='panel-heading' style='padding-left: 15px;font-weight: bold; '>User Details</div>";
+        $list .= "<div class='panel-heading' style='padding-left: 15px;font-weight: bold; '>Informações do Usuário</div>";
         // -------------------- User details section --------------------
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-2'>Name*</span>";
+        $list .= "<span class='col-md-2'>Nome Completo*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='name' style='width: 275px;' required></span>";
-        $list .= "<span class='col-md-2'>Email*</span>";
+        $list .= "<span class='col-md-2'>E-mail*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='email' style='width: 275px;' required></span>";
         $list .= "</div>";
 
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-2'>Phone*</span>";
+        $list .= "<span class='col-md-2'>Telefone*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='phone' style='width: 275px;' required placeholder='(xx) xxxxx-xxxx'></span>";
-        $list .= "<span class='col-md-2'>Address*</span>";
+        $list .= "<span class='col-md-2'>Endereço*</span>";
         $list .= "<span class='col-md-3'><input type='text' id='address' style='width: 275px;' required></span>";
         $list .= "</div>";
         // ----------------------------------------------------------------
@@ -211,7 +211,7 @@ class Register_model extends CI_Model
         $list .= "</div>";
 
         $list .= "<div class='row' style='text-align: center;'>";
-        $list .= "<span class='col-md-12' style='font-weight:bold;'><input type='checkbox' id='terms'> Terms And Conditions</span>";
+        $list .= "<span class='col-md-12' style='font-weight:bold;'><input type='checkbox' id='terms'>Termos e Condições</span>";
         $list .= "</div>";
 
         $list .= "<div class='row' style='text-align: center;>";
@@ -288,13 +288,13 @@ class Register_model extends CI_Model
 
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='panel panel-default'>";
-        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Order confirmation</div>";
+        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Confirmação do Pedido</div>";
         $list .= "<div class='panel-body'>";
 
         $list .= "<div class='row' style='padding-left: 15px;'>";
-        $list .= "<span class='col-md-2'>Selected Item</span>";
+        $list .= "<span class='col-md-2'>Item Selecionado</span>";
         $list .= "<span class='col-md-2'>$course->name</span>";
-        $list .= "<span class='col-md-2'>Amount to pay</span>";
+        $list .= "<span class='col-md-2'>Valor a Pagar: R$</span>";
         $list .= "<span class='col-md-2'>$course->cost BRL</span>";
         $list .= "<span class='col-md-2'>$paypalbtn</span>";
         $list .= "</div>";

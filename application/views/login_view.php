@@ -64,7 +64,7 @@
 
         <div class="container" style="text-align: center;">
             <!--<label><b>Username</b></label>-->
-            <input type="text" placeholder="Enter Username" name="username" required style="width: 100%;
+            <input type="text" placeholder="Usuário" name="username" required style="width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -72,7 +72,7 @@
     box-sizing: border-box;">
 
             <!--<label><b>Password</b></label>-->
-            <input type="password" placeholder="Enter Password" name="password" required style="width: 100%;
+            <input type="password" placeholder="Senha" name="password" required style="width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -92,10 +92,10 @@
         </div>
 
         <div class="container" style="margin: auto;text-align: center;">
-            <span class="psw">Forgot <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/login/forgot_password.php" target="_blank">password?</a></span>
+            <span class="psw">Esqueci Minha <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/login/forgot_password.php" target="_blank">Senha?</a></span>
         </div>
         <div class="container" style="margin: auto;text-align: center;">
-            <span class="psw">Don't have an account? Click <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register/">here</a></span>
+            <span class="psw">Ainda não tem uma conta? Clique <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register/">Aqui</a></span>
         </div><br>
      </form>
 </div>

@@ -305,15 +305,16 @@ $citems=$ci->courses_model->get_courses_menu_items();
                                 <!-- Courses menu -->
                                 <?php echo $citems; ?>
 
-                                <li class="" id=""><a title="Register" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register">Register</a></li>
+                                <li class="" id=""><a title="Cadastre-se" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register">Cadastre-se</a></li>
                                 <li class="" id=""><a title="FAQ" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/faq/show" >FAQ</a></li>
-                                <li class="" id=""><a title="About"  href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show">About</a></li>
-                                <li class="" id=""><a title="Contact" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/contact/contact/contact" >Contact</a></li>
+                                <li class="" id=""><a title="Sobre Nós"  href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show">Sobre Nós</a></li>
+                                <li class="" id=""><a title="Contato" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/contact/contact/contact" >Contato</a></li>
                                 <li class="" id=""><a title="Login" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/login" >Login</a></li>
 
-                                <li class="nav navbar-nav navbar-left" style="margin-left:5px;"><div class="theme-searchform"><input id="theme-coursesearchbox" style="" type="text" value="" placeholder="Search courses" name="search"><button type="submit" id="index_search"><i class="fa fa-search" id="index_search"></i></button></div></li>
+                                <li class="nav navbar-nav navbar-right" style="margin-top:3px;"><div class="theme-searchform"><input id="theme-coursesearchbox" style="" type="text" value="" placeholder="Pesquisar Cursos" name="search"><button type="submit" id="index_search"><i class="fa fa-search" id="index_search"></i></button></div></li>
 
                                 <!-- Google translation bar -->
+                                <!--
                                 <li class="nav navbar-nav navbar-right" style="padding-top: 7px;">
 
                                     <div id="google_translate_element"></div><script type="text/javascript">
@@ -323,8 +324,9 @@ $citems=$ci->courses_model->get_courses_menu_items();
                                     </script>
                                     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-                                </li>
 
+                                </li>
+                                -->
                             </ul>
                         </div>
                     </div>

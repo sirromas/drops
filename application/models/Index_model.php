@@ -61,7 +61,7 @@ class Index_model extends CI_Model
                                     <div class='item active'>
                                         <img class='mb2slider-slide-img'
                                              src='" . $slides['Slide1'] . "'
-                                             alt='Slide1' style='max-width:100%;' usemap='#image-map' id='slide1'>
+                                             alt='Slide1' style='max-width:100%;'  id='slide1'>
                                     </div>
                                     
                                  </div>
@@ -79,8 +79,8 @@ class Index_model extends CI_Model
                         </div>
                     </div>
                 </aside>
-                
         </div>";
+
         return $list;
     }
 
@@ -125,9 +125,9 @@ class Index_model extends CI_Model
         $url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/index.php/about/show';
         $list .= "
                 <div class='theme-title title-left title-n style-1'style='margin:0 0 30px 0;' id=''>
-                <h4 class='title'><span>Some Word About Us</span></h4></div>
+                <h4 class='title'><span>Quem somos nós?</span></h4></div>
                 <p id='yui_3_17_2_2_1510781966338_114'>$preface</p>
-                <a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Read more</span></a>
+                <a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Saiba Mais</span></a>
                 ";
         return $list;
     }
@@ -278,11 +278,11 @@ class Index_model extends CI_Model
 
 
             $list .= "<map name='image-map'>
-            <area  alt='$link1' title='$name1' href='$link1' coords='764,573,627,466'    shape='rect'>
-            <area  alt='$link2' title='$name2' href='$link2' coords='849,439,730,323'    shape='rect'>
-            <area  alt='$link3' title='$name3' href='$link3' coords='884,263,1016,402'   shape='rect'>
-            <area  alt='$link4' title='$name4' href='$link4' coords='1045,309,1174,440'  shape='rect'>
-            <area  alt='$link5' title='$name5' href='$link5' coords='1145,456,1281,580'  shape='rect'>
+            <area  alt='$link1' title='$name1' href='$link1' coords='0,196,144,327'    shape='rect'>
+            <area  alt='$link2' title='$name2' href='$link2' coords='98,51,235,190'    shape='rect'>
+            <area  alt='$link3' title='$name3' href='$link3' coords='400,161,260,0'   shape='rect'>
+            <area  alt='$link4' title='$name4' href='$link4' coords='547,189,417,63'  shape='rect'>
+            <area  alt='$link5' title='$name5' href='$link5' coords='517,317,647,200'  shape='rect'>
             </map>";
         } // end if $num>0
         return $list;

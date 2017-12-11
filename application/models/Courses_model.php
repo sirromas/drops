@@ -49,7 +49,7 @@ class Courses_model extends CI_Model
                                     <div class='no-overflow'>
                                     <p>$summary</p></div>
                                 </div>
-                                <div class='course-readmore'><a class='btn btn-primary'  href='$courseurl'>Read More</a></div></div>
+                                <div class='course-readmore'><a class='btn btn-primary'  href='$courseurl'>Saiba Mais</a></div></div>
                              <div class='course-media'>
                              <a href='$courseurl'><img src='$img_path' width='292' height='173'></a></div>
                         </div>
@@ -95,7 +95,7 @@ class Courses_model extends CI_Model
                                     <div class='no-overflow' style='margin-right:5%;'>
                                     <p style=''>$summary</p>
                                     <div class='course-heading'><h6 class='coursename'>Cost: $cost BRL</h6>
-                                    <a class='btn btn-primary' style='margin-left: 15%;'  href='$courseurl'>Register</a></div></div>
+                                    <a class='btn btn-primary' style='margin-left: 15%;'  href='$courseurl'>Registo</a></div></div>
                                     </div>
                                 </div>
                              <div class='course-media'><img src='$img_path' width='292' height='173'></div></div>
@@ -124,7 +124,7 @@ class Courses_model extends CI_Model
         $list = "";
 
         $list .= "<li class='dropdown mb2ctm-hover'><a href='#' class='sf-with-ul' data-toggle='' 
-                title='Elements' >Courses<span class='mobile-arrow'></span></a>";
+                title='Elements' >Cursos<span class='mobile-arrow'></span></a>";
 
         $list .= "<ul class='dropdown-list' style='display: block;' >";
 
@@ -140,7 +140,7 @@ class Courses_model extends CI_Model
             $list .= "</ul></li>";
         } // end foreach
 
-        $list .= "<li><a title=‘All’ href='http://theberry.us/clientes/drops/index.php/courses/all' id=''>All Courses</a></li>";
+        $list .= "<li><a title=‘All’ href='http://theberry.us/clientes/drops/index.php/courses/all' id=''>All Cursos</a></li>";
 
         $list .= "</ul></li>";
         return $list;

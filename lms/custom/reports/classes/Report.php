@@ -22,11 +22,11 @@ class Report extends Utils
 
         $list .= "<thead>";
         $list .= "<tr>";
-        $list .= "<th>User Name</th>";
-        $list .= "<th>Course Applied</th>";
-        $list .= "<th>Amount Paid</th>";
-        $list .= "<th>Transaction</th>";
-        $list .= "<th>Date</th>";
+        $list .= "<th>Usuário</th>";
+        $list .= "<th>Curso</th>";
+        $list .= "<th>Valor Pago</th>";
+        $list .= "<th>ID da Transação</th>";
+        $list .= "<th>Data</th>";
         $list .= "</tr>";
         $list .= "</thead>";
 

@@ -11,11 +11,11 @@
                             <div class="no-overflow" >
                                 <div class="rows">
                                     <div class="col-sm-12" style="margin-top: 5px;text-align: center;">
-                                        <span style="font-size: 20px;margin-right: 15px;color:white;">SUBSCRIBE TO OUR NEWSLETTER</span>
-                                        <input type="text" id="subs_name" style="" placeholder="Your Name">
-                                        <input type="text" style="margin-right: 15px;" id="subs_email" style="idth: 15%;" placeholder="Your Email">
+                                        <span style="font-size: 20px;margin-right: 15px;color:white;">INSCREVA-SE PARA RECEBER NOVIDADES</span>
+                                        <input type="text" id="subs_name" style="" placeholder="Nome">
+                                        <input type="text" style="margin-right: 15px;" id="subs_email" style="idth: 15%;" placeholder="E-mail">
                                         <a href="#" onclick="return false;" class="btn btn-success btn-lg btn-icon-before">
-                                        <span class="btn-text"  style="" id="add_subs">Sign Up</span></a>
+                                        <span class="btn-text"  style="" id="add_subs">INSCREVER</span></a>
                                     </div>
                                 </div>
                             </div>
