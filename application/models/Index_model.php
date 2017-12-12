@@ -35,8 +35,9 @@ class Index_model extends CI_Model
                             <div class='block_action notitle'></div>
         
         
-                            <div id='myCarousel' class='carousel slide' data-ride='carousel'>
-        
+                            <div id='myCarousel' class='carousel slide' data-ride='carousel' style='text-align: center;'>
+                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' src='http://theberry.us/clientes/drops/assets/img/banner-layout.png'></div>                
+                    
                                 <ol class='carousel-indicators'>
                                     <li data-target='#myCarousel' data-slide-to='0' class='active'></li>
                                     <li data-target='#myCarousel' data-slide-to='1'></li>
@@ -63,9 +64,11 @@ class Index_model extends CI_Model
                                              src='" . $slides['Slide1'] . "'
                                              alt='Slide1' style='max-width:100%;'  id='slide1'>
                                     </div>
-                                    
+                                       
+                                       
+                                       
                                  </div>
-        
+                                        
                                 <a class='left carousel-control' href='#myCarousel' data-slide='prev'>
                                     <span class='glyphicon glyphicon-chevron-left'></span>
                                     <span class='sr-only'>Previous</span>
@@ -75,6 +78,7 @@ class Index_model extends CI_Model
                                     <span class='sr-only'>Next</span>
                                 </a>
                             </div>
+                            
                             
                         </div>
                     </div>
