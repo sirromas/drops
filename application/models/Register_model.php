@@ -23,7 +23,7 @@ class Register_model extends CI_Model
     {
         $list = "";
         $list .= "<select id='course_categories' style='width:275px;'>";
-        $list .= "<option value='0' selected>Please select category</option>";
+        $list .= "<option value='0' selected>Escolha a Categoria</option>";
         $query = "select * from mdl_course_categories order by name";
         $result = $this->db->query($query);
         foreach ($result->result() as $row) {
@@ -44,7 +44,7 @@ class Register_model extends CI_Model
     {
         $list = "";
         $list .= "<select id='courses' style='width: 275px;'>";
-        $list .= "<option value='0' selected>Please select course</option>";
+        $list .= "<option value='0' selected>Escolha a Gota</option>";
         if ($catid > 0) {
             $query = "select * from mdl_course where category=$catid";
             $result = $this->db->query($query);

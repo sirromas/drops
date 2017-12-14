@@ -255,6 +255,7 @@ class Index_model extends CI_Model
         // http://theberry.us/clientes/drops/index.php/courses/full/3
         $i = 0;
         $courses = array();
+        $courseslink='http://theberry.us/clientes/drops/index.php/courses/all';
         $query = "select * from mdl_course where top=1 order by fullname";
         $result = $this->db->query($query);
         $num = $result->num_rows();
@@ -287,6 +288,7 @@ class Index_model extends CI_Model
             <area  alt='$link3' title='$name3' href='$link3' coords='400,161,260,0'   shape='rect'>
             <area  alt='$link4' title='$name4' href='$link4' coords='547,189,417,63'  shape='rect'>
             <area  alt='$link5' title='$name5' href='$link5' coords='517,317,647,200'  shape='rect'>
+            <area  alt='All Cursos' title='All Cursos' href='$courseslink' coords='287,213,369,300'  shape='rect'>
             </map>";
         } // end if $num>0
         return $list;
