@@ -14,6 +14,7 @@ $(document).ready(function () {
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
+                document.body.style.overflow = 'auto';
             });
         }
 
@@ -137,16 +138,17 @@ $(document).ready(function () {
         function update_site_page(pageid) {
             var title = $('#page_title').val();
             var content = CKEDITOR.instances["editor1"].getData();
-            if (title != '' && content != '') {
+            var limit=$('#climit').val();
+            if (title != '' && content != '' && limit>0) {
                 $('#page_err').html('');
-                var item = {pageid: pageid, title: title, content: content};
+                var item = {pageid: pageid, title: title, content: content, limit:limit};
                 var url = '/clientes/drops/lms/custom/pages/update.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     $('#page-content').html(data);
                 });
             } // end if
             else {
-                $('#page_err').html('Please provide page title and content');
+                $('#page_err').html('Please provide page title, content and limit');
             }
         }
 
@@ -159,6 +161,7 @@ $(document).ready(function () {
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
+                document.body.style.overflow = 'auto';
             });
         }
 
@@ -166,19 +169,43 @@ $(document).ready(function () {
             var id = $('#news_id').val();
             var title = $('#news_title').val();
             var content = CKEDITOR.instances["news_content"].getData();
-            if (title == '' || content == '') {
-                $('#news_err').html('Please provide news title and content');
+            var limit = $('#climit').val();
+            var status;
+            if ($('#active').prop('checked')) {
+                status = 1;
+            } // end if
+            else {
+                status = 0;
+            } // end else
+            if (title == '' || content == '' || limit == 0) {
+                $('#news_err').html('Please provide news title , content and limit');
             } // end if
             else {
                 $('#news_err').html('');
-                var item = {id: id, title: title, content: content};
                 var url = '/clientes/drops/lms/custom/news/update.php';
-                $.post(url, {item: JSON.stringify(item)}).done(function () {
-                    $("[data-dismiss=modal]").trigger({type: "click"});
-                    $("#myModal").remove();
-                    $('.modal-backdrop').remove();
-                    get_news_page();
+                var file_data = $('#files').prop('files');
+                var form_data = new FormData();
+                $.each(file_data, function (key, value) {
+                    form_data.append(key, value);
                 });
+                form_data.append('id', id);
+                form_data.append('title', title);
+                form_data.append('content', content);
+                form_data.append('status', status);
+                form_data.append('limit', limit);
+                $.ajax({
+                    url: url,
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function () {
+                        $("[data-dismiss=modal]").trigger({type: "click"});
+                        $("#myModal").remove();
+                        $('.modal-backdrop').remove();
+                        get_news_page();
+                    } // end of success
+                }); // end of $.ajax
             }
         }
 
@@ -197,26 +224,51 @@ $(document).ready(function () {
             $.post(url, {item: 1}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
+                document.body.style.overflow = 'auto';
             });
         }
 
         if (event.target.id == 'add_news_done') {
             var title = $('#news_title').val();
             var content = CKEDITOR.instances["news_content"].getData();
-            if (title == '' || content == '') {
-                $('#news_err').html('Please provide news title and content');
+            var limit = $('#climit').val();
+            var status;
+            if ($('#active').prop('checked')) {
+                status = 1;
+            } // end if
+            else {
+                status = 0;
+            } // end else
+            var raw_file_data = $('#files')[0].files.length;
+            if (title == '' || content == '' || raw_file_data == 0 || limit == 0) {
+                $('#news_err').html('Please provide news title, picture, content and limit');
             } // end if
             else {
                 $('#news_err').html('');
-                var item = {title: title, content: content};
                 var url = '/clientes/drops/lms/custom/news/add.php';
-                $.post(url, {item: JSON.stringify(item)}).done(function () {
-                    $("[data-dismiss=modal]").trigger({type: "click"});
-                    $("#myModal").remove();
-                    $('.modal-backdrop').remove();
-                    get_news_page();
+                var file_data = $('#files').prop('files');
+                var form_data = new FormData();
+                $.each(file_data, function (key, value) {
+                    form_data.append(key, value);
                 });
-            }
+                form_data.append('title', title);
+                form_data.append('content', content);
+                form_data.append('status', status);
+                form_data.append('limit', limit);
+                $.ajax({
+                    url: url,
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function () {
+                        $("[data-dismiss=modal]").trigger({type: "click"});
+                        $("#myModal").remove();
+                        $('.modal-backdrop').remove();
+                        get_news_page();
+                    } // end of success
+                }); // end of $.ajax
+            } // end else
         }
 
         if (event.target.id == 'news_cancel_dialog') {
@@ -294,6 +346,7 @@ $(document).ready(function () {
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
+                document.body.style.overflow = 'auto';
             });
         }
 
@@ -355,6 +408,7 @@ $(document).ready(function () {
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
+                document.body.style.overflow = 'auto';
             });
         }
 

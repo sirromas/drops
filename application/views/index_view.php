@@ -40,7 +40,7 @@
                                     <div class="col-md-6">&nbsp;</div>
 
                                     <div class="col-md-6">
-                                        <div class="row" style="padding-top: 25px;">
+                                        <div class="row" style="padding-top: 0px;">
                                             <?php  echo $news_section; ?>
                                         </div>
                                     </div>

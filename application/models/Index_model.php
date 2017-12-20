@@ -88,30 +88,66 @@ class Index_model extends CI_Model
         return $list;
     }
 
+
+    /**
+     * @param $row
+     * @return string
+     */
+    public function get_news_item($offset)
+    {
+        $list = "";
+
+        $query = "select * from mdl_news where active=1 order by title limit 1 offset $offset";
+        $result = $this->db->query($query);
+        foreach ($result->result() as $row) {
+            $title = $row->title;
+            $id = $row->id;
+            $pic_path = $row->pic_path;
+            $limit = $row->chars_limit;
+            $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
+            $path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/custom/news/assets/$pic_path";
+            $content = $row->content;
+            $preface = substr($content, 0, $limit) . ' ....';
+        }
+
+        $list .= "<a href='$url'>
+                       <div class='row' style='margin-bottom: 15px;'>
+                       <span class='col-md-12' style='font-weight: bold;text-align: center;'>$title</span>
+                       </div>
+                       <div class='row' style='text-align: center;'>
+                       <span class='col-md-12'><img class='img-circle' width='300'  alt='$title' src='$path'></span>
+                       </div>
+                       <div class='row' style='text-align: justify;margin-top: 15px;'>
+                       <span class='col-md-12' style='color: #4c4c4c;'>$preface</span>
+                       </div>
+                   </a>";
+        return $list;
+    }
+
     /**
      * @return array
      */
     public function get_news_section()
     {
         $list = "";
+        $item1 = $this->get_news_item(0);
+        $item2 = $this->get_news_item(1);
+        $item3 = $this->get_news_item(2);
+        $item4 = $this->get_news_item(3);
 
+        $list .= "<table align='center' style='width: 100%'>";
 
-        $query = "select * from mdl_news order by added limit 0,4";
-        $result = $this->db->query($query);
-        $i = 1;
-        foreach ($result->result() as $row) {
-            $title = $row->title;
-            $id = $row->id;
-            $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
-            $list .= "<div class='theme-box'>
-                             <a href='$url'>
-                                   <div class='' style='position: relative;padding: 65px 10px;width:230px;height:180px;overflow: hidden;text-align: center;'>
-                                      <h4>$title</h4>
-                                      <div class='theme-boximg-color' style='background-color:#e63946;width:230px;height:180px;'></div>
-                                      </div>
-                              </a></div>";
-            $i++;
-        } // end foreach
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center;padding: 15px'>$item1</td>";
+        $list .= "<td style='text-align: center;padding: 15px'>$item2</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center;padding: 15px'>$item3</td>";
+        $list .= "<td style='text-align: center;padding: 15px'>$item4</td>";
+        $list .= "</tr>";
+
+        $list .= "</table>";
         return $list;
     }
 
@@ -124,7 +160,8 @@ class Index_model extends CI_Model
         $query = "select * from mdl_site_pages where id=1";
         $result = $this->db->query($query);
         foreach ($result->result() as $row) {
-            $preface = substr($row->content, 0, 375);
+            $limit = $row->chars_limit;
+            $preface = substr($row->content, 0, $limit);
         }
         $url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/index.php/about/show';
         $list .= "
@@ -255,7 +292,7 @@ class Index_model extends CI_Model
         // http://theberry.us/clientes/drops/index.php/courses/full/3
         $i = 0;
         $courses = array();
-        $courseslink='http://theberry.us/clientes/drops/index.php/courses/all';
+        $courseslink = 'http://theberry.us/clientes/drops/index.php/courses/all';
         $query = "select * from mdl_course where top=1 order by fullname";
         $result = $this->db->query($query);
         $num = $result->num_rows();

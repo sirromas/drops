@@ -23,11 +23,13 @@ class Page extends Utils
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $content = $row['content'];
             $title = $row['title'];
+            $limit = $row['chars_limit'];
         }
-
+        $limitbox = $this->get_chars_limit_box($limit);
         $list .= "<div class='row' style='margin-bottom: 10px;'>";
         $list .= "<input type='hidden' id='pageid' value='$id'>";
-        $list .= "<span class='span12' style='padding-left: 0px;'><input type='text' id='page_title' style='width: 100%' placeholder='Page Title' value='$title'></span>";
+        $list .= "<span class='col-md-9' style='padding-left: 0px;'><input type='text' id='page_title' style='width: 100%' placeholder='Page Title' value='$title'></span>";
+        $list .= "<span class='col-md-2'>Length (chars)*</span><span class='col-md-1'>$limitbox</span>";
         $list .= "</div>";
 
         $list .= "<div class='row'>";
@@ -52,6 +54,30 @@ class Page extends Utils
         return $list;
     }
 
+    /**
+     * @param int $selected
+     * @return string
+     */
+    function get_chars_limit_box($selected = 0)
+    {
+        $list = "";
+        $list .= "<select id='climit'>";
+        for ($i = 0; $i < 1024; $i++) {
+            if ($i == $selected) {
+                $list .= "<option value='$i' selected>$i</option>";
+            } // end if
+            else {
+                $list .= "<option value='$i'>$i</option>";
+            } // end else
+        } // end for
+        $list .= "</select>";
+        return $list;
+    }
+
+    /**
+     * @param $item
+     * @return string
+     */
     function update_site_page($item)
     {
         $now = time();
@@ -59,7 +85,7 @@ class Page extends Utils
         $clear_content = addslashes($item->content);
         $query = "update mdl_site_pages 
                   set title='$clear_title', 
-                  content='$clear_content', 
+                  content='$clear_content', chars_limit=$item->limit,
                   updated='$now' where id=$item->pageid";
         $this->db->query($query);
         $list = "Page updated successfully";

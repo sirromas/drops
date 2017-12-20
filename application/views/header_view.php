@@ -307,6 +307,7 @@ $citems=$ci->courses_model->get_courses_menu_items();
 
                                 <li class="" id=""><a title="Cadastre-se" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register">Cadastre-se</a></li>
                                 <li class="" id=""><a title="FAQ" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/faq/show" >FAQ</a></li>
+                                <li class="" id=""><a title="FAQ" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/logos/show" >Logos parceiras</a></li>
                                 <li class="" id=""><a title="Sobre Nós"  href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show">Sobre Nós</a></li>
                                 <li class="" id=""><a title="Contato" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/contact/contact/contact" >Contato</a></li>
                                 <li class="" id=""><a title="Login" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/login" >Login</a></li>
