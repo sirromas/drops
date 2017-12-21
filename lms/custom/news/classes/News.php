@@ -184,7 +184,7 @@ class News extends Utils
               <div class='modal-body'>
                 
                 <div class='row' style='margin-bottom:10px;text-align: center;'>
-                <span class='col-md-9'><input type='text' value='$title' id='news_title' style='width: 885px;' placeholder='News Title'></span>
+                <span class='col-md-9'><input type='text' id='news_title' value='$title' style='width: 100%;'></span>
                 <span class='col-md-2'>Length (chars)*</span><span class='col-md-1'>$limitbox</span>
                 </div>
                 
@@ -237,7 +237,7 @@ class News extends Utils
             $destination = $_SERVER['DOCUMENT_ROOT'] . "/clientes/drops/lms/custom/news/assets/$filename";
             $status = move_uploaded_file($tmp_filename, $destination);
             if ($status) {
-                $clear_title = addslashes($post['title']);
+                $clear_title = addslashes(htmlentities($post['title'])) ;
                 $clear_conent = addslashes($post['content']);
                 $item_status = $post['status'];
                 $now = time();
@@ -255,14 +255,14 @@ class News extends Utils
      */
     function update_news_item($file, $post)
     {
+
         $id = $post['id'];
         $title = $post['title'];
         $content = $post['content'];
         $status = $post['status'];
         $limit=$post['limit'];
-        $file_data = $file[0];
 
-        $clear_title = addslashes($title);
+        $clear_title = addslashes(htmlentities($title));
         $clear_conent = addslashes($content);
         $now = time();
         $query = "update mdl_news 
@@ -273,16 +273,19 @@ class News extends Utils
                   where id=$id";
         $this->db->query($query);
 
-        if ($file_data['error'] == 0 && $file_data['size'] > 0) {
-            $tmp_filename = $file_data['tmp_name'];
-            $filename = time() . '.jpg';
-            $destination = $_SERVER['DOCUMENT_ROOT'] . "/clientes/drops/lms/custom/news/assets/$filename";
-            $status = move_uploaded_file($tmp_filename, $destination);
-            if ($status) {
-                $query = "update mdl_news set pic_path='$filename' where id=$id";
-                $this->db->query($query);
-            }
-        } // end if $file_data['error'] == 0 && $file_data['size'] > 0
+        if (isset($file)>0) {
+            $file_data = $file[0];
+            if ($file_data['error'] == 0 && $file_data['size'] > 0) {
+                $tmp_filename = $file_data['tmp_name'];
+                $filename = time() . '.jpg';
+                $destination = $_SERVER['DOCUMENT_ROOT'] . "/clientes/drops/lms/custom/news/assets/$filename";
+                $status = move_uploaded_file($tmp_filename, $destination);
+                if ($status) {
+                    $query = "update mdl_news set pic_path='$filename' where id=$id";
+                    $this->db->query($query);
+                }
+            } // end if $file_data['error'] == 0 && $file_data['size'] > 0
+        }
     }
 
     /**

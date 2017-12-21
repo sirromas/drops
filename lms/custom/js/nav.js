@@ -167,6 +167,7 @@ $(document).ready(function () {
 
         if (event.target.id == "news_update_done") {
             var id = $('#news_id').val();
+            //var title = CKEDITOR.instances["news_title"].getData();
             var title = $('#news_title').val();
             var content = CKEDITOR.instances["news_content"].getData();
             var limit = $('#climit').val();
