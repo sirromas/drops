@@ -25,5 +25,14 @@ class News extends CI_Controller
         $this->load->view('footer_view');
     }
 
+    public function all()
+    {
+        $page = $this->news_model->get_news_page();
+        $data = array('page' => $page);
+        $this->load->view('header_view');
+        $this->load->view('news_all_view', $data);
+        $this->load->view('footer_view');
+    }
+
 
 }

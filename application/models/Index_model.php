@@ -93,23 +93,17 @@ class Index_model extends CI_Model
      * @param $row
      * @return string
      */
-    public function get_news_item($offset)
+    public function get_news_item($row)
     {
         $list = "";
-
-        $query = "select * from mdl_news where active=1 order by title limit 1 offset $offset";
-        $result = $this->db->query($query);
-        foreach ($result->result() as $row) {
-            $title = $row->title;
-            $id = $row->id;
-            $pic_path = $row->pic_path;
-            $limit = $row->chars_limit;
-            $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
-            $path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/custom/news/assets/$pic_path";
-            $content = $row->content;
-            $preface = substr($content, 0, $limit) . ' ....';
-        }
-
+        $title = $row->title;
+        $id = $row->id;
+        $pic_path = $row->pic_path;
+        $limit = $row->chars_limit;
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
+        $path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/custom/news/assets/$pic_path";
+        $content = $row->content;
+        $preface = substr($content, 0, $limit) . ' ....';
         $list .= "<a href='$url'>
                        <div class='row' style='margin-bottom: 15px;'>
                        <span class='col-md-12' style='font-weight: bold;text-align: center;'>$title</span>
@@ -130,24 +124,18 @@ class Index_model extends CI_Model
     public function get_news_section()
     {
         $list = "";
-        $item1 = $this->get_news_item(0);
-        $item2 = $this->get_news_item(1);
-        $item3 = $this->get_news_item(2);
-        $item4 = $this->get_news_item(3);
-
-        $list .= "<table align='center' style='width: 100%'>";
-
-        $list .= "<tr>";
-        $list .= "<td style='text-align: center;padding: 15px'>$item1</td>";
-        $list .= "<td style='text-align: center;padding: 15px'>$item2</td>";
-        $list .= "</tr>";
-
-        $list .= "<tr>";
-        $list .= "<td style='text-align: center;padding: 15px'>$item3</td>";
-        $list .= "<td style='text-align: center;padding: 15px'>$item4</td>";
-        $list .= "</tr>";
-
-        $list .= "</table>";
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/all";
+        $query = "select * from mdl_news where active=1 order by added desc limit 0,4";
+        $result = $this->db->query($query);
+        foreach ($result->result() as $row) {
+            $item = $this->get_news_item($row);
+            $list .= "<div class='row' style='text-align: center;'>";
+            $list .= "<span class='col-md-10'>$item</span>";
+            $list .= "</div>";
+        } // end foreach
+        $list .= "<div class='row'>";
+        $list .= "<span class='col-md-9'><a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Veja todas as Notícias</span></a></span>";
+        $list .= "</div>";
         return $list;
     }
 
@@ -168,8 +156,7 @@ class Index_model extends CI_Model
                 <div class='theme-title title-left title-n style-1'style='margin:0 0 30px 0;' id=''>
                 <h4 class='title'><span>Quem somos nós?</span></h4></div>
                 <p id='yui_3_17_2_2_1510781966338_114'>$preface</p>
-                <a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Saiba Mais</span></a>
-                ";
+                <a href='$url'  class='btn btn-primary btn-lg btn-icon-before' style='margin:20px 0 0 0'><span class='btn-text'>Saiba Mais</span></a>";
         return $list;
     }
 
