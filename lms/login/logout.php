@@ -39,7 +39,7 @@ if ($login) {
     $redirect = $CFG->wwwroot.'/';
 }
 
-$redirect='http://theberry.us/clientes/drops/';
+$redirect='https://learningindrops.com';
 
 if (!isloggedin()) {
     // no confirmation, user has already logged out

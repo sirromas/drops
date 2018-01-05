@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
 class Users extends Utils
 {
@@ -62,7 +62,7 @@ class Users extends Utils
                 else {
                     $laccess = 'N/A';
                 }
-                $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/user/profile.php?id=$userid";
+                $url = "https://" . $_SERVER['SERVER_NAME'] . "/lms/user/profile.php?id=$userid";
                 $link = "<a href='$url' target='_blank'>Profile Link</a>";
                 $list .= "<tr>";
                 $list .= "<td>$fname</td>";

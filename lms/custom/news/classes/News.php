@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
 class News extends Utils
 {
@@ -34,7 +34,7 @@ class News extends Utils
     function get_news_tumb_block($path)
     {
         $list = "";
-        $src = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/custom/news/assets/$path";
+        $src = "https://" . $_SERVER['SERVER_NAME'] . "/lms/custom/news/assets/$path";
         $list .= "<img src='$src' width='100' height='30'>";
         return $list;
     }
@@ -234,7 +234,7 @@ class News extends Utils
         if ($file_data['error'] == 0 && $file_data['size'] > 0) {
             $tmp_filename = $file_data['tmp_name'];
             $filename = time() . '.jpg';
-            $destination = $_SERVER['DOCUMENT_ROOT'] . "/clientes/drops/lms/custom/news/assets/$filename";
+            $destination = $_SERVER['DOCUMENT_ROOT'] . "/lms/custom/news/assets/$filename";
             $status = move_uploaded_file($tmp_filename, $destination);
             if ($status) {
                 $clear_title = addslashes(htmlentities($post['title'])) ;
@@ -278,7 +278,7 @@ class News extends Utils
             if ($file_data['error'] == 0 && $file_data['size'] > 0) {
                 $tmp_filename = $file_data['tmp_name'];
                 $filename = time() . '.jpg';
-                $destination = $_SERVER['DOCUMENT_ROOT'] . "/clientes/drops/lms/custom/news/assets/$filename";
+                $destination = $_SERVER['DOCUMENT_ROOT'] . "/lms/custom/news/assets/$filename";
                 $status = move_uploaded_file($tmp_filename, $destination);
                 if ($status) {
                     $query = "update mdl_news set pic_path='$filename' where id=$id";

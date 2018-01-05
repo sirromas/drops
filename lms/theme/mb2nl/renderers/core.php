@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/clientes/drops/lms/custom/nav/classes/Nav.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/lms/custom/nav/classes/Nav.php';
 
 class theme_mb2nl_core_renderer extends core_renderer 
 {

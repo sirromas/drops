@@ -6,10 +6,10 @@ $CFG = new stdClass();
 
 $CFG->dbtype    = 'mysqli';
 $CFG->dblibrary = 'native';
-$CFG->dbhost    = 'localhost';
-$CFG->dbname    = 'theberry_drops';
-$CFG->dbuser    = 'theberry_drops';
-$CFG->dbpass    = 't&c*[CZet0g-';
+$CFG->dbhost    = 'mysql.db5.net2.com.br';
+$CFG->dbname    = 'learningindr7';
+$CFG->dbuser    = 'learningindr7';
+$CFG->dbpass    = 'aK6SKymc*';
 $CFG->prefix    = 'mdl_';
 $CFG->dboptions = array (
   'dbpersist' => 0,
@@ -18,8 +18,8 @@ $CFG->dboptions = array (
   'dbcollation' => 'utf8_unicode_ci',
 );
 
-$CFG->wwwroot   = 'http://theberry.us/clientes/drops/lms';
-$CFG->dataroot  = '/home/theberry/moodledata';
+$CFG->wwwroot   = 'https://learningindrops.com/lms';
+$CFG->dataroot  = '/htdocs/home/learningindrops.com/moodledata/';
 $CFG->admin     = 'admin';
 
 $CFG->directorypermissions = 0777;

@@ -6,10 +6,10 @@
                 <div class="course-content" id="yui_3_17_2_2_1510338114389_150">
                     <div class="course-heading" id="yui_3_17_2_2_1510338114389_182"><h3 class="coursename"
                                                                                         id="yui_3_17_2_2_1510338114389_255">
-                            <a href="http://marbol2.com/themes/new-learning/course/view.php?id=4"
+                            <a href="https://marbol2.com/themes/new-learning/course/view.php?id=4"
                                id="yui_3_17_2_2_1510338114389_254">Demo Course #1</a></h3>
                         <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
+                                                         src="https://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
                         </div>
                     </div>
                     <div class="summary" id="yui_3_17_2_2_1510338114389_149">
@@ -19,16 +19,16 @@
                     </div>
                     <ul class="teachers" id="yui_3_17_2_2_1510338114389_249">
                         <li id="yui_3_17_2_2_1510338114389_248">Teacher: <a
-                                    href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
+                                    href="https://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
                                 Miller</a></li>
                     </ul>
                     <div class="course-readmore" id="yui_3_17_2_2_1510338114389_181"><a class="btn btn-primary"
-                                                                                        href="http://marbol2.com/themes/new-learning/course/view.php?id=4"
+                                                                                        href="https://marbol2.com/themes/new-learning/course/view.php?id=4"
                                                                                         id="yui_3_17_2_2_1510338114389_229">Enter
                             this course</a></div>
                 </div>
                 <div class="course-media" id="yui_3_17_2_2_1510338114389_253"><img
-                            src="http://marbol2.com/themes/new-learning/pluginfile.php/62/course/overviewfiles/transcript-2654145.jpg"
+                            src="https://marbol2.com/themes/new-learning/pluginfile.php/62/course/overviewfiles/transcript-2654145.jpg"
                             class="" id="yui_3_17_2_2_1510338114389_252"></div>
             </div>
         </div>
@@ -39,10 +39,10 @@
                 <div class="course-content" id="yui_3_17_2_2_1510338114389_176">
                     <div class="course-heading" id="yui_3_17_2_2_1510338114389_180"><h3 class="coursename"
                                                                                         id="yui_3_17_2_2_1510338114389_209">
-                            <a href="http://marbol2.com/themes/new-learning/course/view.php?id=5"
+                            <a href="https://marbol2.com/themes/new-learning/course/view.php?id=5"
                                id="yui_3_17_2_2_1510338114389_208">Demo Course #2</a></h3>
                         <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
+                                                         src="https://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
                         </div>
                     </div>
                     <div class="summary" id="yui_3_17_2_2_1510338114389_175">
@@ -51,15 +51,15 @@
                                 lorem ut libero malesuada feugiat. Curabitur non nulla sit amet nisl.</p></div>
                     </div>
                     <ul class="teachers">
-                        <li>Teacher: <a href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
+                        <li>Teacher: <a href="https://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
                                 Miller</a></li>
                     </ul>
                     <div class="course-readmore"><a class="btn btn-primary"
-                                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=5">Enter
+                                                    href="https://marbol2.com/themes/new-learning/course/view.php?id=5">Enter
                             this course</a></div>
                 </div>
                 <div class="course-media"><img
-                            src="http://marbol2.com/themes/new-learning/pluginfile.php/77/course/overviewfiles/pencil-1891732.jpg"
+                            src="https://marbol2.com/themes/new-learning/pluginfile.php/77/course/overviewfiles/pencil-1891732.jpg"
                             class=""></div>
             </div>
         </div>
@@ -70,9 +70,9 @@
             <div class="content-inner fileandcontent" id="yui_3_17_2_2_1510338114389_170">
                 <div class="course-content" id="yui_3_17_2_2_1510338114389_169">
                     <div class="course-heading"><h3 class="coursename"><a
-                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=2">Theme</a></h3>
+                                    href="https://marbol2.com/themes/new-learning/course/view.php?id=2">Theme</a></h3>
                         <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
+                                                         src="https://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
                         </div>
                     </div>
                     <div class="summary" id="yui_3_17_2_2_1510338114389_234">
@@ -82,16 +82,16 @@
                     </div>
                     <ul class="teachers" id="yui_3_17_2_2_1510338114389_168">
                         <li id="yui_3_17_2_2_1510338114389_167">Teacher: <a
-                                    href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1"
+                                    href="https://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1"
                                     id="yui_3_17_2_2_1510338114389_235">Emma Miller</a></li>
                     </ul>
                     <div class="course-readmore" id="yui_3_17_2_2_1510338114389_237"><a class="btn btn-primary"
-                                                                                        href="http://marbol2.com/themes/new-learning/course/view.php?id=2"
+                                                                                        href="https://marbol2.com/themes/new-learning/course/view.php?id=2"
                                                                                         id="yui_3_17_2_2_1510338114389_236">Enter
                             this course</a></div>
                 </div>
                 <div class="course-media"><img
-                            src="http://marbol2.com/themes/new-learning/pluginfile.php/33/course/overviewfiles/books-2182454.jpg"
+                            src="https://marbol2.com/themes/new-learning/pluginfile.php/33/course/overviewfiles/books-2182454.jpg"
                             class=""></div>
             </div>
         </div>
@@ -101,10 +101,10 @@
             <div class="content-inner fileandcontent">
                 <div class="course-content">
                     <div class="course-heading"><h3 class="coursename"><a
-                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=7">Demo home light
+                                    href="https://marbol2.com/themes/new-learning/course/view.php?id=7">Demo home light
                                 header</a></h3>
                         <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
+                                                         src="https://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
                         </div>
                     </div>
                     <div class="summary">
@@ -112,15 +112,15 @@
                                 rutrum congue leo eget malesuada.</p></div>
                     </div>
                     <ul class="teachers">
-                        <li>Teacher: <a href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
+                        <li>Teacher: <a href="https://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
                                 Miller</a></li>
                     </ul>
                     <div class="course-readmore"><a class="btn btn-primary"
-                                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=7">Enter
+                                                    href="https://marbol2.com/themes/new-learning/course/view.php?id=7">Enter
                             this course</a></div>
                 </div>
                 <div class="course-media"><img
-                            src="http://marbol2.com/themes/new-learning/pluginfile.php/106/course/overviewfiles/notepad-932864.jpg"
+                            src="https://marbol2.com/themes/new-learning/pluginfile.php/106/course/overviewfiles/notepad-932864.jpg"
                             class=""></div>
             </div>
         </div>
@@ -131,10 +131,10 @@
                 <div class="course-content" id="yui_3_17_2_2_1510338114389_241">
                     <div class="course-heading" id="yui_3_17_2_2_1510338114389_246"><h3 class="coursename"
                                                                                         id="yui_3_17_2_2_1510338114389_245">
-                            <a href="http://marbol2.com/themes/new-learning/course/view.php?id=8"
+                            <a href="https://marbol2.com/themes/new-learning/course/view.php?id=8"
                                id="yui_3_17_2_2_1510338114389_244">Demo home dark header</a></h3>
                         <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
+                                                         src="https://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
                         </div>
                     </div>
                     <div class="summary">
@@ -142,16 +142,16 @@
                                 Curabitur aliquet quam id dui posuere blandit.</p></div>
                     </div>
                     <ul class="teachers">
-                        <li>Teacher: <a href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
+                        <li>Teacher: <a href="https://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
                                 Miller</a></li>
                     </ul>
                     <div class="course-readmore" id="yui_3_17_2_2_1510338114389_240"><a class="btn btn-primary"
-                                                                                        href="http://marbol2.com/themes/new-learning/course/view.php?id=8"
+                                                                                        href="https://marbol2.com/themes/new-learning/course/view.php?id=8"
                                                                                         id="yui_3_17_2_2_1510338114389_239">Enter
                             this course</a></div>
                 </div>
                 <div class="course-media"><img
-                            src="http://marbol2.com/themes/new-learning/pluginfile.php/114/course/overviewfiles/books-2630078.jpg"
+                            src="https://marbol2.com/themes/new-learning/pluginfile.php/114/course/overviewfiles/books-2630078.jpg"
                             class=""></div>
             </div>
         </div>
@@ -161,10 +161,10 @@
             <div class="content-inner fileandcontent">
                 <div class="course-content">
                     <div class="course-heading"><h3 class="coursename"><a
-                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=3">Demo home fixed
+                                    href="https://marbol2.com/themes/new-learning/course/view.php?id=3">Demo home fixed
                                 width</a></h3>
                         <div class="enrolmenticons"><img class="smallicon" alt="Guest access" title="Guest access"
-                                                         src="http://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
+                                                         src="https://marbol2.com/themes/new-learning/theme/image.php/mb2nl/enrol_guest/1508612606/withoutpassword">
                         </div>
                     </div>
                     <div class="summary">
@@ -172,15 +172,15 @@
                                 Vestibulum ac diam sit amet quam.</p></div>
                     </div>
                     <ul class="teachers">
-                        <li>Teacher: <a href="http://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
+                        <li>Teacher: <a href="https://marbol2.com/themes/new-learning/user/view.php?id=3&amp;course=1">Emma
                                 Miller</a></li>
                     </ul>
                     <div class="course-readmore"><a class="btn btn-primary"
-                                                    href="http://marbol2.com/themes/new-learning/course/view.php?id=3">Enter
+                                                    href="https://marbol2.com/themes/new-learning/course/view.php?id=3">Enter
                             this course</a></div>
                 </div>
                 <div class="course-media"><img
-                            src="http://marbol2.com/themes/new-learning/pluginfile.php/48/course/overviewfiles/writing-2652177.jpg"
+                            src="https://marbol2.com/themes/new-learning/pluginfile.php/48/course/overviewfiles/writing-2652177.jpg"
                             class=""></div>
             </div>
         </div>

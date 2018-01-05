@@ -70,7 +70,7 @@ class News_model extends CI_Model
         $list = "";
         $title = $item->title;
         $limit = $item->chars_limit;
-        $link = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$item->id";
+        $link = "http://" . $_SERVER['SERVER_NAME'] . "/index.php/news/show/$item->id";
         $preface = substr($item->content, 0, $limit) . ' ....';
         $list .= "<div class='row'>";
         $list .= "<span class='col-md-12' style='font-weight: bold;'><a href='$link'>$title</a></span>";

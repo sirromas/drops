@@ -3,7 +3,7 @@
 <head>
     <title>Learning Drops</title>
     <link rel="shortcut icon"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/image.php/mb2nl/theme/1510318957/favicon"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/image.php/mb2nl/theme/1510318957/favicon"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js'></script>
-    <script type='text/javascript' src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/assets/js/custom.js"></script>
+    <script type='text/javascript' src="https://<? echo $_SERVER['SERVER_NAME']; ?>/assets/js/custom.js"></script>
 
     <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a0ee083cab38e0011129d08&product=inline-share-buttons"></script>
 
@@ -22,7 +22,7 @@
         M.yui = {};
         M.pageloadstarttime = new Date();
         M.cfg = {
-            "wwwroot": "http:\/\/<? echo $_SERVER['SERVER_NAME']; ?>\/clientes\/drops\/lms",
+            "wwwroot": "http:\/\/<? echo $_SERVER['SERVER_NAME']; ?>\/lms",
             "sesskey": "hOAJvSA9jM",
             "themerev": "1510318957",
             "slasharguments": 1,
@@ -58,15 +58,15 @@
         };
         YUI_config = {
             "debug": false,
-            "base": "http:\/\/<? echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/lib\/yuilib\/3.17.2\/",
-            "comboBase": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/theme\/yui_combo.php?",
+            "base": "http:\/\/<? echo $_SERVER['SERVER_NAME'];  ?>\/lms\/lib\/yuilib\/3.17.2\/",
+            "comboBase": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/lms\/theme\/yui_combo.php?",
             "combine": true,
             "filter": null,
             "insertBefore": "firstthemesheet",
             "groups": {
                 "yui2": {
-                    "base": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/lib\/yuilib\/2in3\/2.9.0\/build\/",
-                    "comboBase": "http:\/\/<? echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/theme\/yui_combo.php?",
+                    "base": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/lms\/lib\/yuilib\/2in3\/2.9.0\/build\/",
+                    "comboBase": "http:\/\/<? echo $_SERVER['SERVER_NAME'];  ?>\/lms\/theme\/yui_combo.php?",
                     "combine": true,
                     "ext": false,
                     "root": "2in3\/2.9.0\/build\/",
@@ -74,9 +74,9 @@
                 },
                 "moodle": {
                     "name": "moodle",
-                    "base": "http:\/\/<? echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/theme\/yui_combo.php?m\/1510318528\/",
+                    "base": "http:\/\/<? echo $_SERVER['SERVER_NAME'];  ?>\/lms\/theme\/yui_combo.php?m\/1510318528\/",
                     "combine": true,
-                    "comboBase": "http:\/\/ <? echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/theme\/yui_combo.php?",
+                    "comboBase": "http:\/\/ <? echo $_SERVER['SERVER_NAME'];  ?>\/lms\/theme\/yui_combo.php?",
                     "ext": false,
                     "root": "m\/1510318528\/",
                     "patterns": {"moodle-": {"group": "moodle", "configFn": yui2ConfigFn}},
@@ -206,9 +206,9 @@
                 },
                 "gallery": {
                     "name": "gallery",
-                    "base": "http:\/\/ <? echo $_SERVER['SERVER_NAME']; ?>\/clientes\/drops\/lms\/lib\/yuilib\/gallery\/",
+                    "base": "http:\/\/ <? echo $_SERVER['SERVER_NAME']; ?>\/lms\/lib\/yuilib\/gallery\/",
                     "combine": true,
-                    "comboBase": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/theme\/yui_combo.php?",
+                    "comboBase": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/lms\/theme\/yui_combo.php?",
                     "ext": false,
                     "root": "gallery\/1510318528\/",
                     "patterns": {"gallery-": {"group": "gallery"}}
@@ -217,12 +217,12 @@
             "modules": {
                 "core_filepicker": {
                     "name": "core_filepicker",
-                    "fullpath": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/lib\/javascript.php\/1510318528\/repository\/filepicker.js",
+                    "fullpath": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/lms\/lib\/javascript.php\/1510318528\/repository\/filepicker.js",
                     "requires": ["base", "node", "node-event-simulate", "json", "async-queue", "io-base", "io-upload-iframe", "io-form", "yui2-treeview", "panel", "cookie", "datatable", "datatable-sort", "resize-plugin", "dd-plugin", "escape", "moodle-core_filepicker", "moodle-core-notification-dialogue"]
                 },
                 "core_comment": {
                     "name": "core_comment",
-                    "fullpath": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/clientes\/drops\/lms\/lib\/javascript.php\/1510318528\/comment\/comment.js",
+                    "fullpath": "http:\/\/<?  echo $_SERVER['SERVER_NAME'];  ?>\/lms\/lib\/javascript.php\/1510318528\/comment\/comment.js",
                     "requires": ["base", "io-base", "node", "json", "yui2-animation", "overlay", "escape"]
                 },
                 "mathjax": {
@@ -241,30 +241,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="moodle, Dashboard"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css"/>
     <script id="firstthemesheet"
             type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
 
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/styles.php/mb2nl/1510318957/all"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/styles.php/mb2nl/1510318957/all"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/mb2nl/assets/font-awesome/css/font-awesome.min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/mb2nl/assets/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/mb2nl/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/mb2nl/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.min.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/mb2nl/assets/bootstrap/css/glyphicons.min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/mb2nl/assets/bootstrap/css/glyphicons.min.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/mb2nl/assets/OwlCarousel/assets/owl.carousel.min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/mb2nl/assets/OwlCarousel/assets/owl.carousel.min.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/mb2nl/assets/Nivo-Lightbox/nivo-lightbox.min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/mb2nl/assets/Nivo-Lightbox/nivo-lightbox.min.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/mb2nl/assets/spectrum/spectrum.min.css"/>
+          href="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/mb2nl/assets/spectrum/spectrum.min.css"/>
 
     <script type="text/javascript"
-            src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script>
+            src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script>
 
     <script type="text/javascript"
-            src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/lib/javascript-static.js"></script>
+            src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/lib/javascript-static.js"></script>
 
 
 </head>
@@ -294,23 +294,23 @@ $citems=$ci->courses_model->get_courses_menu_items();
                 <div class="container-fluid" id="">
                     <div class="row" id="">
                         <div class="col-sm-12" id="">
-                            <div class="menu-bar"><a class="mobile-home" href="http://marbol2.com/themes/new-learning"
+                            <div class="menu-bar"><a class="mobile-home" href="https://marbol2.com/themes/new-learning"
                                                      title="New Learning"><i class="fa fa-home"></i></a><a
                                         class="show-menu" href="#"><i class="fa fa-bars"></i></a></div>
                             <ul class="main-menu theme-ddmenu sf-js-enabled desk-menu" data-animtype="2"
                                 data-animspeed="450" style="touch-action: pan-y;" id="">
-                                <li class="home-item"><a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/"
+                                <li class="home-item"><a href="https://<?php echo $_SERVER['SERVER_NAME']; ?>"
                                                          title="New Learning"><i class="fa fa-home"></i></a></li>
 
                                 <!-- Courses menu -->
                                 <?php echo $citems; ?>
 
-                                <li class="" id=""><a title="Cadastre-se" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register">Cadastre-se</a></li>
-                                <li class="" id=""><a title="FAQ" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/faq/show" >FAQ</a></li>
-                                <li class="" id=""><a title="FAQ" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/logos/show" >Logos parceiras</a></li>
-                                <li class="" id=""><a title="Sobre Nós"  href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/about/show">Sobre Nós</a></li>
-                                <li class="" id=""><a title="Contato" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/contact/contact/contact" >Contato</a></li>
-                                <li class="" id=""><a title="Login" class="" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/navigation/login" >Login</a></li>
+                                <li class="" id=""><a title="Cadastre-se" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/register/register">Cadastre-se</a></li>
+                                <li class="" id=""><a title="FAQ" class="" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/faq/show" >FAQ</a></li>
+                                <li class="" id=""><a title="FAQ" class="" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/logos/show" >Logos parceiras</a></li>
+                                <li class="" id=""><a title="Sobre Nós"  href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/about/show">Sobre Nós</a></li>
+                                <li class="" id=""><a title="Contato" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/contact/contact/contact" >Contato</a></li>
+                                <li class="" id=""><a title="Login" class="" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/navigation/login" >Login</a></li>
 
                                 <li class="nav navbar-nav navbar-right" style="margin-top:3px;"><div class="theme-searchform"><input id="theme-coursesearchbox" style="" type="text" value="" placeholder="Pesquisar Cursos" name="search"><button type="submit" id="index_search"><i class="fa fa-search" id="index_search"></i></button></div></li>
 

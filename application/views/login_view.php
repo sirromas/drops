@@ -57,9 +57,9 @@
 </style>
 
 <div style="margin: auto; width:35%;text-align: center;">
-    <form action="http://theberry.us/clientes/drops/lms/login/index.php?authldap_skipntlmsso=1" method="post">
+    <form action="https://learningindrops.com/lms/login/index.php?authldap_skipntlmsso=1" method="post">
         <div class="imgcontainer">
-            <img src="http://theberry.us/clientes/drops/assets/img/img_avatar2.png" alt="Avatar" class="avatar">
+            <img src="https://learningindrops.com/assets/img/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
 
         <div class="container" style="text-align: center;">
@@ -92,10 +92,10 @@
         </div>
 
         <div class="container" style="margin: auto;text-align: center;">
-            <span class="psw">Esqueci Minha <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/login/forgot_password.php" target="_blank">Senha?</a></span>
+            <span class="psw">Esqueci Minha <a href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/lms/login/forgot_password.php" target="_blank">Senha?</a></span>
         </div>
         <div class="container" style="margin: auto;text-align: center;">
-            <span class="psw">Ainda não tem uma conta? Clique <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/index.php/register/register/">Aqui</a></span>
+            <span class="psw">Ainda não tem uma conta? Clique <a href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/register/register/">Aqui</a></span>
         </div><br>
      </form>
 </div>

@@ -14,10 +14,10 @@ class pdo_db
      */
     function __construct()
     {
-        $this->databaseName = 'theberry_drops';
-        $this->host = 'localhost';
-        $this->user = 'theberry_drops';
-        $this->password = 't&c*[CZet0g-';
+        $this->databaseName = 'learningindr7';
+        $this->host = 'mysql.db5.net2.com.br';
+        $this->user = 'learningindr7';
+        $this->password = 'aK6SKymc*';
         $dsn = "mysql:dbname=$this->databaseName;host=$this->host";
         try {
             $db = new PDO($dsn, $this->user, $this->password);

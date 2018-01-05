@@ -31,8 +31,8 @@ class Courses_model extends CI_Model
             $img_path = $row->img_path;
         }
 
-        $courseurl = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/courses/full/$idn";
-        $iconurl = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/nopwd.svg";
+        $courseurl = "https://" . $_SERVER['SERVER_NAME'] . "/index.php/courses/full/$idn";
+        $iconurl = "https://" . $_SERVER['SERVER_NAME'] . "/assets/img/nopwd.svg";
         $list .= "<div class='courses category-browse category-browse-2' style='width: 96%;margin-top: 15px;margin-left: 2%;'>
 
                  <div class='coursebox clearfix $class first noinfobox'>
@@ -78,8 +78,8 @@ class Courses_model extends CI_Model
         }
 
         $class = 'odd';
-        $courseurl = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/register/preselect/$idn";
-        $iconurl = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/nopwd.svg";
+        $courseurl = "https://" . $_SERVER['SERVER_NAME'] . "/index.php/register/preselect/$idn";
+        $iconurl = "https://" . $_SERVER['SERVER_NAME'] . "/assets/img/nopwd.svg";
         $list .= "<div style='margin: auto;width: 96%;text-align: center; '><div class='courses category-browse category-browse-2' style='width: 96%;margin-top: 15px;margin-left: 2%;'>
 
                  <div class='coursebox clearfix $class first noinfobox'>
@@ -113,7 +113,7 @@ class Courses_model extends CI_Model
         foreach ($result->result() as $row) {
             $id = $row->id;
             $name = $row->fullname;
-            $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/courses/preview/$id";
+            $url = "https://" . $_SERVER['SERVER_NAME'] . "/index.php/courses/preview/$id";
             $list .= "<li class=''><a title='$name' class='' href='$url'>$name</a></li>";
         }
         return $list;
@@ -140,7 +140,7 @@ class Courses_model extends CI_Model
             $list .= "</ul></li>";
         } // end foreach
 
-        $list .= "<li><a title=‘All’ href='http://theberry.us/clientes/drops/index.php/courses/all' id=''>All Cursos</a></li>";
+        $list .= "<li><a title=‘All’ href='https://learningindrops.com/index.php/courses/all' id=''>All Cursos</a></li>";
 
         $list .= "</ul></li>";
         return $list;

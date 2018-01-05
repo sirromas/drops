@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
 class Report extends Utils
 {
@@ -45,7 +45,7 @@ class Report extends Utils
                 $lname = $userdata->lastname;
                 $amount = $row['psum'].' BRL';
                 $transaction = $row['trans_id'];
-                $link = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/user/profile.php?id=$userid";
+                $link = "https://" . $_SERVER['SERVER_NAME'] . "/lms/user/profile.php?id=$userid";
                 $profile = "<a href='$link' target='_blank'>$fname $lname</a>";
                 $list .= "<tr>";
                 $list .= "<td>$profile</td>";

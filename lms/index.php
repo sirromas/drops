@@ -33,7 +33,7 @@ require_once($CFG->dirroot .'/course/lib.php');
 require_once($CFG->libdir .'/filelib.php');
 
 
-$location='http://theberry.us/clientes/drops/';
+$location='https://learningindrops.com';
 header("Location: $location");
 
 

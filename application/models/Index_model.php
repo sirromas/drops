@@ -36,7 +36,7 @@ class Index_model extends CI_Model
         
         
                             <div id='myCarousel' class='carousel slide' data-ride='carousel' style='text-align: center;'>
-                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' src='http://theberry.us/clientes/drops/assets/img/banner-layout.png'></div>                
+                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' src='https://learningindrops.com/assets/img/banner-layout.png'></div>                
                     
                                 <ol class='carousel-indicators'>
                                     <li data-target='#myCarousel' data-slide-to='0' class='active'></li>
@@ -100,8 +100,8 @@ class Index_model extends CI_Model
         $id = $row->id;
         $pic_path = $row->pic_path;
         $limit = $row->chars_limit;
-        $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/show/$id";
-        $path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/custom/news/assets/$pic_path";
+        $url = "https://" . $_SERVER['SERVER_NAME'] . "/index.php/news/show/$id";
+        $path = "https://" . $_SERVER['SERVER_NAME'] . "/lms/custom/news/assets/$pic_path";
         $content = $row->content;
         $preface = substr($content, 0, $limit) . ' ....';
         $list .= "<a href='$url'>
@@ -124,7 +124,7 @@ class Index_model extends CI_Model
     public function get_news_section()
     {
         $list = "";
-        $url = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/news/all";
+        $url = "https://" . $_SERVER['SERVER_NAME'] . "/index.php/news/all";
         $query = "select * from mdl_news where active=1 order by added desc limit 0,4";
         $result = $this->db->query($query);
         foreach ($result->result() as $row) {
@@ -151,7 +151,7 @@ class Index_model extends CI_Model
             $limit = $row->chars_limit;
             $preface = substr($row->content, 0, $limit);
         }
-        $url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/index.php/about/show';
+        $url = 'https://' . $_SERVER['SERVER_NAME'] . '/index.php/about/show';
         $list .= "
                 <div class='theme-title title-left title-n style-1'style='margin:0 0 30px 0;' id=''>
                 <h4 class='title'><span>Quem somos nós?</span></h4></div>
@@ -183,7 +183,7 @@ class Index_model extends CI_Model
         foreach ($result->result() as $row) {
             $courses[] = mb_convert_encoding($row->fullname, 'UTF-8');
         }
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/tmp/courses.json';
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/tmp/courses.json';
         file_put_contents($path, json_encode($courses));
     }
 
@@ -276,10 +276,10 @@ class Index_model extends CI_Model
     public function get_map_data()
     {
         $list = "";
-        // http://theberry.us/clientes/drops/index.php/courses/full/3
+       
         $i = 0;
         $courses = array();
-        $courseslink = 'http://theberry.us/clientes/drops/index.php/courses/all';
+        $courseslink = 'https://learningindrops.com/index.php/courses/all';
         $query = "select * from mdl_course where top=1 order by fullname";
         $result = $this->db->query($query);
         $num = $result->num_rows();
@@ -288,7 +288,7 @@ class Index_model extends CI_Model
                 $item = new stdClass();
                 $item->id = $row->id;
                 $item->name = $row->fullname;
-                $item->link = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/courses/full/$row->id";
+                $item->link = "https://" . $_SERVER['SERVER_NAME'] . "/index.php/courses/full/$row->id";
                 $courses[$i] = $item;
                 $i++;
             }

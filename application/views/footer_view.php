@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="footer-content clearfix">
-                    <p class="footer-text">Copyright © Learning Drops 2017. All rights reserved.</p>
+                    <p class="footer-text">Copyright © Learning Drops 2018. All rights reserved.</p>
                     <ul class="social-list">
                         <!--
                         <li class="li-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -54,18 +54,18 @@
 
 
 <script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/superfish/superfish.custom.min.js"></script>
+        src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/superfish/superfish.custom.min.js"></script>
 <script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/OwlCarousel/owl.carousel.min.js"></script>
+        src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/OwlCarousel/owl.carousel.min.js"></script>
 <script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/Nivo-Lightbox/nivo-lightbox.min.js"></script>
+        src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/Nivo-Lightbox/nivo-lightbox.min.js"></script>
 <script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/spectrum/spectrum.min.js"></script>
+        src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/spectrum/spectrum.min.js"></script>
 
 <script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/javascript/theme.js"></script>
+        src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/theme/mb2nl/javascript/theme.js"></script>
 <script type="text/javascript"
-        src="http://<? echo $_SERVER['SERVER_NAME']; ?>/clientes/drops/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/youtube/player_api.js"></script>
+        src="https://<? echo $_SERVER['SERVER_NAME']; ?>/lms/lib/javascript.php/1510318528/theme/mb2nl/assets/youtube/player_api.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -74,7 +74,7 @@
 </script>
 
 
-<script type="text/javascript" src='http://theberry.us/clientes/drops/assets/js/resizer.js'></script>
+<script type="text/javascript" src='https://learningindrops.com/assets/js/resizer.js'></script>
 <?php
 
 if (isset($map_data)) {

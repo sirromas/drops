@@ -13,7 +13,7 @@ class Register_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
-        $this->enroll_url = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/lms/custom/enroll/user.php';
+        $this->enroll_url = 'http://' . $_SERVER['SERVER_NAME'] . '/lms/custom/enroll/user.php';
     }
 
     /**
@@ -266,8 +266,8 @@ class Register_model extends CI_Model
         <input type='hidden' name='amount' value='$cost'>
         <input type='hidden' name='custom' value='$email'>    
         <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
-        <INPUT TYPE='hidden' NAME='return' value='http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/register/payment_done'>
-        <input type='image' id='paypal_btn' src='http://theberry.us/clientes/drops/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+        <INPUT TYPE='hidden' NAME='return' value='http://" . $_SERVER['SERVER_NAME'] . "/index.php/register/payment_done'>
+        <input type='image' id='paypal_btn' src='https://learningindrops.com/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
         </form>";
 
         return $list;
@@ -391,7 +391,7 @@ class Register_model extends CI_Model
         $list .= "<body>";
 
         $list .= "<br>";
-        $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/assets/img/logo.png';
+        $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
         $img = "<img src='$img_path'>";
         $list .= "<table>";
 

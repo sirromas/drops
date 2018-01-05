@@ -33,7 +33,7 @@ $isPageBg = theme_mb2nl_pagebg_image($PAGE);
 <!-- Additional JS libraries to be used -->
 <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
-<script type="text/javascript" src="//theberry.us/clientes/drops/lms/custom/js/nav.js"></script>
+<script type="text/javascript" src="//learningindrops.com/lms/custom/js/nav.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>

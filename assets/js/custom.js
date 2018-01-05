@@ -5,14 +5,14 @@ $(document).ready(function () {
 
 
     // Image mapper for resized images
-    if (current_url == 'http://theberry.us/clientes/drops' || current_url == 'http://theberry.us/clientes/drops/') {
+    if (current_url == 'https://learningindrops.com' || current_url == 'https://learningindrops.com/') {
         console.log('Resizer called ....');
         $('map').imageMapResize();
     }
 
     $('#phone').mask("(99) 99999-9999");
 
-    $.post('http://theberry.us/clientes/drops/lms/custom/tmp/courses.json', {id: 1}, function (data) {
+    $.post('https://learningindrops.com/lms/custom/tmp/courses.json', {id: 1}, function (data) {
         $('#theme-coursesearchbox').typeahead({source: data, items: 240});
     }, 'json');
 
@@ -158,7 +158,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'terms') {
             if ($('#terms').prop('checked')) {
-                var url = '/clientes/drops/index.php/register/get_terms_box';
+                var url = '/index.php/register/get_terms_box';
                 $.post(url, {id: 1}).done(function (data) {
                     $("body").append(data);
                     $("#myModal").modal('show');
@@ -217,7 +217,7 @@ $(document).ready(function () {
 
             $('#reg_err').html('');
 
-            var email_url = 'http://theberry.us/clientes/drops/index.php/register/is_email_exist';
+            var email_url = 'https://learningindrops.com/index.php/register/is_email_exist';
             $.post(email_url, {email: email}).done(function (data) {
                 if (data > 0) {
                     $('#reg_err').html('Email is in use');
@@ -233,7 +233,7 @@ $(document).ready(function () {
                         address: address
                     };
                     var item = Base64.encode(JSON.stringify(user));
-                    var next_url = 'http://theberry.us/clientes/drops/index.php/register/confirm_order/' + item;
+                    var next_url = 'https://learningindrops.com/index.php/register/confirm_order/' + item;
                     document.location = next_url;
                 } // end else
             });
@@ -274,7 +274,7 @@ $(document).ready(function () {
 
             var item = {name: name, email: email, phone: phone, msg: msg};
 
-            var url = 'http://theberry.us/clientes/drops/index.php/contact/send';
+            var url = 'https://learningindrops.com/index.php/contact/send';
             $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                 $('#contact_form_container').html(data);
             });
@@ -286,7 +286,7 @@ $(document).ready(function () {
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = 'http://theberry.us/clientes/drops/index.php/index/search/' + clear_item;
+                var url = '/index.php/index/search/' + clear_item;
                 document.location = url;
             }
         }
@@ -296,7 +296,7 @@ $(document).ready(function () {
             var subs_name = $('#subs_name').val();
             if (subs_email != '' && subs_name != '') {
                 var item = {name: subs_name, email: subs_email};
-                var url = '/clientes/drops/index.php/index/add_subscriber';
+                var url = '/index.php/index/add_subscriber';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     alert('Thank you!');
                 });
@@ -312,7 +312,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'course_categories') {
             var id = $('#course_categories').val();
-            var url = '/clientes/drops/index.php/register/get_category_courses';
+            var url = '/index.php/register/get_category_courses';
             $.post(url, {id: id}).done(function (data) {
                 $('#courses_span').html(data);
             });
@@ -328,7 +328,7 @@ $(document).ready(function () {
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = 'http://theberry.us/clientes/drops/index.php/index/search/' + clear_item;
+                var url = 'https://learningindrops.com/index.php/index/search/' + clear_item;
                 document.location = url;
             }
         }

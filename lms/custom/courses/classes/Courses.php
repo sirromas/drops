@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
 class Courses extends Utils
 {
@@ -133,7 +133,7 @@ class Courses extends Utils
             $result = $this->db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $id = $row['id'];
-                $url = 'http://' . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/course/view.php?id=$id";
+                $url = 'https://' . $_SERVER['SERVER_NAME'] . "/lms/course/view.php?id=$id";
                 $name = $row['fullname'];
                 $link = "<a href='$url' target='_blank'>$name</a>";
                 $catname = $this->get_course_category_name($row['category']);
@@ -276,8 +276,8 @@ class Courses extends Utils
             $size = $file_data['size'];
             if ($error == 0 && $size > 0) {
                 $path = time() . ".jpg";
-                $dest = $_SERVER["DOCUMENT_ROOT"] . "/clientes/drops/assets/img/$path";
-                $ui_path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/$path";
+                $dest = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/$path";
+                $ui_path = "https://" . $_SERVER['SERVER_NAME'] . "/assets/img/$path";
                 $status = move_uploaded_file($tmp_name, $dest);
                 if ($status) {
                     $query = "update mdl_course set img_path='$ui_path' where id=$id";

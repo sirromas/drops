@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
 class Slider extends Utils
 {
@@ -77,7 +77,7 @@ class Slider extends Utils
                 </div>
                 
                 <div class='row'  id='loader' style='margin-top:10px;margin-bottom: 10px;display: none;'>
-                <span class='span12'><img src='/clientes/drops/assets/img/ajax_loader.gif'></span>
+                <span class='span12'><img src='/assets/img/ajax_loader.gif'></span>
                 </div>
                 
                 <div class='row' >
@@ -104,8 +104,8 @@ class Slider extends Utils
         $size = $file['size'];
         if ($error == 0 && $size > 0) {
             $path = time() . ".jpg";
-            $dest = $_SERVER["DOCUMENT_ROOT"] . "/clientes/drops/assets/img/$path";
-            $ui_path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/$path";
+            $dest = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/$path";
+            $ui_path = "http://" . $_SERVER['SERVER_NAME'] . "/assets/img/$path";
             $status = move_uploaded_file($tmp_name, $dest);
             if ($status) {
                 $query = "update mdl_slides set path='$ui_path', added='$added' where id=$id";
