@@ -302,8 +302,8 @@ class Register_model extends CI_Model
         $list = "";
         $item = json_decode(base64_decode($data));
         $course = $this->get_course_data($item->courseid);
-        //$paypalbtn = $this->get_sandbox_paypal_button($item);
-        $paypalbtn = $this->get_paypal_button($item);
+        $paypalbtn = $this->get_sandbox_paypal_button($item);
+        //$paypalbtn = $this->get_paypal_button($item);
 
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='panel panel-default'>";
@@ -460,35 +460,35 @@ class Register_model extends CI_Model
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>Dear $user->fname $user->lname! Thank you for signup. </td>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>Prezado usuário, obrigado por se registrar no Learning Drops. </td>";
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>This receipt is confirmation of your successfull registration.</td>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>Seu cadastro foi confirmado com sucesso</td>";
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='padding: 15px;'>Your username</td>";
+        $list .= "<td style='padding: 15px;'>Seu usuário</td>";
         $list .= "<td>$username</td>";
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='padding: 15px;'>Your password</td>";
+        $list .= "<td style='padding: 15px;'>Sua Senha</td>";
         $list .= "<td>$pwd</td>";
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='padding: 15px;'>Your course (program)</td>";
+        $list .= "<td style='padding: 15px;'>Curso Escolhido</td>";
         $list .= "<td>$coursename</td>";
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='padding: 15px;'>Amount paid (BRL)</td>";
+        $list .= "<td style='padding: 15px;'>Valor Pago (BRL)</td>";
         $list .= "<td>$user->amount</td>";
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='padding: 15px;' colspan='2'>Best regards, Learning Drops Team <a href='mailto:administrador@learningindrops.com'>administrador@learningindrops.com</a></td>";
+        $list .= "<td style='padding: 15px;' colspan='2'>Forte abraço da Equipe Learning Drops <a href='mailto:administrador@learningindrops.com'>administrador@learningindrops.com</a></td>";
         $list .= "</tr>";
 
         $list .= "</table>";

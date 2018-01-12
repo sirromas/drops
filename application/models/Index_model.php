@@ -36,7 +36,7 @@ class Index_model extends CI_Model
         
         
                             <div id='myCarousel' class='carousel slide' data-ride='carousel' style='text-align: center;'>
-                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' style='' class='' src='https://learningindrops.com/assets/img/banner-layout.png'></div>                
+                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' style='height: auto; width: auto;  max-height:218px; ' class='' src='https://learningindrops.com/assets/img/banner-layout1.png'></div>                
                     
                                 <ol class='carousel-indicators'>
                                     <li data-target='#myCarousel' data-slide-to='0' class='active'></li>
@@ -307,12 +307,15 @@ class Index_model extends CI_Model
 
 
             $list .= "<map name='image-map'>
-            <area  alt='$link1' title='$name1' href='$link1' coords='0,196,144,327'    shape='rect'>
-            <area  alt='$link2' title='$name2' href='$link2' coords='98,51,235,190'    shape='rect'>
-            <area  alt='$link3' title='$name3' href='$link3' coords='400,161,260,0'   shape='rect'>
-            <area  alt='$link4' title='$name4' href='$link4' coords='547,189,417,63'  shape='rect'>
-            <area  alt='$link5' title='$name5' href='$link5' coords='517,317,647,200'  shape='rect'>
-            <area  alt='All Cursos' title='All Cursos' href='$courseslink' coords='287,213,369,300'  shape='rect'>
+                
+            <area  alt='$link1' title='$name1' href='$link1' coords='103,240,0,156'    shape='rect'>
+            <area  alt='$link2' title='$name2' href='$link2' coords='77,50,179,141'    shape='rect'>
+            <area  alt='$link3' title='$name3' href='$link3' coords='293,111,207,2'   shape='rect'>
+            <area  alt='$link4' title='$name4' href='$link4' coords='325,42,429,136'  shape='rect'>
+            <area  alt='$link5' title='$name5' href='$link5' coords='396,241,501,154'  shape='rect'>
+            <area  alt='All Cursos' title='All Cursos' href='$courseslink' coords='214,161,294,237'  shape='rect'>
+            
+            
             </map>";
         } // end if $num>0
         return $list;
