@@ -1,5 +1,6 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
 
 class Register_model extends CI_Model
 {
@@ -13,7 +14,7 @@ class Register_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
-        $this->enroll_url = 'http://' . $_SERVER['SERVER_NAME'] . '/lms/custom/enroll/user.php';
+        $this->enroll_url = 'https://' . $_SERVER['SERVER_NAME'] . '/lms/custom/enroll/user.php';
     }
 
     /**
@@ -63,7 +64,25 @@ class Register_model extends CI_Model
      */
     public function get_paypal_button($data)
     {
+        $list = "";
+        $coursedata = $this->get_course_data($data->courseid);
+        $cost = $coursedata->cost;
+        $name = $coursedata->name;
+        $email = $data->email;
 
+        $list .= "<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>
+        <input type='hidden' name='cmd' value='_xclick'>
+        <INPUT TYPE='hidden' name='charset' value='utf-8'>
+        <input type='hidden' name='business' value='lmcabral2@yahoo.com.br'>
+        <input type='hidden' name='item_name' value='$name'>
+        <input type='hidden' name='amount' value='$cost'>
+        <input type='hidden' name='custom' value='$email'>    
+        <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
+        <INPUT TYPE='hidden' NAME='return' value='https://" . $_SERVER['SERVER_NAME'] . "/index.php/register/payment_done'>
+        <input type='image' id='paypal_btn' src='https://learningindrops.com/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+        </form>";
+
+        return $list;
     }
 
     /**
@@ -266,7 +285,7 @@ class Register_model extends CI_Model
         <input type='hidden' name='amount' value='$cost'>
         <input type='hidden' name='custom' value='$email'>    
         <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
-        <INPUT TYPE='hidden' NAME='return' value='http://" . $_SERVER['SERVER_NAME'] . "/index.php/register/payment_done'>
+        <INPUT TYPE='hidden' NAME='return' value='https://" . $_SERVER['SERVER_NAME'] . "/index.php/register/payment_done'>
         <input type='image' id='paypal_btn' src='https://learningindrops.com/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
         </form>";
 
@@ -283,7 +302,8 @@ class Register_model extends CI_Model
         $list = "";
         $item = json_decode(base64_decode($data));
         $course = $this->get_course_data($item->courseid);
-        $paypalbtn = $this->get_sandbox_paypal_button($item);
+        //$paypalbtn = $this->get_sandbox_paypal_button($item);
+        $paypalbtn = $this->get_paypal_button($item);
 
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='panel panel-default'>";
@@ -307,91 +327,131 @@ class Register_model extends CI_Model
 
 
     /**
+     * @param int $length
+     * @return string
+     */
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+
+    /**
      * @param $data
      * @return string
      */
-    public function get_payment_confirmation_page($data)
+    public function get_payment_confirmation_page($data, $pwd)
     {
         $list = "";
-        $session_data = $_SESSION['email'];
-        $stdata = json_decode(base64_decode($session_data));
+        if (isset($_SESSION['email'])) {
+            $session_data = $_SESSION['email'];
+            $stdata = json_decode(base64_decode($session_data));
 
-        $courseid = $stdata->courseid;
-        $name = $stdata->name;
-        $email = $stdata->email;
-        $phone = $stdata->phone;
-        $address = $stdata->address;
-        $amount = $data['amt'];
-        $transactionid = $data['tx'];
+            $courseid = $stdata->courseid;
+            $name = $stdata->name;
+            $email = $stdata->email;
+            $phone = $stdata->phone;
+            $address = $stdata->address;
+            $amount = $data['amt'];
+            $transactionid = $data['tx'];
 
-        $names = explode(' ', $name);
-        $fname = $names[0];
-        $lname = $names[1];
+            $names = explode(' ', $name);
+            $fname = $names[0];
+            $lname = $names[1];
 
-        $user = new stdClass();
-        $user->courseid = $courseid;
-        $user->name = $name;
-        $user->fname = $fname;
-        $user->lname = $lname;
-        $user->email = $email;
-        $user->phone = $phone;
-        $user->address = $address;
-        $user->amount = $amount;
-        $user->transactionid = $transactionid;
+            $user = new stdClass();
+            $user->courseid = $courseid;
+            $user->username = $email;
+            $user->pwd = $pwd;
+            $user->name = $name;
+            $user->fname = $fname;
+            $user->lname = $lname;
+            $user->email = $email;
+            $user->phone = $phone;
+            $user->address = $address;
+            $user->amount = $amount;
+            $user->transactionid = $transactionid;
 
-        $huser = base64_encode(json_encode($user));
-        $http_path = $this->enroll_url . "?user=$huser";
-        $userid = file_get_contents($http_path);
+            $en = new Enroll();
+            $userid = $en->enroll_user($user, true, false);
 
-        if ($userid > 0) {
-            $status = 0;
-            $list .= "<br><div style='margin: auto;width:85%;' >";
-            $list .= "<div class='panel panel-default'>";
-            $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment confirmation</div>";
-            $list .= "<div class='panel-body'>";
-            $list .= "<div class='row' style='padding-left: 15px;'>";
-            $list .= "<span class='col-md-12'>Thank you for your order! Confirmation email is sent to <span style='font-weight: bold;'>$email</span></span>";
-            $list .= "</div>";
-            $list .= "</div>";
-            $list .= "</div>";
-            $list .= "</div>";
-        } // end if $userid>0
+            if ($userid > 0) {
+                $status = 0;
+                $list .= "<br><div style='margin: auto;width:85%;' >";
+                $list .= "<div class='panel panel-default'>";
+                $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment confirmation</div>";
+                $list .= "<div class='panel-body'>";
+                $list .= "<div class='row' style='padding-left: 15px;'>";
+                $list .= "<span class='col-md-12'>Thank you for your order! Confirmation email is sent to <span style='font-weight: bold;'>$email</span></span>";
+                $list .= "</div>";
+                $list .= "</div>";
+                $list .= "</div>";
+                $list .= "</div>";
+            } // end if $userid>0
+            else {
+                $status = -1;
+                $list .= "<br><div style='margin: auto;width:85%;' >";
+                $list .= "<div class='panel panel-default'>";
+                $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment status</div>";
+                $list .= "<div class='panel-body'>";
+                $list .= "<div class='row' style='padding-left: 15px;'>";
+                $list .= "<span class='col-md-12'>Sign-up Error Happened. Please contact support team <span style='font-weight: bold;'>administrador@learningindrops.com</span></span>";
+                $list .= "</div>";
+                $list .= "</div>";
+                $list .= "</div>";
+                $list .= "</div>";
+            } // end else
+            $data = array('page' => $list, 'status' => $status, 'user' => $user);
+        } // end if isset($_SESSION['email'])
         else {
-            $status = -1;
+            $status = -2;
             $list .= "<br><div style='margin: auto;width:85%;' >";
             $list .= "<div class='panel panel-default'>";
             $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment status</div>";
             $list .= "<div class='panel-body'>";
             $list .= "<div class='row' style='padding-left: 15px;'>";
-            $list .= "<span class='col-md-12'>Sign-up Error Happened. Please contact support team <span style='font-weight: bold;'>info@theberry.us</span></span>";
+            $list .= "<span class='col-md-12'>Empty data are posted or session error.  Please contact support team <span style='font-weight: bold;'>administrador@learningindrops.com</span></span>";
             $list .= "</div>";
             $list .= "</div>";
             $list .= "</div>";
             $list .= "</div>";
+            $data = array('page' => $list, 'status' => $status, 'user' => 'n/a');
         }
-
-        $data = array('page' => $list, 'status' => $status, 'user' => $user);
         return $data;
     }
 
+
+    /********************************************************************************
+     *
+     *                  Code related to user enrollment
+     *
+     ********************************************************************************/
+
+
+    /* ****************************************************************************** */
 
     /**
      * @param $user
      * @return string
      */
-    public function get_registration_confirmation_email($user)
+    public function get_registration_confirmation_email($user, $pwd)
     {
         $list = "";
         $course = $this->get_course_data($user->courseid);
         $coursename = $course->name;
         $username = $user->email;
-        $pwd = 'strange12';
 
         $list .= "<html>";
         $list .= "<body>";
 
         $list .= "<br>";
-        $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+        $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
         $img = "<img src='$img_path'>";
         $list .= "<table>";
 
@@ -428,7 +488,7 @@ class Register_model extends CI_Model
         $list .= "</tr>";
 
         $list .= "<tr>";
-        $list .= "<td style='padding: 15px;' colspan='2'>Best regards, Learning Drops Team <a href='mailto:info@theberry.us'>info@theberry.us</a></td>";
+        $list .= "<td style='padding: 15px;' colspan='2'>Best regards, Learning Drops Team <a href='mailto:administrador@learningindrops.com'>administrador@learningindrops.com</a></td>";
         $list .= "</tr>";
 
         $list .= "</table>";
@@ -438,6 +498,19 @@ class Register_model extends CI_Model
 
         return $list;
     }
+
+
+    public function getSSLPage($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
 
     /**
      * @param $email

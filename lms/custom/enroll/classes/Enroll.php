@@ -1,16 +1,59 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
-class Enroll extends Utils
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
+
+class Enroll
 {
 
-    /**
-     * Feedback constructor.
-     */
+
+    public $db;
+
     function __construct()
     {
-        parent::__construct();
+        $this->db = new pdo_db();
+    }
+
+
+    /**
+     * @param $user
+     * @param $pwd
+     * @return mixed
+     */
+    function create_user($user, $pwd)
+    {
+        $query = "insert into mdl_user (confirmed, mnethostid, username, password) values (1, 1, '$user->email', '$pwd')";
+        $this->db->query($query);
+        $stmt = $this->db->query("SELECT LAST_INSERT_ID()");
+        $lastid_arr = $stmt->fetch(PDO::FETCH_NUM);
+        $lastId = $lastid_arr[0];
+        return $lastId;
+    }
+
+    /**
+     * @param $user
+     * @return int
+     */
+    function is_user_exists($user)
+    {
+        $query = "select * from mdl_user where username='$user->email'";
+        $num = $this->db->numrows($query);
+        return $num;
+    }
+
+    /**
+     * @param int $length
+     * @return string
+     */
+    function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 
@@ -20,22 +63,27 @@ class Enroll extends Utils
      */
     function enroll_user($user)
     {
-        $pwd = 'strange12'; // pwd is same for all users from beginng
-        $new_user = create_user_record($user->email, $pwd);
-        $id = $new_user->id;
-        if ($id > 0) {
-            $user->id = $id;
-            $query = "update mdl_user set "
-                . "firstname='$user->fname', "
-                . "lastname='$user->lname', "
-                . "email='$user->email', phone1='$user->phone', address='$user->address' where id=$id";
-            $this->db->query($query);
-            $this->assign_roles($id, $user->courseid);
-            $pstatus = $this->is_payment_exists($user->transactionid);
-            if ($pstatus == 0) {
-                $this->add_paypal_payment($user);
-            }
-        } // end if
+        $pwd = password_hash($user->pwd, PASSWORD_DEFAULT);
+        $status = $this->is_user_exists($user);
+        if ($status == 0) {
+            $id = $this->create_user($user, $pwd);
+            if ($id > 0) {
+                $user->id = $id;
+                $query = "update mdl_user set "
+                    . "firstname='$user->fname', "
+                    . "lastname='$user->lname', "
+                    . "email='$user->email', phone1='$user->phone', address='$user->address' where id=$id";
+                $this->db->query($query);
+                $this->assign_roles($id, $user->courseid);
+                $pstatus = $this->is_payment_exists($user->transactionid);
+                if ($pstatus == 0) {
+                    $this->add_paypal_payment($user);
+                }
+            } // end if
+            else {
+                $id = -1;
+            } // end else
+        } // end if $status==0
         else {
             $id = -1;
         } // end else

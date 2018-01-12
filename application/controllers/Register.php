@@ -14,9 +14,9 @@ class Register extends CI_Controller
         $this->load->library('email');
         $config = Array(
             'protocol' => 'smtp',
-            'smtp_host' => 'mail.theberry.us',
+            'smtp_host' => 'smtp.learningindrops.com',
             'smtp_port' => 25,
-            'smtp_user' => 'info@theberry.us',
+            'smtp_user' => 'info@learningindrops.com',
             'smtp_pass' => 'aK6SKymc*',
             'mailtype' => 'html'
         );
@@ -48,24 +48,41 @@ class Register extends CI_Controller
         $this->load->view('footer_view');
     }
 
+
+    /**
+     * @param int $length
+     * @return string
+     */
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     /**
      *
      */
     public function payment_done()
     {
         $data = $_REQUEST;
-        $data2 = $this->register_model->get_payment_confirmation_page($data);
+        $pwd = $this->generateRandomString(8);
+        $data2 = $this->register_model->get_payment_confirmation_page($data, $pwd);
         $page = $data2['page'];
         $status = $data2['status'];
         $user = $data2['user'];
 
         if ($status == 0) {
-            $this->email->from('info@theberry.us', 'Learning Drops Support Team');
+            $this->email->from('info@learningindrops.com', 'Learning Drops Support Team');
             $this->email->to($user->email);
             $this->email->cc('sirromas@gmail.com');
             $this->email->bcc('helainefpsantos@gmail.com');
 
-            $msg = $this->register_model->get_registration_confirmation_email($user);
+            $msg = $this->register_model->get_registration_confirmation_email($user, $pwd);
             $this->email->subject('Registration Confirmation');
             $this->email->message($msg);
             $this->email->send();
