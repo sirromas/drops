@@ -47,7 +47,7 @@ class Index extends CI_Controller
     public function search()
     {
         $item = $this->uri->segment(3);
-        $courses = $this->index_model->get_search_results($item);
+        $courses = $this->index_model->get_search_results(base64_decode($item));
         $data = array('items' => $courses);
         $this->load->view('header_view');
         $this->load->view('search_view', $data);

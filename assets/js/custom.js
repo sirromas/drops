@@ -286,7 +286,7 @@ $(document).ready(function () {
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = '/index.php/index/search/' + clear_item;
+                var url = '/index.php/index/search/' + Base64.encode(clear_item) ;
                 document.location = url;
             }
         }
@@ -328,7 +328,7 @@ $(document).ready(function () {
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = 'https://learningindrops.com/index.php/index/search/' + clear_item;
+                var url = 'https://learningindrops.com/index.php/index/search/' + Base64.encode(clear_item);
                 document.location = url;
             }
         }
