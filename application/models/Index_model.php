@@ -36,7 +36,7 @@ class Index_model extends CI_Model
         
         
                             <div id='myCarousel' class='carousel slide' data-ride='carousel' style='text-align: center;'>
-                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' style='height: auto; width: auto;  max-height:218px; ' class='' src='https://learningindrops.com/assets/img/banner-layout1.png'></div>                
+                 <div id='logo_drops' style='position: absolute;z-index:100;bottom:0;width: 95%; margin:auto;'><img usemap='#image-map' style='height: auto; width: auto;  max-height:175px; ' class='' src='https://learningindrops.com/assets/img/banner-layout1.png'></div>                
                     
                                 <ol class='carousel-indicators'>
                                     <li data-target='#myCarousel' data-slide-to='0' class='active'></li>
