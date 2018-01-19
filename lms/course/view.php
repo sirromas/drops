@@ -5,6 +5,7 @@
     require_once('../config.php');
     require_once('lib.php');
     require_once($CFG->libdir.'/completionlib.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/courses/classes/Courses.php';
 
     $id          = optional_param('id', 0, PARAM_INT);
     $name        = optional_param('name', '', PARAM_TEXT);
@@ -258,6 +259,15 @@
 
     // Course wrapper start.
     echo html_writer::start_tag('div', array('class'=>'course-content'));
+
+    /******** Check is user has access to the course (payments,roles,etc) ********/
+    $c=new Courses();
+    $status=$c->is_subscription_active($COURSE->id, $USER->id);
+    if ($status==0) {
+        $pblock=$c->get_student_course_payment_dialog($COURSE->id, $USER->id);
+        echo $pblock;
+        die();
+    } // end if
 
     // make sure that section 0 exists (this function will create one if it is missing)
     course_create_sections_if_missing($course, 0);

@@ -2,6 +2,14 @@ $(document).ready(function () {
 
     console.log("ready!");
 
+    function get_student_subscriptions_list() {
+        var url = '/lms/custom/courses/get_student_subscriptions.php';
+        $.post(url, {id: 1}).done(function (data) {
+            $('#page-content').html(data);
+            $('#subscriptions_table').dataTable();
+        });
+    }
+
     $("body").click(function (event) {
 
         console.log('Event ID: ' + event.target.id);
@@ -138,10 +146,10 @@ $(document).ready(function () {
         function update_site_page(pageid) {
             var title = $('#page_title').val();
             var content = CKEDITOR.instances["editor1"].getData();
-            var limit=$('#climit').val();
-            if (title != '' && content != '' && limit>0) {
+            var limit = $('#climit').val();
+            if (title != '' && content != '' && limit > 0) {
                 $('#page_err').html('');
-                var item = {pageid: pageid, title: title, content: content, limit:limit};
+                var item = {pageid: pageid, title: title, content: content, limit: limit};
                 var url = '/lms/custom/pages/update.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     $('#page-content').html(data);
@@ -475,8 +483,141 @@ $(document).ready(function () {
             }); // end of post
         }
 
+        /*********** Students courses section ************/
+
+        if (event.target.id == 'st_courses') {
+            var url = '/lms/custom/courses/course_enroll_dialog.php';
+            $.post(url, {id: id}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'enroll_to_course') {
+            var courseid = $('#available_courses').val();
+            var userid = $('#userid').val();
+            if (courseid > 0) {
+                $('#course_err').html('');
+                var item = {courseid: courseid, userid: userid};
+                if (confirm('Enroll into current course?')) {
+                    var url = '/lms/custom/courses/enroll_into_course.php';
+                    $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                        /*
+                        $("[data-dismiss=modal]").trigger({type: "click"});
+                        $("#myModal").remove();
+                        $('.modal-backdrop').remove();
+                        */
+                        console.log('Server response: '+data);
+                        alert('Please re-login to see new courses');
+                        document.location.reload();
+                    }); // end of post;
+                } // end if
+            } // end if courseid>0
+            else {
+                $('#course_err').html('Please select course to enroll');
+            }
+        }
+
+        if (event.target.id == 'st_subscription') {
+            get_student_subscriptions_list();
+        }
+
+        if (event.target.id.indexOf("subscription_status_") >= 0) {
+            var trans_id = event.target.id.replace("subscription_status_", "");
+            if (confirm('Change subscription status?')) {
+                var url = '/lms/custom/courses/update_student_subscription_status.php';
+                $.post(url, {trans_id: trans_id}).done(function (data) {
+                    get_student_subscriptions_list();
+                });
+            }
+        }
+
+        if (event.target.id == 'st_feedback') {
+            var url = '/lms/custom/feedback/get_feedback_dialog.php';
+            $.post(url, {id: id}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'send_student_feedback') {
+            var userid = $('#userid').val();
+            var text = $('#feedback_text').val();
+            if (text == '') {
+                $('#feedback_err').html('Please provide feedback text');
+            } // end if
+            else {
+                $('#feedback_err').html('');
+                var item = {userid: userid, text: text};
+                var url = '/lms/custom/feedback/add_student_feedback.php';
+                $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                    document.location.reload();
+                });
+            }
+        }
+
+        if (event.target.id == 'st_content') {
+            var type = 1;
+            var url = '/lms/custom/feedback/get_suggest_dialog.php';
+            $.post(url, {type: type}).done(function (data) {
+                $('#page-content').html(data);
+            });
+
+        }
+
+        if (event.target.id == 'st_teacher') {
+            var type = 2;
+            var url = '/lms/custom/feedback/get_suggest_dialog.php';
+            $.post(url, {type: type}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'st_proposals') {
+            var type = 3;
+            var url = '/lms/custom/feedback/get_suggest_dialog.php';
+            $.post(url, {type: type}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'send_student_suggest') {
+            var userid = $('#userid').val();
+            var type = $('#type').val();
+            var courseid = $('#user_courses').val();
+            var msg = $('#suggest_text').val();
+            if (courseid == 0 || msg == '') {
+                $('#suggest_err').html('Please select course and provide message text');
+            } // end if
+            else {
+                $('#suggest_err').html('');
+                var item = {courseid: courseid, msg: msg, type: type, userid: userid};
+                var url = '/lms/custom/feedback/add_student_suggest.php';
+                $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                    $("[data-dismiss=modal]").trigger({type: "click"});
+                    $("#myModal").remove();
+                    $('.modal-backdrop').remove();
+                    document.location.reload();
+                });
+            } // end else
+        }
+
 
     }); // end of body click event
+
+
+    $("body").change(function (event) {
+
+        console.log('Change Event ID: ' + event.target.id);
+
+        if (event.target.id == 'categories') {
+            var id = $('#categories').val();
+            var url = '/lms/custom/courses/get_courses_by_category.php';
+            $.post(url, {id: id}).done(function (data) {
+                $('#courses_container').html(data);
+            });
+        }
+
+
+    }); // end of change event
 
 
 }); // end of document ready

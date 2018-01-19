@@ -100,6 +100,7 @@ class Enroll
         $enrolid = $this->getEnrolId($courseid);
         $contextid = $this->getCourseContext($courseid, $roleid);
         $already_enrolled = $this->already_enrolled($courseid, $userid);
+        //echo "Already enrolled: ".$already_enrolled."<br>";
         if ($already_enrolled == 0) {
 
             // 1. Insert into mdl_user_enrolments table
@@ -116,7 +117,7 @@ class Enroll
                         '2',
                          '" . time() . "',
                          '" . time() . "')";
-            //echo "Query: ".$query."<br/>";
+            //echo "Query: " . $query . "<br/>";
             $this->db->query($query);
 
             // 2. Insert into mdl_role_assignments table
@@ -131,7 +132,7 @@ class Enroll
                            '" . $userid . "',
                            '" . time() . "',
                             '2'         )";
-            // echo "Query: ".$query."<br/>";
+            // echo "Query: " . $query . "<br/>";
             $this->db->query($query);
         } // end if $already_endrolled==0
     }
@@ -174,10 +175,11 @@ class Enroll
      */
     function already_enrolled($courseid, $userid)
     {
-        $enrolid = $this->getEnrolId($courseid);
-        $query = "select * from mdl_user_enrolments "
-            . "where enrolid=$enrolid "
-            . "and userid=$userid";
+        $contextid = $this->getCourseContext($courseid);
+        $query = "select * from mdl_role_assignments 
+                    where contextid=$contextid and 
+                          roleid=5 and 
+                          userid=$userid";
         $num = $this->db->numrows($query);
         return $num;
     }

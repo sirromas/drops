@@ -80,7 +80,7 @@ class Utils
     function get_users_by_role($roleid)
     {
         $users = array();
-        $query = "select * from mdl_role_assignments where roleid=$roleid";
+        $query = "select * from mdl_role_assignments where roleid=$roleid group by userid";
         $num = $this->db->numrows($query);
         if ($num > 0) {
             $result = $this->db->query($query);

@@ -427,14 +427,123 @@ class Register_model extends CI_Model
     }
 
 
-    /********************************************************************************
-     *
-     *                  Code related to user enrollment
-     *
-     ********************************************************************************/
+    public function get_course_link($courseid)
+    {
+        $list = "";
+        $list .= "https://" . $_SERVER['SERVER_NAME'] . "/lms/course/view.php?id=$courseid";
+        return $list;
+    }
+
+    public function get_user_data($userid)
+    {
+        $query = "select * from mdl_user where id=$userid";
+        $result = $this->db->query($query);
+        foreach ($result->result() as $row) {
+            $user = $row;
+        }
+        return $user;
+    }
+
+    public function get_student_payment_confirmation_page($data)
+    {
+        $list = "";
+        $order_data = explode('/', $data['cm']);
+
+        $userid = $order_data[0];
+        $courseid = $order_data[1];
+        $amount = $data['amt'];
+        $transactionid = $data['tx'];
+        $link = $this->get_course_link($courseid);
+
+        $userdata = $this->get_user_data($userid);
+        $userdata->courseid = $courseid;
+        $userdata->amount = $amount;
+        $userdata->transactionid = $transactionid;
+
+        $en = new Enroll();
+        $status = $en->is_payment_exists($transactionid);
+        if ($status == 0) {
+            $en->add_paypal_payment($userdata);
+        }
+        $list .= "<br><div style='margin: auto;width:85%;' >";
+        $list .= "<div class='panel panel-default'>";
+        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold; background-color: #f5f5f5;border-color: #ddd; '>Payment confirmation</div>";
+        $list .= "<div class='panel-body'>";
+        $list .= "<div class='row' style='padding-left: 15px;'>";
+        $list .= "<span class='col-md-12'>Thank you for your order! Confirmation email is sent to <span style='font-weight: bold;'>$userdata->email</span>.&nbsp;Click <a href='$link'><span style='font-weight: bold;'>here</span></a> to back to the course.</span>";
+        $list .= "</div>";
+        $list .= "</div>";
+        $list .= "</div>";
+        $list .= "</div>";
+        $data = array('page' => $list, 'status' => $status, 'user' => $userdata);
+        return $data;
+    }
 
 
-    /* ****************************************************************************** */
+    public function get_payment_confirmation_email($user)
+    {
+        $list = "";
+        $course = $this->get_course_data($user->courseid);
+        $coursename = $course->name;
+
+        $list .= "<html>";
+        $list .= "<body>";
+
+        $list .= "<br>";
+        $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+        $img = "<img src='$img_path'>";
+        $list .= "<table>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>$img</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>Prezado usuário, obrigado por se registrar no Learning Drops. </td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>Seu cadastro foi confirmado com sucesso</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;'>Curso Escolhido</td>";
+        $list .= "<td>$coursename</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;'>Valor Pago (BRL)</td>";
+        $list .= "<td>$user->amount</td>";
+        $list .= "</tr>";
+
+        $list .= "<tr>";
+        $list .= "<td style='padding: 15px;' colspan='2'>Forte abraço da Equipe Learning Drops <a href='mailto:administrador@learningindrops.com'>administrador@learningindrops.com</a></td>";
+        $list .= "</tr>";
+
+        $list .= "</table>";
+
+        $list .= "</body>";
+        $list .= "</html>";
+
+        return $list;
+    }
+
+    public function is_receipt_sent($transactionid)
+    {
+        $query = "select * from mdl_paypal_payments where trans_id='$transactionid'";
+        $result = $this->db->query($query);
+        foreach ($result->result() as $row) {
+            $status = $row->receipt_sent;
+        }
+        return $status;
+    }
+
+
+    public function make_receipt_sent($transactionid)
+    {
+        $query = "update mdl_paypal_payments set receipt_sent=1 where trans_id='$transactionid'";
+        $this->db->query($query);
+    }
 
     /**
      * @param $user
@@ -498,19 +607,6 @@ class Register_model extends CI_Model
 
         return $list;
     }
-
-
-    public function getSSLPage($url)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSLVERSION, 3);
-        $result = curl_exec($ch);
-        curl_close($ch);
-        return $result;
-    }
-
 
     /**
      * @param $email

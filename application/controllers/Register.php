@@ -82,17 +82,49 @@ class Register extends CI_Controller
             $this->email->cc('sirromas@gmail.com');
             $this->email->bcc('helainefpsantos@gmail.com');
 
-            $msg = $this->register_model->get_registration_confirmation_email($user, $pwd);
-            $this->email->subject('Registration Confirmation');
-            $this->email->message($msg);
-            $this->email->send();
+            $already_sent = $this->register_model->is_receipt_sent($user->transactionid);
+            if ($already_sent == 0) {
+                $msg = $this->register_model->get_registration_confirmation_email($user, $pwd);
+                $this->email->subject('Registration Confirmation');
+                $this->email->message($msg);
+                $this->email->send();
+                $this->register_model->make_receipt_sent($user->transactionid);
+            }
         }
-
         $vdata = array('page' => $page);
         $this->load->view('header_view');
         $this->load->view('register_view', $vdata);
         $this->load->view('footer_view');
     }
+
+    /**
+     *
+     */
+    public function payment_student_done()
+    {
+        $data = $_REQUEST;
+        $data2 = $this->register_model->get_student_payment_confirmation_page($data);
+        $page = $data2['page'];
+        $user = $data2['user'];
+        $this->email->from('info@learningindrops.com', 'Learning Drops Support Team');
+        $this->email->to($user->email);
+        $this->email->cc('sirromas@gmail.com');
+        $this->email->bcc('helainefpsantos@gmail.com');
+
+        $already_sent = $this->register_model->is_receipt_sent($user->transactionid);
+        if ($already_sent == 0) {
+            $msg = $this->register_model->get_payment_confirmation_email($user);
+            $this->email->subject('Payment Confirmation');
+            $this->email->message($msg);
+            $this->email->send();
+            $this->register_model->make_receipt_sent($user->transactionid);
+        }
+        $vdata = array('page' => $page);
+        $this->load->view('header_view');
+        $this->load->view('register_view', $vdata);
+        $this->load->view('footer_view');
+    }
+
 
     /**
      *

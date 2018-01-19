@@ -1,6 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
 
 class Courses extends Utils
 {
@@ -285,6 +286,400 @@ class Courses extends Utils
                 } // end if ststus
             } // end if $error==0 && $size>0
         } // end if count($file_data)>0
+    }
+
+    /*************************************************************************************
+     *
+     *                      Students course ops
+     *
+     **************************************************************************************/
+
+    function is_course_paid($courseid)
+    {
+        $query = "select * from mdl_course where id=$courseid";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $paid = $row['paid'];
+        }
+        return $paid;
+    }
+
+    /**
+     * @param $courseid
+     * @return mixed
+     */
+    function get_course_context($courseid)
+    {
+        $query = "select * from mdl_context WHERE contextlevel=50 and instanceid=$courseid";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $contextid = $row['id'];
+        }
+        return $contextid;
+    }
+
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return mixed
+     */
+    function get_course_user_role($courseid, $userid)
+    {
+        $contextid = $this->get_course_context($courseid);
+        $query = "select * from  mdl_role_assignments where contextid=$contextid and userid=$userid";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $roleid = $row['roleid'];
+        }
+        return $roleid;
+    }
+
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return int
+     */
+    function is_subscription_active($courseid, $userid)
+    {
+        if ($userid != 2) {
+            $query = "select * from mdl_paypal_payments where courseid=$courseid and userid=$userid";
+            $num = $this->db->numrows($query);
+        } // end if
+        else {
+            $num = 1;
+        } // end else
+        return $num;
+    }
+
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return int
+     */
+    function has_course_access($courseid, $userid)
+    {
+        $course_paid = $this->is_course_paid($courseid);
+        if ($course_paid == 1) {
+            if ($userid != 2) {
+                $roleid = $this->get_course_user_role($courseid, $userid);
+                if ($roleid == 5) {
+                    $status = $this->is_subscription_active($courseid, $userid);
+                }  // end if
+                else {
+                    $status = 1;
+                }
+            } // end if $userid!=2
+            else {
+                $status = 1;
+            }
+        } // end if $course_paid==1
+        else {
+            $status = 1;
+        }
+        return $status;
+    }
+
+    /**
+     * @return string
+     */
+    function get_categories()
+    {
+        $list = "";
+        $list .= "<select id='categories' style='width: 275px;'>";
+        $list .= "<option value='0' selected>Please select</option>";
+        $query = "select * from mdl_course_categories order by name";
+        $num = $this->db->numrows($query);
+        if ($num > 0) {
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $list .= "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+            } // end while
+        } // end if $num>0
+        $list .= "</select>";
+        return $list;
+    }
+
+    /**
+     * @param int $catid
+     * @return string
+     */
+    function get_courses_by_category($catid = 0)
+    {
+        $list = "";
+        $list .= "<select id='available_courses' style='width: 275px;'>";
+        $list .= "<option value='0' selected>Please select</option>";
+        if ($catid > 0) {
+            $query = "select * from mdl_course where category=$catid";
+            $num = $this->db->numrows($query);
+            if ($num > 0) {
+                $result = $this->db->query($query);
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $list .= "<option value='" . $row['id'] . "'>" . $row['fullname'] . "</option>";
+                } // end while
+            } // end if $num>0
+        } // end if $catid>0
+        $list .= "</select>";
+        return $list;
+    }
+
+    /**
+     * @return string
+     */
+    function get_courses_enrollment_dialog()
+    {
+        $list = "";
+        $userid = $this->user->id;
+        $categories = $this->get_categories();
+        $courses = $this->get_courses_by_category();
+
+        /*
+        $list .= "<div id='myModal' class='modal fade' role='dialog'>
+          <div class='modal-dialog'>
+           <input type='hidden' id='userid' value='$userid'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title'>Enroll into course</h4>
+              </div>
+              <div class='modal-body' style=''>
+                
+                <div class='row' style='margin-bottom:10px;padding-left: 15px; '>
+                <span class='col-md-3'>Category</span>
+                <span class='col-md-6'>$categories</span>
+                </div>
+                
+                <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                <span class='col-md-3'>Course</span>
+                <span class='col-md-6' id='courses_container'>$courses</span>
+                </div>
+                
+                <div class='row'>
+                <span class='col-md-3'></span>
+                <span class='col-md-6' id='course_err' style='color: red;width: 885px;margin-left: 15px;'></span>
+                </div>
+                
+              </div>
+              <div class='modal-footer'>
+                <button type='button' class='btn btn-primary' id='enroll_to_course'>Enroll</button>
+                <button type='button' class='btn btn-primary' id='course_cancel_dialog'>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>";
+        */
+
+        $list.="<div class='panel panel-default'>
+                    <div class='modal-footer'>Add new subscription</div>
+                    <div class='panel-body'> 
+                    <input type='hidden' id='userid' value='$userid'>
+                    <div class='row' style='margin-bottom:10px;padding-left: 15px; '>
+                <span class='col-md-3'>Category</span>
+                <span class='col-md-6'>$categories</span>
+                </div>
+                
+                <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                <span class='col-md-3'>Course</span>
+                <span class='col-md-6' id='courses_container'>$courses</span>
+                </div>
+                
+                <div class='row'>
+                <span class='col-md-3'></span>
+                <span class='col-md-6' id='course_err' style='color: red;width: 885px;margin-left: 15px;'></span>
+                </div>
+                
+              
+                <div class='modal-footer'>
+                <button type='button' class='btn btn-primary' id='enroll_to_course'>Subscribe</button>
+                </div>
+                   
+                </div>
+            </div>";
+
+        return $list;
+    }
+
+    /**
+     * @param $item
+     */
+    function enroll_into_course($item)
+    {
+        $courseid = $item->courseid;
+        $userid = $item->userid;
+        $en = new Enroll();
+        $en->assign_roles($userid, $courseid);
+        purge_all_caches();
+    }
+
+    /**
+     * @param $id
+     * @return stdClass
+     */
+    function get_course_data($id)
+    {
+        $query = "select * from mdl_course where id=$id";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $course = new stdClass();
+            $course->id = $row['id'];
+            $course->name = $row['fullname'];
+            $course->cost = $row['cost'];
+        }
+        return $course;
+    }
+
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return string
+     */
+    function get_production_paypal_btn($courseid, $userid)
+    {
+        $list = "";
+        $coursedata = $this->get_course_data($courseid);
+        $cost = $coursedata->cost;
+        $name = $coursedata->name;
+
+        $list .= "<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>
+        <input type='hidden' name='cmd' value='_xclick'>
+        <INPUT TYPE='hidden' name='charset' value='utf-8'>
+        <input type='hidden' name='business' value='lmcabral2@yahoo.com.br'>
+        <input type='hidden' name='item_name' value='$name'>
+        <input type='hidden' name='amount' value='$cost'>
+        <input type='hidden' name='custom' value='$userid/$courseid'>    
+        <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
+        <INPUT TYPE='hidden' NAME='return' value='https://" . $_SERVER['SERVER_NAME'] . "/index.php/register/payment_student_done'>
+        <input type='image' id='paypal_btn' src='https://learningindrops.com/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+        </form>";
+
+        return $list;
+    }
+
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return string
+     */
+    function get_sanbox_paypal_btn($courseid, $userid)
+    {
+        $list = "";
+
+        $coursedata = $this->get_course_data($courseid);
+        $cost = $coursedata->cost;
+        $name = $coursedata->name;
+
+        $list .= "<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
+        <input type='hidden' name='cmd' value='_xclick'>
+        <INPUT TYPE='hidden' name='charset' value='utf-8'>
+        <input type='hidden' name='business' value='sirromas-facilitator@gmail.com'>
+        <input type='hidden' name='item_name' value='$name'>
+        <input type='hidden' name='amount' value='$cost'>
+        <input type='hidden' name='custom' value='$userid/$courseid'>    
+        <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
+        <INPUT TYPE='hidden' NAME='return' value='https://" . $_SERVER['SERVER_NAME'] . "/index.php/register/payment_student_done'>
+        <input type='image' id='paypal_btn' src='https://learningindrops.com/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+        </form>";
+
+        return $list;
+    }
+
+    /**
+     * @param $courseid
+     * @param $userid
+     * @return string
+     */
+    function get_student_course_payment_dialog($courseid, $userid)
+    {
+        $list = "";
+        //$paypalbtn = $this->get_production_paypal_btn($courseid, $userid);
+        $paypalbtn = $this->get_sanbox_paypal_btn($courseid, $userid);
+        $list .= "<p>We did not receive payment from you. Please buy subscription using PayPal $paypalbtn</p>";
+        return $list;
+    }
+
+    /**
+     * @return string
+     */
+    function get_student_subscriptions()
+    {
+        $list = "";
+        $userid = $this->user->id;
+        $list .= "<div class='row' style='margin-bottom: 175px;'>";
+        $list .= "<table id='subscriptions_table' class='display' cellspacing='0' width='100%'>";
+        $list .= "<thead>";
+        $list .= "<tr>";
+        $list .= "<th>Course Name</th>";
+        $list .= "<th>Amount Paid</th>";
+        $list .= "<th>Payment Date</th>";
+        $list .= "<th>Status</th>";
+        $list .= "<th>Ops</th>";
+        $list .= "</tr>";
+        $list .= "</thead>";
+
+        $list .= "<tbody>";
+        $query = "select * from mdl_paypal_payments where userid=$userid and refunded=0";
+        $num = $this->db->numrows($query);
+        if ($num > 0) {
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $coursedata = $this->get_course_data($row['courseid']);
+                $coursename = $coursedata->name;
+                $amount = $row['psum'];
+                $date = date('m-d-Y', $row['pdate']);
+                $status = ($row['active'] == 1) ? 'Active' : 'Canceled';
+                $ops = $this->get_subscription_ops($row['trans_id']);
+                $list .= "<tr>";
+                $list .= "<td>$coursename</td>";
+                $list .= "<td>$amount BRL</td>";
+                $list .= "<td>$date</td>";
+                $list .= "<td>$status</td>";
+                $list .= "<td>$ops</td>";
+                $list .= "<tr>";
+            } // end while
+        } // end if $num>0
+        $list .= "</tbody>";
+
+        $list .= "</table>";
+        $list .= "</div>";
+
+        return $list;
+    }
+
+    /**
+     * @param $trans_id
+     * @return string
+     */
+    function get_subscription_ops($trans_id)
+    {
+        $list = "";
+        $list .= "<span >&nbsp;&nbsp;&nbsp;";
+        $list .= "<i id='subscription_status_$trans_id' style='cursor: pointer;' class='fa fa-pencil-square-o' aria-hidden='true'></i>";
+        $list .= "</span>&nbsp;&nbsp;&nbsp;";
+        return $list;
+    }
+
+    /**
+     * @param $trans_id
+     * @return mixed
+     */
+    function get_subscription_status($trans_id)
+    {
+        $query = "select * from mdl_paypal_payments where trans_id='$trans_id'";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $status = $row['active'];
+        }
+        return $status;
+    }
+
+    /**
+     * @param $trans_id
+     */
+    function change_student_subscription_status($trans_id)
+    {
+        $ostatus = $this->get_subscription_status($trans_id);
+        $status = ($ostatus == 0) ? '1' : '0';
+        $query = "update mdl_paypal_payments set active=$status where trans_id='$trans_id'";
+        $this->db->query($query);
     }
 
 
