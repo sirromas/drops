@@ -506,7 +506,7 @@ $(document).ready(function () {
                         $("#myModal").remove();
                         $('.modal-backdrop').remove();
                         */
-                        console.log('Server response: '+data);
+                        console.log('Server response: ' + data);
                         alert('Please re-login to see new courses');
                         document.location.reload();
                     }); // end of post;
@@ -598,6 +598,44 @@ $(document).ready(function () {
                     document.location.reload();
                 });
             } // end else
+        }
+
+        if (event.target.id == 'st_resume') {
+            var url = '/lms/custom/feedback/get_resume_page.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'attach_resume') {
+            var userid = $('#userid').val();
+            var raw_file_data = $('#resume_file')[0].files.length;
+            var file_data = $('#resume_file').prop('files');
+            console.log('File data: ' + raw_file_data);
+            if (raw_file_data == 0) {
+                $('#resume_err').html('Please select file to upload');
+                return false;
+            } // end if
+            else {
+                $('#resume_err').html('');
+                var url = '/lms/custom/feedback/attach_resume.php';
+                var form_data = new FormData();
+                $.each(file_data, function (key, value) {
+                    form_data.append(key, value);
+                });
+                form_data.append('userid', userid);
+                $('#loader').show();
+                $.ajax({
+                    url: url,
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        document.location.reload();
+                    } // end of success
+                }); // end of $.ajax
+            }
         }
 
 

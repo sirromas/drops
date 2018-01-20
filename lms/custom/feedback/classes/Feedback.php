@@ -142,7 +142,7 @@ class Feedback extends Utils
         </div>";
         */
 
-        $list.="<div class='panel panel-default'>
+        $list .= "<div class='panel panel-default'>
                     <div class='modal-footer'><div class='title'>$title</div></div>
                     <div class='panel-body'> 
                     <input type='hidden' id='userid' value='$userid'>
@@ -224,7 +224,7 @@ class Feedback extends Utils
         */
 
 
-        $list.="<div class='panel panel-default'>
+        $list .= "<div class='panel panel-default'>
                     <div class='modal-footer'><div class='title'>Send Feedback</div></div>
                     <div class='panel-body'> 
                     <input type='hidden' id='userid' value='$userid'>
@@ -242,6 +242,36 @@ class Feedback extends Utils
               
                     <div class='modal-footer'>
                     <button type='button' class='btn btn-primary' id='send_student_feedback'>Send</button>
+                    </div>
+                  
+                </div>
+            </div>";
+
+        return $list;
+    }
+
+
+    function get_student_feedback_page()
+    {
+        $list = "";
+        $userid = $this->user->id;
+        $list .= "<div class='panel panel-default'>
+                    <div class='modal-footer'><div class='title'>Attach Resume</div></div>
+                    <div class='panel-body'> 
+                    <input type='hidden' id='userid' value='$userid'>
+                    
+                    <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                    <span class='col-md-3'>Please attach resume*</span>
+                    <span class='col-md-6'><input type='file' id='resume_file' multiple></span>
+                    </div>
+                
+                    <div class='row'>
+                    <span class='col-md-3'></span>
+                    <span class='col-md-6' id='resume_err' style='color: red;width: 885px;margin-left: 15px;'></span>
+                    </div>
+                
+                    <div class='modal-footer'>
+                    <button type='button' class='btn btn-primary' id='attach_resume'>Attach</button>
                     </div>
                   
                 </div>
@@ -384,6 +414,22 @@ class Feedback extends Utils
         $list .= "</tbody>";
         $list .= "</table>";
         return $list;
+    }
+
+    function upload_resume($post, $file)
+    {
+        $userid = $post['userid'];
+        $file_data = $file[0];
+        if ($file_data['error'] == 0 && $file_data['size'] > 0) {
+            $filename = 'resume_' . time();
+            $upload_path = $_SERVER['DOCUMENT_ROOT'] . "/lms/custom/feedback/resume/$filename";
+            if (move_uploaded_file($file_data['tmp_name'], $upload_path)) {
+                $now = time();
+                $query = "insert into mdl_students_resume (userid, path, added)  
+                        values ($userid, '$filename', '$now')";
+                $this->db->query($query);
+            } // end if move_uploaded_file
+        } // end if $file_data['error']==0 && $file_data['size']>0
     }
 
 

@@ -184,6 +184,8 @@ class Nav extends Utils
         $list .= "</ul>";
         $list .= "</li>";
 
+        $list .= "<li><a id='st_resume' href='#' onclick='return false;'>Attach Resume</a></li>";
+
         return $list;
     }
 
