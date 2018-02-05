@@ -1,7 +1,9 @@
 <?php
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/class.pdo.database.php';
+
 
 class Enroll
 {

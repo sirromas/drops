@@ -1,7 +1,10 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/enroll/classes/Enroll.php';
 
 class Courses extends Utils
 {
@@ -134,7 +137,8 @@ class Courses extends Utils
             $result = $this->db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $id = $row['id'];
-                $url = 'https://' . $_SERVER['SERVER_NAME'] . "/lms/course/view.php?id=$id";
+                //$url = 'https://' . $_SERVER['SERVER_NAME'] . "/lms/course/view.php?id=$id";
+	            $url = 'http://' . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/course/view.php?id=$id";
                 $name = $row['fullname'];
                 $link = "<a href='$url' target='_blank'>$name</a>";
                 $catname = $this->get_course_category_name($row['category']);
@@ -277,8 +281,10 @@ class Courses extends Utils
             $size = $file_data['size'];
             if ($error == 0 && $size > 0) {
                 $path = time() . ".jpg";
-                $dest = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/$path";
-                $ui_path = "https://" . $_SERVER['SERVER_NAME'] . "/assets/img/$path";
+                //$dest = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/$path";
+	            $dest = $_SERVER["DOCUMENT_ROOT"] . "/clientes/drops/assets/img/$path";
+                //$ui_path = "https://" . $_SERVER['SERVER_NAME'] . "/assets/img/$path";
+	            $ui_path = "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/assets/img/$path";
                 $status = move_uploaded_file($tmp_name, $dest);
                 if ($status) {
                     $query = "update mdl_course set img_path='$ui_path' where id=$id";
@@ -432,42 +438,6 @@ class Courses extends Utils
         $categories = $this->get_categories();
         $courses = $this->get_courses_by_category();
 
-        /*
-        $list .= "<div id='myModal' class='modal fade' role='dialog'>
-          <div class='modal-dialog'>
-           <input type='hidden' id='userid' value='$userid'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4 class='modal-title'>Enroll into course</h4>
-              </div>
-              <div class='modal-body' style=''>
-                
-                <div class='row' style='margin-bottom:10px;padding-left: 15px; '>
-                <span class='col-md-3'>Category</span>
-                <span class='col-md-6'>$categories</span>
-                </div>
-                
-                <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
-                <span class='col-md-3'>Course</span>
-                <span class='col-md-6' id='courses_container'>$courses</span>
-                </div>
-                
-                <div class='row'>
-                <span class='col-md-3'></span>
-                <span class='col-md-6' id='course_err' style='color: red;width: 885px;margin-left: 15px;'></span>
-                </div>
-                
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn btn-primary' id='enroll_to_course'>Enroll</button>
-                <button type='button' class='btn btn-primary' id='course_cancel_dialog'>Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>";
-        */
-
         $list.="<div class='panel panel-default'>
                     <div class='modal-footer'>Add new subscription</div>
                     <div class='panel-body'> 
@@ -582,6 +552,31 @@ class Courses extends Utils
         return $list;
     }
 
+
+	function get_berry_paypal_btn($courseid, $userid)
+	{
+		$list = "";
+
+		$coursedata = $this->get_course_data($courseid);
+		$cost = $coursedata->cost;
+		$name = $coursedata->name;
+
+		$list .= "<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
+        <input type='hidden' name='cmd' value='_xclick'>
+        <INPUT TYPE='hidden' name='charset' value='utf-8'>
+        <input type='hidden' name='business' value='sirromas-facilitator@gmail.com'>
+        <input type='hidden' name='item_name' value='$name'>
+        <input type='hidden' name='amount' value='$cost'>
+        <input type='hidden' name='custom' value='$userid/$courseid'>    
+        <INPUT TYPE='hidden' NAME='currency_code' value='BRL'>    
+        <INPUT TYPE='hidden' NAME='return' value='http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/index.php/register/payment_student_done'>
+        <input type='image' id='paypal_btn' src='http://theberry.us/clientes/drops/assets/img/buynow.png' width='175' height='35' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+        </form>";
+
+		return $list;
+	}
+
+
     /**
      * @param $courseid
      * @param $userid
@@ -591,7 +586,8 @@ class Courses extends Utils
     {
         $list = "";
         //$paypalbtn = $this->get_production_paypal_btn($courseid, $userid);
-        $paypalbtn = $this->get_sanbox_paypal_btn($courseid, $userid);
+        //$paypalbtn = $this->get_sanbox_paypal_btn($courseid, $userid);
+	    $paypalbtn=$this->get_berry_paypal_btn($courseid, $userid);
         $list .= "<p>We did not receive payment from you. Please buy subscription using PayPal $paypalbtn</p>";
         return $list;
     }

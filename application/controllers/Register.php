@@ -12,6 +12,8 @@ class Register extends CI_Controller
         $this->load->model('register_model');
         $this->load->library('session');
         $this->load->library('email');
+
+        /*
         $config = Array(
             'protocol' => 'smtp',
             'smtp_host' => 'smtp.learningindrops.com',
@@ -20,6 +22,17 @@ class Register extends CI_Controller
             'smtp_pass' => 'aK6SKymc*',
             'mailtype' => 'html'
         );
+		*/
+
+	    $config = Array(
+		    'protocol' => 'smtp',
+		    'smtp_host' => 'mail.theberry.us',
+		    'smtp_port' => 110,
+		    'smtp_user' => 'drops@theberry.us',
+		    'smtp_pass' => 'aK6SKymc',
+		    'mailtype' => 'html'
+	    );
+
         $this->email->initialize($config);
     }
 
@@ -77,7 +90,8 @@ class Register extends CI_Controller
         $user = $data2['user'];
 
         if ($status == 0) {
-            $this->email->from('info@learningindrops.com', 'Learning Drops Support Team');
+            //$this->email->from('info@learningindrops.com', 'Learning Drops Support Team');
+	        $this->email->from('drops@theberry.us', 'Learning Drops Support Team');
             $this->email->to($user->email);
             $this->email->cc('sirromas@gmail.com');
             $this->email->bcc('helainefpsantos@gmail.com');
@@ -106,7 +120,8 @@ class Register extends CI_Controller
         $data2 = $this->register_model->get_student_payment_confirmation_page($data);
         $page = $data2['page'];
         $user = $data2['user'];
-        $this->email->from('info@learningindrops.com', 'Learning Drops Support Team');
+	    //$this->email->from('info@learningindrops.com', 'Learning Drops Support Team');
+        $this->email->from('drops@theberry.us', 'Learning Drops Support Team');
         $this->email->to($user->email);
         $this->email->cc('sirromas@gmail.com');
         $this->email->bcc('helainefpsantos@gmail.com');

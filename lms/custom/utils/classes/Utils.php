@@ -1,7 +1,11 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/config.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
+
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/class.pdo.database.php';
 
 
 class Utils
@@ -21,7 +25,8 @@ class Utils
         $this->user = $USER;
         $this->course = $COURSE;
         $this->session = $SESSION;
-        $this->homeurl = 'https://learningindrops.com';
+        // $this->homeurl = 'https://learningindrops.com';
+	    $this->homeurl = 'http://theberry.us/clientes/drops/';
     }
 
     /**

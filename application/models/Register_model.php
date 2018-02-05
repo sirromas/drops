@@ -1,6 +1,7 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/enroll/classes/Enroll.php';
 
 class Register_model extends CI_Model
 {
@@ -14,7 +15,8 @@ class Register_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
-        $this->enroll_url = 'https://' . $_SERVER['SERVER_NAME'] . '/lms/custom/enroll/user.php';
+        //$this->enroll_url = 'https://' . $_SERVER['SERVER_NAME'] . '/lms/custom/enroll/user.php';
+	    $this->enroll_url = 'https://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/lms/custom/enroll/user.php';
     }
 
     /**
@@ -430,7 +432,8 @@ class Register_model extends CI_Model
     public function get_course_link($courseid)
     {
         $list = "";
-        $list .= "https://" . $_SERVER['SERVER_NAME'] . "/lms/course/view.php?id=$courseid";
+        //$list .= "https://" . $_SERVER['SERVER_NAME'] . "/lms/course/view.php?id=$courseid";
+	    $list .= "http://" . $_SERVER['SERVER_NAME'] . "/clientes/drops/lms/course/view.php?id=$courseid";
         return $list;
     }
 
@@ -490,7 +493,8 @@ class Register_model extends CI_Model
         $list .= "<body>";
 
         $list .= "<br>";
-        $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+        // $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+	    $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/assets/img/logo.png';
         $img = "<img src='$img_path'>";
         $list .= "<table>";
 
@@ -560,7 +564,8 @@ class Register_model extends CI_Model
         $list .= "<body>";
 
         $list .= "<br>";
-        $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+        // $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+	    $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/assets/img/logo.png';
         $img = "<img src='$img_path'>";
         $list .= "<table>";
 

@@ -1,7 +1,11 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/mailer/vendor/PHPMailerAutoload.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/mailer/vendor/PHPMailerAutoload.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/mailer/vendor/PHPMailerAutoload.php';
+
 
 class Feedback extends Utils
 {
@@ -105,43 +109,6 @@ class Feedback extends Utils
         $courses = $this->get_student_courses($userid);
         $title = $this->get_suggest_dialog_title($type);
 
-        /*
-        $list .= "<div id='myModal' class='modal fade' role='dialog'>
-          <div class='modal-dialog'>
-           <input type='hidden' id='userid' value='$userid'>
-           <input type='hidden' id='type' value='$type'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4 class='modal-title'>$title</h4>
-              </div>
-              <div class='modal-body' style=''>
-              
-                <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
-                <span class='col-md-3'>Course*</span>
-                <span class='col-md-6'>$courses</span>
-                </div>
-                
-                <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
-                <span class='col-md-3'>Message*</span>
-                <span class='col-md-6'><textarea id='suggest_text' style='width:675px;'></textarea></span>
-                </div>
-                
-                <div class='row'>
-                <span class='col-md-3'></span>
-                <span class='col-md-6' id='suggest_err' style='color: red;width: 885px;margin-left: 15px;'></span>
-                </div>
-                
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn btn-primary' id='send_student_suggest'>Send</button>
-                <button type='button' class='btn btn-primary' id='course_cancel_dialog'>Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>";
-        */
-
         $list .= "<div class='panel panel-default'>
                     <div class='modal-footer'><div class='title'>$title</div></div>
                     <div class='panel-body'> 
@@ -191,38 +158,6 @@ class Feedback extends Utils
     {
         $list = "";
         $userid = $this->user->id;
-
-        /*
-        $list .= "<div id='myModal' class='modal fade' role='dialog'>
-          <div class='modal-dialog'>
-           <input type='hidden' id='userid' value='$userid'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4 class='modal-title'>Send Feedback</h4>
-              </div>
-              <div class='modal-body' style=''>
-                
-                <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
-                <span class='col-md-3'>Message*</span>
-                <span class='col-md-6'><textarea id='feedback_text' cols='65'></textarea></span>
-                </div>
-                
-                <div class='row'>
-                <span class='col-md-3'></span>
-                <span class='col-md-6' id='feedback_err' style='color: red;width: 885px;margin-left: 15px;'></span>
-                </div>
-                
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn btn-primary' id='send_student_feedback'>Send</button>
-                <button type='button' class='btn btn-primary' id='course_cancel_dialog'>Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>";
-        */
-
 
         $list .= "<div class='panel panel-default'>
                     <div class='modal-footer'><div class='title'>Send Feedback</div></div>
@@ -315,7 +250,8 @@ class Feedback extends Utils
         $list .= "<body>";
 
         $list .= "<br>";
-        $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+        // $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+	    $img_path = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/assets/img/logo.png';
         $img = "<img src='$img_path'>";
         $list .= "<table>";
 
@@ -422,7 +358,7 @@ class Feedback extends Utils
         $file_data = $file[0];
         if ($file_data['error'] == 0 && $file_data['size'] > 0) {
             $filename = 'resume_' . time();
-            $upload_path = $_SERVER['DOCUMENT_ROOT'] . "/lms/custom/feedback/resume/$filename";
+            $upload_path = $_SERVER['DOCUMENT_ROOT'] . "/clientes/drops/lms/custom/feedback/resume/$filename";
             if (move_uploaded_file($file_data['tmp_name'], $upload_path)) {
                 $now = time();
                 $query = "insert into mdl_students_resume (userid, path, added)  

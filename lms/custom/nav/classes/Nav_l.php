@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/utils/classes/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
 
 class Nav extends Utils
 {
@@ -13,6 +13,9 @@ class Nav extends Utils
         parent::__construct();
     }
 
+    /**
+     * @return string
+     */
     function get_menu()
     {
         $list = "";
@@ -25,6 +28,9 @@ class Nav extends Utils
                     break;
                 case 1:
                     $list .= $this->get_admin_menu();
+                    break;
+                case 3:
+                    $list .= $this->get_teacher_menu();
                     break;
                 case 4:
                     $list .= $this->get_teacher_menu();
@@ -40,6 +46,9 @@ class Nav extends Utils
         return $list;
     }
 
+    /**
+     *
+     */
     function get_admin_courses()
     {
         $query = "select * from mdl_course where id>1 order by fullname";
@@ -78,6 +87,9 @@ class Nav extends Utils
         return $list;
     }
 
+    /**
+     * @return string
+     */
     function get_admin_menu()
     {
         $list = "";
@@ -124,6 +136,9 @@ class Nav extends Utils
     }
 
 
+    /**
+     * @return string
+     */
     function get_manager_menu()
     {
         $list = "";
@@ -131,6 +146,9 @@ class Nav extends Utils
         return $list;
     }
 
+    /**
+     * @return string
+     */
     function get_teacher_menu()
     {
         $list = "";
@@ -138,36 +156,37 @@ class Nav extends Utils
         return $list;
     }
 
+    /**
+     * @return string
+     */
     function get_student_menu()
     {
-	    $list = "";
-	    $link = 'http://' . $_SERVER['SERVER_NAME'] . '/clientes/drops/lms/my/';
+        $list = "";
+        $link = 'https://' . $_SERVER['SERVER_NAME'] . '/lms/my/';
 
-	    $list .= "<li><a  href='$link'>Courses</a></li>";
+        $list .= "<li><a  href='$link'>Courses</a></li>";
 
-	    $list .= "<li class='dropdown'>";
-	    $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Subscription'>Subscription<span class='mobile-arrow'></span></a>";
-	    $list .= "<ul class='dropdown-list' style='display: none;'>";
-	    $list .= "<li><a id='st_courses' href='#' onclick='return false;'>Subscribe</a></li>";
-	    $list .= "<li><a id='st_subscription' href='#' onclick='return false;'>My subscriptions</a></li>";
-	    $list .= "</ul>";
-	    $list .= "</li>";
+        $list .= "<li class='dropdown'>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Subscription'>Subscription<span class='mobile-arrow'></span></a>";
+        $list .= "<ul class='dropdown-list' style='display: none;'>";
+        $list .= "<li><a id='st_courses' href='#' onclick='return false;'>Subscribe</a></li>";
+        $list .= "<li><a id='st_subscription' href='#' onclick='return false;'>My subscriptions</a></li>";
+        $list .= "</ul>";
+        $list .= "</li>";
 
-	    $list .= "<li class='dropdown'>";
-	    $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Feedback'>Feedback<span class='mobile-arrow'></span></a>";
-	    $list .= "<ul class='dropdown-list' style='display: none;'>";
-	    $list .= "<li class=''><a id='st_content'   title='Suggest Content' class='' href='#' onclick='return false;'>Suggest Content</a></li>";
-	    $list .= "<li class=''><a id='st_teacher'   title='Suggest Teacher' class='' href='#' onclick='return false;'>Suggest Teacher</a></li>";
-	    $list .= "<li class=''><a id='st_proposals' title='Send Proposal'   class='' href='#' onclick='return false;'>Send Proposal</a></li>";
-	    $list .= "<li class=''><a id='st_feedback'  title='Send Feedback'   class='' href='#' onclick='return false;'>Send Feedback</a></li>";
-	    $list .= "</ul>";
-	    $list .= "</li>";
+        $list .= "<li class='dropdown'>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Feedback'>Feedback<span class='mobile-arrow'></span></a>";
+        $list .= "<ul class='dropdown-list' style='display: none;'>";
+        $list .= "<li class=''><a id='st_content'   title='Suggest Content' class='' href='#' onclick='return false;'>Suggest Content</a></li>";
+        $list .= "<li class=''><a id='st_teacher'   title='Suggest Teacher' class='' href='#' onclick='return false;'>Suggest Teacher</a></li>";
+        $list .= "<li class=''><a id='st_proposals' title='Send Proposal'   class='' href='#' onclick='return false;'>Send Proposal</a></li>";
+        $list .= "<li class=''><a id='st_feedback'  title='Send Feedback'   class='' href='#' onclick='return false;'>Send Feedback</a></li>";
+        $list .= "</ul>";
+        $list .= "</li>";
 
-	    $list .= "<li><a id='st_resume' href='#' onclick='return false;'>Attach Resume</a></li>";
+        $list .= "<li><a id='st_resume' href='#' onclick='return false;'>Attach Resume</a></li>";
 
-	    $list.="<li class='nav navbar-nav navbar-left' style='margin-top:3px;'><div class='theme-searchform'><input id='theme-coursesearchbox' style='' type='text' value='' placeholder='Pesquisar Cursos' name='search'><button type='submit' id='index_search'><i class='fa fa-search' id='index_search'></i></button></div></li>";
-
-	    return $list;
+        return $list;
     }
 
 

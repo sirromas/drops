@@ -5,7 +5,9 @@
     require_once('../config.php');
     require_once('lib.php');
     require_once($CFG->libdir.'/completionlib.php');
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/courses/classes/Courses.php';
+    //require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/courses/classes/Courses.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/custom/courses/classes/Courses.php';
+
 
     $id          = optional_param('id', 0, PARAM_INT);
     $name        = optional_param('name', '', PARAM_TEXT);
