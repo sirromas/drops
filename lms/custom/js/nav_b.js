@@ -3,14 +3,14 @@ $(document).ready(function () {
     console.log("ready!");
 
     function get_student_subscriptions_list() {
-        var url = '/lms/custom/courses/get_student_subscriptions.php';
+        var url = '/clientes/drops/lms/custom/courses/get_student_subscriptions.php';
         $.post(url, {id: 1}).done(function (data) {
             $('#page-content').html(data);
             $('#subscriptions_table').dataTable();
         });
     }
 
-    $.post('/lms/custom/tmp/courses.json', {id: 1}, function (data) {
+    $.post('/clientes/drops/lms/custom/tmp/courses.json', {id: 1}, function (data) {
         $('#theme-coursesearchbox').typeahead({source: data, items: 240});
     }, 'json');
 
@@ -147,7 +147,7 @@ $(document).ready(function () {
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = '/lms/custom/search/list.php';
+                var url = '/clientes/drops/lms/custom/search/list.php';
                 $.post(url, {item: Base64.encode(clear_item)}).done(function (data) {
                     $('#page-content').html(data);
                 });
@@ -155,6 +155,7 @@ $(document).ready(function () {
         }
 
     }); // end of body keypress event
+
 
     $("body").click(function (event) {
 
@@ -167,7 +168,7 @@ $(document).ready(function () {
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = '/lms/custom/search/list.php';
+                var url = '/clientes/drops/lms/custom/search/list.php';
                 $.post(url, {item: Base64.encode(clear_item)}).done(function (data) {
                     $('#page-content').html(data);
                 });
@@ -179,7 +180,7 @@ $(document).ready(function () {
             var userid = $('#userid').val();
             if (confirm('Enroll into current course?')) {
                 var item = {courseid: courseid, userid: userid};
-                var url = '/lms/custom/courses/enroll_into_course.php';
+                var url = '/clientes/drops/lms/custom/courses/enroll_into_course.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     console.log('Server response: ' + data);
                     alert('Please re-login to see new courses');
@@ -192,7 +193,7 @@ $(document).ready(function () {
 
         if (event.target.id.indexOf("slide_upload_") >= 0) {
             var id = event.target.id.replace("slide_upload_", "");
-            var url = '/lms/custom/slider/dialog.php';
+            var url = '/clientes/drops/lms/custom/slider/dialog.php';
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
@@ -201,7 +202,7 @@ $(document).ready(function () {
         }
 
         function get_slides_page() {
-            var url = '/lms/custom/slider/list.php';
+            var url = '/clientes/drops/lms/custom/slider/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#banners_table').DataTable();
@@ -217,7 +218,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'upload_slide_done') {
             var id = $('#slide_id').val();
-            var url = '/lms/custom/slider/upload.php';
+            var url = '/clientes/drops/lms/custom/slider/upload.php';
             var raw_file_data = $('#files')[0].files.length;
             var file_data = $('#files').prop('files');
             console.log('File data: ' + raw_file_data);
@@ -264,20 +265,20 @@ $(document).ready(function () {
             else {
                 switch (pageid) {
                     case 'contact':
-                        url = '/lms/custom/contact/edit.php';
+                        url = '/clientes/drops/lms/custom/contact/edit.php';
                         $.post(url, {id: 1}).done(function (data) {
                             $('#page-content').html(data);
                         }); // end of post
                         break;
                     case 'news':
-                        url = '/lms/custom/news/list.php';
+                        url = '/clientes/drops/lms/custom/news/list.php';
                         $.post(url, {id: 1}).done(function (data) {
                             $('#page-content').html(data);
                             $('#news_table').DataTable();
                         }); // end of post
                         break;
                     case 'slider':
-                        url = '/lms/custom/slider/list.php';
+                        url = '/clientes/drops/lms/custom/slider/list.php';
                         $.post(url, {id: 1}).done(function (data) {
                             $('#page-content').html(data);
                             $('#banners_table').DataTable();
@@ -303,7 +304,7 @@ $(document).ready(function () {
             else {
                 $('#contact_err').html('');
                 var item = {name: name, addr: addr, email: email, phone: phone};
-                var url = '/lms/custom/contact/update.php';
+                var url = '/clientes/drops/lms/custom/contact/update.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     $('#page-content').html(data);
                 });
@@ -311,7 +312,7 @@ $(document).ready(function () {
         }
 
         function get_site_edit_page(id) {
-            var url = '/lms/custom/pages/edit.php';
+            var url = '/clientes/drops/lms/custom/pages/edit.php';
             $.post(url, {id: id}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -324,7 +325,7 @@ $(document).ready(function () {
             if (title != '' && content != '' && limit > 0) {
                 $('#page_err').html('');
                 var item = {pageid: pageid, title: title, content: content, limit: limit};
-                var url = '/lms/custom/pages/update.php';
+                var url = '/clientes/drops/lms/custom/pages/update.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     $('#page-content').html(data);
                 });
@@ -339,7 +340,7 @@ $(document).ready(function () {
 
         if (event.target.id.indexOf("news_edit_") >= 0) {
             var id = event.target.id.replace("news_edit_", "");
-            var url = '/lms/custom/news/edit_dialog.php';
+            var url = '/clientes/drops/lms/custom/news/edit_dialog.php';
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
@@ -365,7 +366,7 @@ $(document).ready(function () {
             } // end if
             else {
                 $('#news_err').html('');
-                var url = '/lms/custom/news/update.php';
+                var url = '/clientes/drops/lms/custom/news/update.php';
                 var file_data = $('#files').prop('files');
                 var form_data = new FormData();
                 $.each(file_data, function (key, value) {
@@ -395,7 +396,7 @@ $(document).ready(function () {
         if (event.target.id.indexOf("news_del_") >= 0) {
             var id = event.target.id.replace("news_del_", "");
             if (confirm('Delete current item?')) {
-                var url = '/lms/custom/news/del.php';
+                var url = '/clientes/drops/lms/custom/news/del.php';
                 $.post(url, {id: id}).done(function (data) {
                     get_news_page();
                 });
@@ -403,7 +404,7 @@ $(document).ready(function () {
         }
 
         if (event.target.id == 'add_news') {
-            var url = '/lms/custom/news/add_dialog.php';
+            var url = '/clientes/drops/lms/custom/news/add_dialog.php';
             $.post(url, {item: 1}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
@@ -428,7 +429,7 @@ $(document).ready(function () {
             } // end if
             else {
                 $('#news_err').html('');
-                var url = '/lms/custom/news/add.php';
+                var url = '/clientes/drops/lms/custom/news/add.php';
                 var file_data = $('#files').prop('files');
                 var form_data = new FormData();
                 $.each(file_data, function (key, value) {
@@ -463,7 +464,7 @@ $(document).ready(function () {
 
 
         function get_news_page() {
-            var url = '/lms/custom/news/list.php';
+            var url = '/clientes/drops/lms/custom/news/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#news_table').DataTable();
@@ -473,7 +474,7 @@ $(document).ready(function () {
         /*********** Courses section ************/
 
         if (event.target.id == 'courses') {
-            var url = '/lms/custom/courses/list.php';
+            var url = '/clientes/drops/lms/custom/courses/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#courses_table').dataTable({
@@ -497,7 +498,7 @@ $(document).ready(function () {
             } // end if
             else {
                 $('#course_err').html('');
-                var url = '/lms/custom/courses/update.php';
+                var url = '/clientes/drops/lms/custom/courses/update.php';
                 var file_data = $('#files').prop('files');
                 var form_data = new FormData();
                 $.each(file_data, function (key, value) {
@@ -525,7 +526,7 @@ $(document).ready(function () {
 
         if (event.target.id.indexOf("course_edit_") >= 0) {
             var id = event.target.id.replace("course_edit_", "");
-            var url = '/lms/custom/courses/dialog.php';
+            var url = '/clientes/drops/lms/custom/courses/dialog.php';
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
@@ -540,7 +541,7 @@ $(document).ready(function () {
         }
 
         function get_courses_page() {
-            var url = '/lms/custom/courses/list.php';
+            var url = '/clientes/drops/lms/custom/courses/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#courses_table').dataTable({
@@ -552,7 +553,7 @@ $(document).ready(function () {
         /*********** Feedback section ************/
 
         if (event.target.id == 'contacts') {
-            var url = '/lms/custom/feedback/list.php';
+            var url = '/clientes/drops/lms/custom/feedback/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#feedback_table').dataTable();
@@ -560,7 +561,7 @@ $(document).ready(function () {
         }
 
         function get_feedback_page() {
-            var url = '/lms/custom/feedback/list.php';
+            var url = '/clientes/drops/lms/custom/feedback/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#feedback_table').dataTable();
@@ -570,7 +571,7 @@ $(document).ready(function () {
         /*********** Subscribers section ************/
 
         if (event.target.id == 'subscribers') {
-            var url = '/lms/custom/subscribers/list.php';
+            var url = '/clientes/drops/lms/custom/subscribers/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#subs_table').dataTable();
@@ -578,7 +579,7 @@ $(document).ready(function () {
         }
 
         function get_subsribers_page() {
-            var url = '/lms/custom/subscribers/list.php';
+            var url = '/clientes/drops/lms/custom/subscribers/list.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#subs_table').dataTable();
@@ -587,7 +588,7 @@ $(document).ready(function () {
 
         if (event.target.id.indexOf("subs_edit_") >= 0) {
             var id = event.target.id.replace("subs_edit_", "");
-            var url = '/lms/custom/subscribers/dialog.php';
+            var url = '/clientes/drops/lms/custom/subscribers/dialog.php';
             $.post(url, {id: id}).done(function (data) {
                 $("body").append(data);
                 $("#myModal").modal('show');
@@ -602,7 +603,7 @@ $(document).ready(function () {
             }).get();
             var status = vals.join(",");
             var item = {id: id, status: status};
-            var url = '/lms/custom/subscribers/update.php';
+            var url = '/clientes/drops/lms/custom/subscribers/update.php';
             $.post(url, {item: JSON.stringify(item)}).done(function () {
                 $("[data-dismiss=modal]").trigger({type: "click"});
                 $("#myModal").remove();
@@ -615,7 +616,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'managers') {
             var roleid = 9;
-            var url = '/lms/custom/users/list.php';
+            var url = '/clientes/drops/lms/custom/users/list.php';
             $.post(url, {roleid: roleid}).done(function (data) {
                 $('#page-content').html(data);
                 $('#users_table').dataTable();
@@ -624,7 +625,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'partners') {
             var roleid = 10;
-            var url = '/lms/custom/users/list.php';
+            var url = '/clientes/drops/lms/custom/users/list.php';
             $.post(url, {roleid: roleid}).done(function (data) {
                 $('#page-content').html(data);
                 $('#users_table').dataTable();
@@ -633,7 +634,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'teachers') {
             var roleid = 4;
-            var url = '/lms/custom/users/list.php';
+            var url = '/clientes/drops/lms/custom/users/list.php';
             $.post(url, {roleid: roleid}).done(function (data) {
                 $('#page-content').html(data);
                 $('#users_table').dataTable();
@@ -642,7 +643,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'students') {
             var roleid = 5;
-            var url = '/lms/custom/users/list.php';
+            var url = '/clientes/drops/lms/custom/users/list.php';
             $.post(url, {roleid: roleid}).done(function (data) {
                 $('#page-content').html(data);
                 $('#users_table').dataTable();
@@ -650,7 +651,7 @@ $(document).ready(function () {
         }
 
         if (event.target.id == 'revenue_rep') {
-            var url = '/lms/custom/reports/revenue.php';
+            var url = '/clientes/drops/clientes/drops/lms/custom/reports/revenue.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
                 $('#reports_table').dataTable();
@@ -660,7 +661,7 @@ $(document).ready(function () {
         /*********** Students courses section ************/
 
         if (event.target.id == 'st_courses') {
-            var url = '/lms/custom/courses/course_enroll_dialog.php';
+            var url = '/clientes/drops/lms/custom/courses/course_enroll_dialog.php';
             $.post(url, {id: id}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -673,13 +674,8 @@ $(document).ready(function () {
                 $('#course_err').html('');
                 var item = {courseid: courseid, userid: userid};
                 if (confirm('Enroll into current course?')) {
-                    var url = '/lms/custom/courses/enroll_into_course.php';
+                    var url = '/clientes/drops/lms/custom/courses/enroll_into_course.php';
                     $.post(url, {item: JSON.stringify(item)}).done(function (data) {
-                        /*
-                        $("[data-dismiss=modal]").trigger({type: "click"});
-                        $("#myModal").remove();
-                        $('.modal-backdrop').remove();
-                        */
                         console.log('Server response: ' + data);
                         alert('Please re-login to see new courses');
                         document.location.reload();
@@ -691,6 +687,8 @@ $(document).ready(function () {
             }
         }
 
+        /*********** Students feedback section ************/
+
         if (event.target.id == 'st_subscription') {
             get_student_subscriptions_list();
         }
@@ -698,7 +696,7 @@ $(document).ready(function () {
         if (event.target.id.indexOf("subscription_status_") >= 0) {
             var trans_id = event.target.id.replace("subscription_status_", "");
             if (confirm('Change subscription status?')) {
-                var url = '/lms/custom/courses/update_student_subscription_status.php';
+                var url = '/clientes/drops/lms/custom/courses/update_student_subscription_status.php';
                 $.post(url, {trans_id: trans_id}).done(function (data) {
                     get_student_subscriptions_list();
                 });
@@ -706,7 +704,7 @@ $(document).ready(function () {
         }
 
         if (event.target.id == 'st_feedback') {
-            var url = '/lms/custom/feedback/get_feedback_dialog.php';
+            var url = '/clientes/drops/lms/custom/feedback/get_feedback_dialog.php';
             $.post(url, {id: id}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -721,7 +719,7 @@ $(document).ready(function () {
             else {
                 $('#feedback_err').html('');
                 var item = {userid: userid, text: text};
-                var url = '/lms/custom/feedback/add_student_feedback.php';
+                var url = '/clientes/drops/lms/custom/feedback/add_student_feedback.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     document.location.reload();
                 });
@@ -730,7 +728,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'st_content') {
             var type = 1;
-            var url = '/lms/custom/feedback/get_suggest_dialog.php';
+            var url = '/clientes/drops/lms/custom/feedback/get_suggest_dialog.php';
             $.post(url, {type: type}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -739,7 +737,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'st_teacher') {
             var type = 2;
-            var url = '/lms/custom/feedback/get_suggest_dialog.php';
+            var url = '/clientes/drops/lms/custom/feedback/get_suggest_dialog.php';
             $.post(url, {type: type}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -747,7 +745,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'st_proposals') {
             var type = 3;
-            var url = '/lms/custom/feedback/get_suggest_dialog.php';
+            var url = '/clientes/drops/lms/custom/feedback/get_suggest_dialog.php';
             $.post(url, {type: type}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -764,7 +762,7 @@ $(document).ready(function () {
             else {
                 $('#suggest_err').html('');
                 var item = {courseid: courseid, msg: msg, type: type, userid: userid};
-                var url = '/lms/custom/feedback/add_student_suggest.php';
+                var url = '/clientes/drops/lms/custom/feedback/add_student_suggest.php';
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     $("[data-dismiss=modal]").trigger({type: "click"});
                     $("#myModal").remove();
@@ -774,8 +772,10 @@ $(document).ready(function () {
             } // end else
         }
 
+        /*********** Students attach resume section ************/
+
         if (event.target.id == 'st_resume') {
-            var url = '/lms/custom/feedback/get_resume_page.php';
+            var url = '/clientes/drops/lms/custom/feedback/get_resume_page.php';
             $.post(url, {id: 1}).done(function (data) {
                 $('#page-content').html(data);
             });
@@ -792,7 +792,7 @@ $(document).ready(function () {
             } // end if
             else {
                 $('#resume_err').html('');
-                var url = '/lms/custom/feedback/attach_resume.php';
+                var url = '/clientes/drops/lms/custom/feedback/attach_resume.php';
                 var form_data = new FormData();
                 $.each(file_data, function (key, value) {
                     form_data.append(key, value);
@@ -822,7 +822,7 @@ $(document).ready(function () {
 
         if (event.target.id == 'categories') {
             var id = $('#categories').val();
-            var url = '/lms/custom/courses/get_courses_by_category.php';
+            var url = '/clientes/drops/lms/custom/courses/get_courses_by_category.php';
             $.post(url, {id: id}).done(function (data) {
                 $('#courses_container').html(data);
             });
