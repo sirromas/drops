@@ -1,8 +1,11 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/utils/classes/Utils.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/enroll/classes/Enroll.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/custom/mailer/vendor/PHPMailerAutoload.php';
+require_once $_SERVER['DOCUMENT_ROOT']
+    . '/lms/custom/enroll/classes/Enroll.php';
+require_once $_SERVER['DOCUMENT_ROOT']
+    . '/lms/custom/mailer/vendor/PHPMailerAutoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/lib/coursecatlib.php';
 
 class Users extends Utils
 {
@@ -162,7 +165,8 @@ class Users extends Utils
         $mcourses = $this->manager_category_courses($courses);
         $quota    = $this->get_user_quota_dropbox();
 
-        $list .= "<div class='panel panel-default'>
+        $list
+            .= "<div class='panel panel-default'>
                     
                     <div class='modal-footer'><div class='title'>Add New User</div></div>
                     <div class='panel-body'> 
@@ -231,7 +235,7 @@ class Users extends Utils
         $pwd          = password_hash($pw, PASSWORD_DEFAULT);
         $userid       = $en->create_user($item, $pwd);
         $item->userid = $userid;
-        $item->pwd=$pw;
+        $item->pwd    = $pw;
         $this->update_user_data($item);
         $en->assign_roles($item->userid, $item->courseid, $item->roleid);
 
@@ -254,19 +258,21 @@ class Users extends Utils
 
     }
 
-    function send_confirmation_email ($item) {
-        $list="";
+    function send_confirmation_email($item)
+    {
+        $list = "";
 
-        $img_path = 'https://' . $_SERVER['SERVER_NAME'] . '/assets/img/logo.png';
+        $img_path = 'https://' . $_SERVER['SERVER_NAME']
+            . '/assets/img/logo.png';
         $img      = "<img src='$img_path'>";
-        $username=$item->email;
-        $password=$item->pwd;
+        $username = $item->email;
+        $password = $item->pwd;
 
         $list .= "<html>";
         $list .= "<body>";
 
-        $list     .= "<br>";
-        $list     .= "<table>";
+        $list .= "<br>";
+        $list .= "<table>";
 
         $list .= "<tr>";
         $list .= "<td style='text-align: center; padding: 15px;' colspan='2'>$img</td>";
@@ -301,7 +307,7 @@ class Users extends Utils
         $mail = new PHPMailer();
 
         $addressA = 'sirromas@gmail.com';
-        $addressB='helainefpsantos@gmail.com';
+        $addressB = 'helainefpsantos@gmail.com';
 
         //$mail->isSMTP();
         $mail->Host       = $this->mail_smtp_host;
@@ -310,7 +316,7 @@ class Users extends Utils
         $mail->Password   = $this->mail_smtp_pwd;
         $mail->SMTPSecure = 'tls';
         //$mail->SMTPSecure = false;
-        $mail->Port       = $this->mail_smtp_port;
+        $mail->Port      = $this->mail_smtp_port;
         $mail->SMTPDebug = 4;
         $mail->setFrom($this->mail_smtp_user, 'Learning Drops');
 
@@ -324,10 +330,12 @@ class Users extends Utils
         $mail->Body    = $list;
         if ( ! $mail->send()) {
             echo "Mailer error: $mail->ErrorInfo";
+
             return false;
         } // end if !$mail->send()
         else {
             echo "Confirmation Email has been sent to $username";
+
             return true;
         }
     }
@@ -344,6 +352,127 @@ class Users extends Utils
                 email='$item->email', 
                 quota='$item->quota' 
                 where id=$item->userid";
+        $this->db->query($query);
+    }
+
+    function get_add_manager_dialog()
+    {
+        $list = "";
+
+        $list
+            .= "<div class='panel panel-default'>
+                    
+                    <div class='modal-footer'><div class='title'>Add New Manager</div></div>
+                    <div class='panel-body'> 
+                 
+                    <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                    <span class='col-md-3'>Firstname*</span>
+                    <span class='col-md-6'><input type='text' id='fname'></span>
+                    </div>
+                    
+                    <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                    <span class='col-md-3'>Lastname*</span>
+                    <span class='col-md-6'><input type='text' id='lname'></span>
+                    </div>
+                    
+                    <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                    <span class='col-md-3'>Email*</span>
+                    <span class='col-md-6'><input type='text' id='email'></span>
+                    </div>
+                    
+                    <div class='row' style='margin-bottom:10px;padding-left: 15px;'>
+                    <span class='col-md-3'>Manager Category*</span>
+                    <span class='col-md-6'><input type='text' id='category'></span>
+                    </div>
+                    
+                    <div class='row'>
+                    <span class='col-md-3'></span>
+                    <span class='col-md-6' id='manager_err' style='color: red;width: 885px;margin-left: 15px;'></span>
+                    </div>
+                  
+                    <div class='modal-footer'>
+                    <button type='button' class='btn btn-primary' id='add_manager_done'>Submit</button>
+                    </div>
+                    
+                    <div class='row' style='text-align: center;display: none;' id='ajax_loader'>
+                    <span class='col-md-9' style='text-align: center;'><img src='https://learningindrops.com/assets/img/ajax_loader.gif'></span>
+                    </div>
+                   
+                    </div>
+                </div>";
+
+        return $list;
+    }
+
+    function add_new_manager($item)
+    {
+        $list         = "";
+        $en           = new Enroll();
+        $purepwd      = $en->generateRandomString(8);
+        $pwd          = password_hash($purepwd, PASSWORD_DEFAULT);
+        $userid       = $en->create_user($item, $pwd);
+        $item->userid = $userid;
+        $item->pwd    = $purepwd;
+        $item->quota  = 3;
+        $this->update_user_data($item);
+
+        $data              = new stdClass();
+        $data->name        = $item->cat;
+        $data->description = $item->cat;
+        $data->idnumber    = '';
+        $category          = coursecat::create($data);
+
+        if ($userid > 0 && $category->id > 0) {
+
+            $query
+                = "insert into mdl_cat_manager (catid, userid) 
+                  values ($category->id, $userid)";
+            $this->db->query($query);
+            $username = $item->email;
+
+            $list .= "<div class='row'>";
+            $list .= "<span class='col-md-6'>New manager was successfully created</span>";
+            $list .= "</div>";
+
+            $list .= "<div class='row'>";
+            $list .= "<span class='col-md-3'>Username:</span>";
+            $list .= "<span class='col-md-3'>$username</span>";
+            $list .= "</div>";
+
+            $list .= "<div class='row'>";
+            $list .= "<span class='col-md-3'>Password</span>";
+            $list .= "<span class='col-md-3'>$purepwd</span>";
+            $list .= "</div>";
+            $this->assign_manager_role($item);
+            $this->send_confirmation_email($item);
+
+        } // end if
+        else {
+            $list .= "<div class='row' style='text-align: center;'>";
+            $list .= "<span class='col-md-6'>New manager was was not created due to error</span>";
+            $list .= "</div>";
+        } // end else
+
+
+        return $list;
+
+    }
+
+    function assign_manager_role($item)
+    {
+        $roleid    = 11;
+        $contextid = 1;
+        $now       = time();
+        $query
+                   = "insert into mdl_role_assignments 
+                (roleid,
+                contextid,
+                userid,
+                timemodified,
+                modifierid) 
+                values ($roleid,
+                        $contextid,
+                        $item->userid,'$now',2)";
         $this->db->query($query);
     }
 

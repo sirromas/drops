@@ -114,6 +114,7 @@ class Nav extends Utils
         $list .= "<li class=''><a id='partners' title='Partners' class='' href='#' onclick='return false;'>Parceiros</a></li>";
         $list .= "<li class=''><a id='teachers'  title='Teachers' class='' href='#' onclick='return false;'>Professores</a></li>";
         $list .= "<li class=''><a id='students' title='Students' class='' href='#' onclick='return false;'>Alunos</a></li>";
+        $list .= "<li class=''><a id='add_manager' title='Add Manager' class='' href='#' onclick='return false;'>Add Administradore</a></li>";
 
         $list .= "</ul>";
         $list .= "</li>";

@@ -631,6 +631,44 @@ $(document).ready(function () {
 
         /************* Users section ************/
 
+        if (event.target.id == 'add_manager') {
+            var url = '/lms/custom/users/get_add_manager_dialog.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'add_manager_done') {
+            var fname = $('#fname').val();
+            var lname = $('#lname').val();
+            var email = $('#email').val();
+            var cat = $('#category').val();
+
+            if (fname == '' || lname == '' || email == '' || cat == '') {
+                $('#manager_err').html('Please provide all required fields');
+            } // end if
+            else {
+                $('#manager_err').html('');
+                var check_url = '/lms/custom/enroll/is_user_exists.php';
+                var user = {email: email};
+                $.post(check_url, {user: JSON.stringify(user)}).done(function (status) {
+                    if (status == 1) {
+                        $('#manager_err').html('Provided email is in use');
+                    } // end if
+                    else {
+                        $('#manager_err').html('');
+                        $('#ajax_loader').show();
+                        var url = '/lms/custom/users/add_manager_done.php';
+                        var item = {fname: fname, lname: lname, email: email, cat: cat};
+                        $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                            $('#ajax_loader').hide();
+                            $('#page-content').html(data);
+                        }); // end of post
+                    } // end else
+                }); // end of post
+            } // end else
+        }
+
         if (event.target.id == 'managers') {
             var roleid = 11;
             var url = '/lms/custom/users/list.php';
@@ -983,6 +1021,7 @@ $(document).ready(function () {
                 $.post(url, {item: JSON.stringify(item)}).done(function (data) {
                     $('#ajax_loader').hide();
                     $('#page-content').html(data);
+                    document.location.reload();
                 });
             } //end else
         }

@@ -458,7 +458,7 @@ class Courses extends Utils
         $list .= "<select id='available_courses' style='width: 275px;'>";
         $list .= "<option value='0' selected>Please select</option>";
         if ($catid > 0) {
-            $query = "select * from mdl_course where category=$catid";
+            $query = "select * from mdl_course where category=$catid and cost>0";
             $num   = $this->db->numrows($query);
             if ($num > 0) {
                 $result = $this->db->query($query);
@@ -849,7 +849,7 @@ class Courses extends Utils
         echo "Set course blocks ... done<br>";
 
         fix_course_sortorder();
-        echo "Fix course order ... <br>";
+        echo "Fix course order ... done<br>";
 
         cache_helper::purge_all();
         echo "Purge all caches ... done<br>";
@@ -874,7 +874,7 @@ class Courses extends Utils
         $en->assign_roles($userid, $course->id, self::MANAGER_ROLE);
 
         $list .= "<div class='row'>";
-        $list .= "<span class='col-md-9'>New course was successfully created - <button id='reload_page' class='btn btn-primary'>Reload</button></span>";
+        $list .= "<span class='col-md-9'>New course was successfully created </span>";
         $list .= "</div>";
 
         return $list;
