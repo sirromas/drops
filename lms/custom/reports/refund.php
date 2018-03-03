@@ -1,7 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: moyo
- * Date: 2/22/18
- * Time: 19:51
- */
+
+require_once './classes/Report.php';
+$r       = new Report();
+$transid = $_REQUEST['transid'];
+$r->refund($transid);

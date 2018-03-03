@@ -178,7 +178,7 @@ class Index_model extends CI_Model
      */
     public function create_courses_data()
     {
-        $query = "select * from mdl_course where category>0 order by fullname";
+        $query = "select * from mdl_course where category>0 and cost>0 order by fullname";
         $result = $this->db->query($query);
         foreach ($result->result() as $row) {
             $courses[] = mb_convert_encoding($row->fullname, 'UTF-8');

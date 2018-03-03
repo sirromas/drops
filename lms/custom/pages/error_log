@@ -1,0 +1,17 @@
+[20-Nov-2017 14:19:34 America/Chicago] PHP Notice:  Undefined variable: content in /home/theberry/public_html/clientes/drops/lms/custom/pages/classes/Page.php on line 34
+[20-Nov-2017 14:19:37 America/Chicago] PHP Notice:  Undefined variable: content in /home/theberry/public_html/clientes/drops/lms/custom/pages/classes/Page.php on line 34
+[20-Nov-2017 14:24:01 America/Chicago] PHP Notice:  Undefined variable: title in /home/theberry/public_html/clientes/drops/lms/custom/pages/classes/Page.php on line 29
+[20-Nov-2017 14:24:01 America/Chicago] PHP Notice:  Undefined variable: content in /home/theberry/public_html/clientes/drops/lms/custom/pages/classes/Page.php on line 35
+[20-Nov-2017 14:58:29 America/Chicago] PHP Notice:  Undefined index: id in /home/theberry/public_html/clientes/drops/lms/custom/pages/edit.php on line 5
+[20-Nov-2017 14:58:29 America/Chicago] Default exception handler: Exception - Call to a member function fetch() on boolean Debug: 
+Error code: generalexceptionmessage
+* line 23 of /custom/pages/classes/Page.php: Error thrown
+* line 6 of /custom/pages/edit.php: call to Page->get_page_content()
+
+[20-Nov-2017 15:01:05 America/Chicago] PHP Notice:  Undefined index: id in /home/theberry/public_html/clientes/drops/lms/custom/pages/edit.php on line 5
+[20-Nov-2017 15:01:05 America/Chicago] Default exception handler: Exception - Call to a member function fetch() on boolean Debug: 
+Error code: generalexceptionmessage
+* line 23 of /custom/pages/classes/Page.php: Error thrown
+* line 6 of /custom/pages/edit.php: call to Page->get_page_content()
+
+[20-Nov-2017 15:02:31 America/Chicago] PHP Notice:  Undefined property: stdClass::$id in /home/theberry/public_html/clientes/drops/lms/custom/pages/classes/Page.php on line 63

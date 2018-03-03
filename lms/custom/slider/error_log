@@ -1,0 +1,20 @@
+[21-Nov-2017 06:43:58 America/Chicago] Default exception handler: Exception - Call to a member function fetch() on boolean Debug: 
+Error code: generalexceptionmessage
+* line 41 of /custom/slider/classes/Slider.php: Error thrown
+* line 5 of /custom/slider/list.php: call to Slider->get_sliders_list()
+
+[21-Nov-2017 06:44:02 America/Chicago] Default exception handler: Exception - Call to a member function fetch() on boolean Debug: 
+Error code: generalexceptionmessage
+* line 41 of /custom/slider/classes/Slider.php: Error thrown
+* line 5 of /custom/slider/list.php: call to Slider->get_sliders_list()
+
+[21-Nov-2017 06:44:23 America/Chicago] Default exception handler: Exception - Call to a member function fetch() on boolean Debug: 
+Error code: generalexceptionmessage
+* line 41 of /custom/slider/classes/Slider.php: Error thrown
+* line 5 of /custom/slider/list.php: call to Slider->get_sliders_list()
+
+[21-Nov-2017 06:45:10 America/Chicago] PHP Warning:  date() expects parameter 2 to be integer, string given in /home/theberry/public_html/clientes/drops/lms/custom/slider/classes/Slider.php on line 45
+[21-Nov-2017 06:45:10 America/Chicago] PHP Warning:  date() expects parameter 2 to be integer, string given in /home/theberry/public_html/clientes/drops/lms/custom/slider/classes/Slider.php on line 45
+[21-Nov-2017 06:45:10 America/Chicago] PHP Warning:  date() expects parameter 2 to be integer, string given in /home/theberry/public_html/clientes/drops/lms/custom/slider/classes/Slider.php on line 45
+[21-Nov-2017 06:45:10 America/Chicago] PHP Warning:  date() expects parameter 2 to be integer, string given in /home/theberry/public_html/clientes/drops/lms/custom/slider/classes/Slider.php on line 45
+[21-Nov-2017 08:09:41 America/Chicago] PHP Notice:  Undefined index: SERVENAME in /home/theberry/public_html/clientes/drops/lms/custom/slider/classes/Slider.php on line 108

@@ -34,6 +34,7 @@ class pdo_db
      */
     public function numrows($query)
     {
+        //echo "Numrows query: ".$query."<br>";
         $result = $this->db->query($query);
         return $result->rowCount();
     }
@@ -44,6 +45,7 @@ class pdo_db
      */
     public function query($query)
     {
+        // echo "Select query: ".$query."<br>";
         return $this->db->query($query);
     }
 

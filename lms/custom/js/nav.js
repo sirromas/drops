@@ -10,6 +10,24 @@ $(document).ready(function () {
         });
     }
 
+    function get_admin_revenue_report() {
+        var userid = $('#userid').val();
+        var url = '/lms/custom/reports/get_admin_revenue.php';
+        $.post(url, {userid: 2}).done(function (data) {
+            $('#page-content').html(data);
+            $('#reports_table').dataTable();
+        });
+    }
+
+    function get_manager_revenue_report() {
+        var userid = $('#userid').val();
+        var url = '/lms/custom/reports/get_manager_revenue.php';
+        $.post(url, {userid: userid}).done(function (data) {
+            $('#page-content').html(data);
+            $('#manager_revenue_table').dataTable();
+        });
+    }
+
     $.post('/lms/custom/tmp/courses.json', {id: 1}, function (data) {
         $('#theme-coursesearchbox').typeahead({source: data, items: 240});
     }, 'json');
@@ -611,10 +629,10 @@ $(document).ready(function () {
             }); // end of post
         }
 
-        /*********** Subscribers section ************/
+        /************* Users section ************/
 
         if (event.target.id == 'managers') {
-            var roleid = 9;
+            var roleid = 11;
             var url = '/lms/custom/users/list.php';
             $.post(url, {roleid: roleid}).done(function (data) {
                 $('#page-content').html(data);
@@ -623,7 +641,7 @@ $(document).ready(function () {
         }
 
         if (event.target.id == 'partners') {
-            var roleid = 10;
+            var roleid = 12;
             var url = '/lms/custom/users/list.php';
             $.post(url, {roleid: roleid}).done(function (data) {
                 $('#page-content').html(data);
@@ -648,6 +666,8 @@ $(document).ready(function () {
                 $('#users_table').dataTable();
             }); // end of post
         }
+
+        /************* Report section ************/
 
         if (event.target.id == 'revenue_rep') {
             var url = '/lms/custom/reports/revenue.php';
@@ -675,12 +695,6 @@ $(document).ready(function () {
                 if (confirm('Enroll into current course?')) {
                     var url = '/lms/custom/courses/enroll_into_course.php';
                     $.post(url, {item: JSON.stringify(item)}).done(function (data) {
-                        /*
-                        $("[data-dismiss=modal]").trigger({type: "click"});
-                        $("#myModal").remove();
-                        $('.modal-backdrop').remove();
-                        */
-                        console.log('Server response: ' + data);
                         alert('Please re-login to see new courses');
                         document.location.reload();
                     }); // end of post;
@@ -810,6 +824,171 @@ $(document).ready(function () {
                     } // end of success
                 }); // end of $.ajax
             }
+        }
+
+        /*********** Managers section ************/
+
+        if (event.target.id == 'm_revenue') {
+            var userid = $('#m_revenue').data('userid');
+            var url = '/lms/custom/reports/get_manager_revenue.php';
+            $.post(url, {userid: userid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#manager_revenue_table').dataTable();
+            });
+        }
+
+        if (event.target.id.indexOf("refund_") >= 0) {
+            var userid = $('#userid').val();
+            var transid = event.target.id.replace("refund_", "");
+            console.log('Transaction ID: ' + transid);
+            if (confirm('Refund current transaction?')) {
+                var url = '/lms/custom/reports/refund.php';
+                $.post(url, {transid: transid}).done(function (data) {
+                    if (userid == 2) {
+                        get_admin_revenue_report();
+                    } // end if
+                    else {
+                        get_manager_revenue_report();
+                    }
+                });
+            }
+        }
+
+        if (event.target.id == 'm_students') {
+            var roleid = 5;
+            var url = '/lms/custom/users/list.php';
+            $.post(url, {roleid: roleid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#users_table').dataTable();
+            }); // end of post
+        }
+
+        if (event.target.id == 'm_teachers') {
+            var roleid = 4;
+            var url = '/lms/custom/users/list.php';
+            $.post(url, {roleid: roleid}).done(function (data) {
+                $('#page-content').html(data);
+                $('#users_table').dataTable();
+            }); // end of post
+        }
+
+        if (event.target.id == 'add_user') {
+            var url = '/lms/custom/users/add_new_user.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'm_feedback') {
+            var type = 3;
+            var url = '/lms/custom/feedback/get_manager_feedback.php';
+            $.post(url, {type: type}).done(function (data) {
+                $('#page-content').html(data);
+                $('#feedback_table').dataTable();
+            });
+        }
+
+        if (event.target.id == 'm_suggest_content') {
+            var type = 1;
+            var url = '/lms/custom/feedback/get_manager_feedback.php';
+            $.post(url, {type: type}).done(function (data) {
+                $('#page-content').html(data);
+                $('#feedback_table').dataTable();
+            });
+        }
+
+        if (event.target.id == 'm_suggest_teacher') {
+            var type = 2;
+            var url = '/lms/custom/feedback/get_manager_feedback.php';
+            $.post(url, {type: type}).done(function (data) {
+                $('#page-content').html(data);
+                $('#feedback_table').dataTable();
+            });
+        }
+
+        if (event.target.id == 'manager_add_user') {
+            var userid = $('#userid').val();
+            var fname = $('#fname').val();
+            var lname = $('#lname').val();
+            var email = $('#email').val();
+            var courseid = $('#courses').val();
+            var quota = $('#quota').val();
+            var roleid = $('.roleid').filter(':checked').val();
+
+            if (lname == '' || fname == '' || email == '' || courseid == 0) {
+                $('#user_err').html('Please provide all required fields');
+                return false;
+            } // end if
+            else {
+                $('#user_err').html('');
+                var check_url = '/lms/custom/enroll/is_user_exists.php';
+                var user = {email: email};
+                $.post(check_url, {user: JSON.stringify(user)}).done(function (status) {
+                    if (status == 1) {
+                        $('#user_err').html('Provided email is in use');
+                    } // end if
+                    else {
+                        $('#user_err').html('');
+                        $('#ajax_loader').show();
+                        var item = {
+                            managerid: userid,
+                            courseid: courseid,
+                            fname: fname,
+                            lname: lname,
+                            email: email,
+                            quota: quota,
+                            roleid: roleid
+                        };
+                        var url = '/lms/custom/users/add_new_users_done.php';
+                        $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                            $('#ajax_loader').hide();
+                            $('#page-content').html(data);
+                        }); // end of post
+                    } // end else
+                }); // end of post
+            } // end else
+        }
+
+
+        if (event.target.id == 'my_courses') {
+            var url = '/lms/custom/courses/list.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#courses_table').dataTable({
+                    "pageLength": 3
+                });
+            }); // end of post
+        }
+
+
+        if (event.target.id == 'add_course') {
+            var url = '/lms/custom/courses/get_add_course_page.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+            });
+        }
+
+        if (event.target.id == 'manager_add_course') {
+            var userid = $('#userid').val();
+            var catid = $('#catid').val();
+            var name = $('#course_name').val();
+            if (name == '') {
+                $('#add_course_err').html('Please provide course name');
+            } // end if
+            else {
+                $('#add_course_err').html('');
+                $('#ajax_loader').show();
+                var item = {userid: userid, category: catid, shortname: name, fullname: name};
+                var url = '/lms/custom/courses/manager_add_new_course.php';
+                $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                    $('#ajax_loader').hide();
+                    $('#page-content').html(data);
+                });
+            } //end else
+        }
+
+        if (event.target.id == 'reload_page') {
+            document.location.reload();
         }
 
 

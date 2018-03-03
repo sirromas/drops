@@ -1,0 +1,10 @@
+[21-Nov-2017 14:31:06 America/Chicago] PHP Notice:  Undefined offset: 0 in /home/theberry/public_html/clientes/drops/lms/custom/courses/update.php on line 6
+[21-Nov-2017 14:45:02 America/Chicago] PHP Warning:  Illegal string offset 'top' in /home/theberry/public_html/clientes/drops/lms/custom/courses/classes/Courses.php on line 240
+[21-Nov-2017 15:19:39 America/Chicago] PHP Notice:  Undefined offset: 0 in /home/theberry/public_html/clientes/drops/lms/custom/courses/classes/Courses.php on line 265
+[24-Nov-2017 00:16:36 America/Chicago] PHP Notice:  Undefined offset: 0 in /home/theberry/public_html/clientes/drops/lms/custom/courses/classes/Courses.php on line 265
+[24-Nov-2017 00:17:03 America/Chicago] PHP Notice:  Undefined offset: 0 in /home/theberry/public_html/clientes/drops/lms/custom/courses/classes/Courses.php on line 265
+[24-Nov-2017 00:20:44 America/Chicago] PHP Notice:  Undefined offset: 0 in /home/theberry/public_html/clientes/drops/lms/custom/courses/classes/Courses.php on line 265
+[24-Nov-2017 00:20:55 America/Chicago] PHP Notice:  Undefined offset: 0 in /home/theberry/public_html/clientes/drops/lms/custom/courses/classes/Courses.php on line 265
+[28-Feb-2018 18:04:00 Europe/Amsterdam] PHP Fatal error:  Call to undefined function course_get_format() in /home/mycodebu/public_html/lms/custom/courses/classes/Courses.php on line 812
+[02-Mar-2018 16:34:33 Europe/Amsterdam] PHP Fatal error:  Call to undefined function course_get_format() in /home/mycodebu/public_html/lms/custom/courses/classes/Courses.php on line 812
+[03-Mar-2018 04:31:26 Europe/Amsterdam] PHP Fatal error:  Call to undefined function course_get_format() in /home/mycodebu/public_html/lms/custom/courses/classes/Courses.php on line 826

@@ -38,7 +38,7 @@ class Nav extends Utils
                 case 5:
                     $list .= $this->get_student_menu();
                     break;
-                case 9:
+                case 11:
                     $list .= $this->get_manager_menu();
                     break;
             }
@@ -93,7 +93,6 @@ class Nav extends Utils
     function get_admin_menu()
     {
         $list = "";
-        $courses = $this->get_admin_courses();
         $pages = $this->get_site_pages();
 
         $list .= "<li class='dropdown'>";
@@ -142,6 +141,41 @@ class Nav extends Utils
     function get_manager_menu()
     {
         $list = "";
+        $userid=$this->user->id;
+        $list .= "<li class='dropdown'>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Courses'>Courses<span class='mobile-arrow'></span></a>";
+        $list .= "<ul class='dropdown-list' style='display: none;'>";
+
+        $list .= "<li class=''><a id='my_courses'  data-userid='$userid' title='My Courses'     href='#' onclick='return false;'>My Courses</a></li>";
+        $list .= "<li class=''><a id='add_course'  data-userid='$userid' title='Add New Course' href='#' onclick='return false;'>Add New Course</a></li>";
+
+        $list .= "</ul>";
+        $list .= "</li>";
+
+        $list .= "<li class='dropdown'>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Users'>Users<span class='mobile-arrow'></span></a>";
+        $list .= "<ul class='dropdown-list' style='display: none;'>";
+
+        $list .= "<li class=''><a id='m_students' data-userid='$userid' title='Students'  href='#' onclick='return false;'>Students</a></li>";
+        $list .= "<li class=''><a id='m_teachers' data-userid='$userid' title='Teachers'  href='#' onclick='return false;'>Teachers</a></li>";
+        $list .= "<li class=''><a id='add_user'   data-userid='$userid' title='Add User'  href='#' onclick='return false;'>Add User</a></li>";
+
+        $list .= "</ul>";
+        $list .= "</li>";
+
+        $list .= "<li class='dropdown'>";
+        $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Feedback'>Feedback<span class='mobile-arrow'></span></a>";
+        $list .= "<ul class='dropdown-list' style='display: none;'>";
+
+
+        $list .= "<li class=''><a id='m_suggest_content' data-userid='$userid' title='Students Content Suggest'  href='#' onclick='return false;'>Students Content </a></li>";
+        $list .= "<li class=''><a id='m_feedback' data-userid='$userid' title='Students Proposals'  href='#' onclick='return false;'>Students Proposals</a></li>";
+        $list .= "<li class=''><a id='m_suggest_teacher'   data-userid='$userid' title='Students Teachers Suggest'  href='#' onclick='return false;'>Students Teachers </a></li>";
+
+        $list .= "</ul>";
+        $list .= "</li>";
+
+        $list .= "<li class=''><a id='m_revenue'   data-userid='$userid' title='Revenue Report'  href='#' onclick='return false;'>Revenue report</a></li>";
 
         return $list;
     }

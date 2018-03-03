@@ -93,7 +93,9 @@ if ($id) {
     $coursecontext = context_course::instance($course->id);
     require_capability('moodle/course:update', $coursecontext);
 
-} else if ($categoryid) {
+} // end if
+
+else if ($categoryid) {
     // Creating new course in this category.
     $course = null;
     require_login();
@@ -102,7 +104,9 @@ if ($id) {
     require_capability('moodle/course:create', $catcontext);
     $PAGE->set_context($catcontext);
 
-} else {
+} // end elseif
+
+else {
     require_login();
     print_error('needcoursecategroyid');
 }
@@ -128,7 +132,8 @@ if (!empty($course)) {
     // Populate course tags.
     $course->tags = core_tag_tag::get_item_tags_array('core', 'course', $course->id);
 
-} else {
+} // end if !empty($course)
+else {
     // Editor should respect category context if course context is not set.
     $editoroptions['context'] = $catcontext;
     $editoroptions['subdirs'] = 0;
@@ -136,7 +141,7 @@ if (!empty($course)) {
     if ($overviewfilesoptions) {
         file_prepare_standard_filemanager($course, 'overviewfiles', $overviewfilesoptions, null, 'course', 'overviewfiles', 0);
     }
-}
+} // end else
 
 // First create the form.
 $args = array(

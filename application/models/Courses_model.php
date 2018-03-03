@@ -108,7 +108,7 @@ class Courses_model extends CI_Model
     public function get_category_items($catid)
     {
         $list = "";
-        $query = "select * from mdl_course where category=$catid";
+        $query = "select * from mdl_course where category=$catid and cost>0";
         $result = $this->db->query($query);
         foreach ($result->result() as $row) {
             $id = $row->id;
@@ -160,7 +160,7 @@ class Courses_model extends CI_Model
     public function get_all_courses_page()
     {
         $list = "";
-        $query = "select * from mdl_course where category>0 order by category, fullname";
+        $query = "select * from mdl_course where category>0 and cost>0 order by category, fullname";
         $result = $this->db->query($query);
         $i = 1;
         foreach ($result->result() as $row) {

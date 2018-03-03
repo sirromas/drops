@@ -1,11 +1,7 @@
 <?php
 
-//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/config.php';
-//require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
-
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/clientes/drops/lms/class.pdo.database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lms/class.pdo.database.php';
 
 
 class Utils
@@ -19,78 +15,95 @@ class Utils
 
     function __construct()
     {
-        global $USER, $COURSE, $SESSION;
-        $db = new pdo_db();
-        $this->db = $db;
-        $this->user = $USER;
-        $this->course = $COURSE;
+        global $CFG, $DB, $USER, $COURSE, $SESSION;
+        $db            = new pdo_db();
+        $this->cfg=$CFG;
+        $this->db      = $db;
+        $this->moodledb=$DB;
+        $this->user    = $USER;
+        $this->course  = $COURSE;
         $this->session = $SESSION;
-        // $this->homeurl = 'https://learningindrops.com';
-	    $this->homeurl = 'http://theberry.us/clientes/drops/';
+        $this->homeurl = 'https://learningindrops.com';
     }
 
     /**
      * @param $userid
+     *
      * @return int
      */
-    function get_user_role($userid)
+    function get_user_role($userid, $contextid = 0)
     {
         if ($userid == 2) {
             // It is admin
             $roleid = 0;
         } // end if
         else {
-            $query = "select * from  mdl_role_assignments where userid=$userid";
+            if ($contextid == 0) {
+                $query
+                    = "select * from  mdl_role_assignments 
+                          where userid=$userid";
+            } // end if
+            else {
+                $query
+                    = "select * from  mdl_role_assignments 
+                          where contextid=$contextid and userid=$userid";
+            }
             $result = $this->db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $roleid = $row['roleid'];
             }
         }
+
         return $roleid;
     }
 
-    /**
-     * @param $userid
-     * @return mixed
-     */
-    function is_user_deleted($userid)
-    {
-        $query = "select * from mdl_user where id=$userid";
-        $result = $this->db->query($query);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $status = $row['deleted'];
-        }
-        return $status;
-    }
-
 
     /**
-     * @param $userid
+     * @param $courseid
+     *
      * @return mixed
      */
-    function is_user_suspended($userid)
+    function get_course_context($courseid)
     {
-        $query = "select * from mdl_user where id=$userid";
+        $query
+                = "select * from mdl_context WHERE contextlevel=50 and instanceid=$courseid";
         $result = $this->db->query($query);
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $status = $row['suspended'];
+            $contextid = $row['id'];
         }
-        return $status;
+
+        return $contextid;
     }
 
     /**
      * @param $roleid
+     *
      * @return array
      */
-    function get_users_by_role($roleid)
+    function get_users_by_role($roleid, $courses = array())
     {
         $users = array();
-        $query = "select * from mdl_role_assignments where roleid=$roleid group by userid";
+        if (count($courses) == 0) {
+            $query
+                = "select * from mdl_role_assignments 
+                            where roleid=$roleid group by userid";
+        } // end if
+        else {
+            foreach ($courses as $courseid) {
+                $contexts[] = $this->get_course_context($courseid);
+            }
+            $cs = implode(',', $contexts);
+            $query
+                = "select * from mdl_role_assignments 
+                            where contextid in ($cs) 
+                            and roleid=$roleid group by userid";
+
+        }
         $num = $this->db->numrows($query);
         if ($num > 0) {
             $result = $this->db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                $id = $row['userid'];
+                $id         = $row['userid'];
                 $del_status = $this->is_user_deleted($id);
                 $sus_status = $this->is_user_suspended($id);
                 if ($del_status == 0 && $sus_status == 0) {
@@ -98,16 +111,50 @@ class Utils
                 }
             }
         }
+
         return $users;
     }
 
     /**
      * @param $userid
+     *
+     * @return mixed
+     */
+    function is_user_deleted($userid)
+    {
+        $query  = "select * from mdl_user where id=$userid";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $status = $row['deleted'];
+        }
+
+        return $status;
+    }
+
+    /**
+     * @param $userid
+     *
+     * @return mixed
+     */
+    function is_user_suspended($userid)
+    {
+        $query  = "select * from mdl_user where id=$userid";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $status = $row['suspended'];
+        }
+
+        return $status;
+    }
+
+    /**
+     * @param $userid
+     *
      * @return stdClass
      */
     function get_user_details($userid)
     {
-        $query = "select * from mdl_user where id=$userid";
+        $query  = "select * from mdl_user where id=$userid";
         $result = $this->db->query($query);
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $user = new stdClass();
@@ -115,8 +162,104 @@ class Utils
                 $user->$key = $value;
             }
         }
+
         return $user;
     }
 
+    /**
+     * @param $userid
+     *
+     * @return mixed
+     */
+    function get_manager_category($userid)
+    {
+        $query  = "select * from mdl_cat_manager where userid=$userid";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $catid = $row['catid'];
+        }
+
+        return $catid;
+    }
+
+    /**
+     * @param $courseid
+     */
+    function get_course_users($courseid)
+    {
+        $users   = array();
+        $enrolid = $this->getEnrolId($courseid);
+        $query   = "select * from mdl_user_enrolments where enrolid=$enrolid";
+        $num     = $this->db->numrows($query);
+        if ($num > 0) {
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $users[] = $row['userid'];
+            }
+        } // end if $num>0
+
+        return $users;
+    }
+
+    /**
+     * @param $courseid
+     *
+     * @return mixed
+     */
+    function getEnrolId($courseid)
+    {
+        $query
+                = "select id from mdl_enrol
+                     where courseid=" . $courseid . " and enrol='manual'";
+        $result = $this->db->query($query);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $enrolid = $row['id'];
+        }
+
+        return $enrolid;
+    }
+
+    /**
+     * @param $catid
+     *
+     * @return array
+     */
+    function get_category_users($catid)
+    {
+        $users   = array();
+        $courses = $this->get_category_courses($catid);
+        if (count($courses) > 0) {
+            foreach ($courses as $courseid) {
+                $cusers = $this->get_course_users($courseid);
+                if (count($cusers) > 0) {
+                    foreach ($cusers as $userid) {
+                        $users[] = $userid;
+                    } // end foreach
+                } // end if count($cusers)>0
+            } // end foreach
+        } // end if count($courses)>0
+
+        return $users;
+    }
+
+    /**
+     * @param $catid
+     *
+     * @return array
+     */
+    function get_category_courses($catid)
+    {
+        $courses = array();
+        $query   = "select * from mdl_course where category=$catid";
+        $num     = $this->db->numrows($query);
+        if ($num > 0) {
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $courses[] = $row['id'];
+            }
+        }
+
+        return $courses;
+    }
 
 }
