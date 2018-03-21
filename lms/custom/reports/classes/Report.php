@@ -17,16 +17,21 @@ class Report extends Utils
      */
     function get_course_category($courseid)
     {
-        $query  = "select * from mdl_course where id=$courseid";
-        $result = $this->db->query($query);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $catid = $row['category'];
-        }
+        $catname='';
+        if ($courseid>0) {
+            $query  = "select * from mdl_course where id=$courseid";
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $catid = $row['category'];
+            }
 
-        $query  = "select * from mdl_course_categories where id=$catid";
-        $result = $this->db->query($query);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $catname = $row['name'];
+            if (isset($catid) && $catid>0) {
+                $query  = "select * from mdl_course_categories where id=$catid";
+                $result = $this->db->query($query);
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $catname = $row['name'];
+                }
+            }
         }
 
         return $catname;
@@ -76,14 +81,16 @@ class Report extends Utils
                              = "<a href='$link' target='_blank'>$fname $lname</a>";
                 $refund_btn  = $this->get_refund_button($row['trans_id']);
 
-                $list .= "<tr>";
-                $list .= "<td>$profile</td>";
-                $list .= "<td><span style='font-weight: bold'>$catname</span><br>$coursename</td>";
-                $list .= "<td>$amount</td>";
-                $list .= "<td>$transaction</td>";
-                $list .= "<td>$date</td>";
-                $list .= "<td>$refund_btn</td>";
-                $list .= "</tr>";
+                if ($catname!='' && $coursename!='') {
+                    $list .= "<tr>";
+                    $list .= "<td>$profile</td>";
+                    $list .= "<td><span style='font-weight: bold'>$catname</span><br>$coursename</td>";
+                    $list .= "<td>$amount</td>";
+                    $list .= "<td>$transaction</td>";
+                    $list .= "<td>$date</td>";
+                    $list .= "<td>$refund_btn</td>";
+                    $list .= "</tr>";
+                }
             } // end while
         } // end if $num > 0
         $list .= "</tbody>";
@@ -99,10 +106,13 @@ class Report extends Utils
      */
     function get_course_name($courseid)
     {
-        $query  = "select * from mdl_course where id=$courseid";
-        $result = $this->db->query($query);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $name = $row['fullname'];
+        $name='';
+        if ($courseid>0) {
+            $query  = "select * from mdl_course where id=$courseid";
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $name = $row['fullname'];
+            }
         }
 
         return $name;

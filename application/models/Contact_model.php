@@ -102,7 +102,7 @@ class Contact_model extends CI_Model
         $info = $this->get_contact_info();
         $list .= "<br><div style='margin: auto;width:85%;' >";
         $list .= "<div class='panel panel-default'>";
-        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd; '>Contact US</div>";
+        $list .= "<div class='panel-heading' style='padding-left: 30px;font-weight: bold;background-color: #f5f5f5;border-color: #ddd; '>Fale Conosco</div>";
         $list .= "<div class='panel-body'>";
 
         $list .= "<div class='row'>";

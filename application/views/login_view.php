@@ -92,7 +92,7 @@
         </div>
 
         <div class="container" style="margin: auto;text-align: center;">
-            <span class="psw">Esqueci Minha <a href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/lms/login/forgot_password.php" target="_blank">Senha?</a></span>
+            <span class="psw">Esqueci Minha <a href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/lms/login/forgot_password.php" target="_blank">Senha</a></span>
         </div>
         <div class="container" style="margin: auto;text-align: center;">
             <span class="psw">Ainda não tem uma conta? Clique <a href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/index.php/register/register/">Aqui</a></span>

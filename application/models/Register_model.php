@@ -102,7 +102,7 @@ class Register_model extends CI_Model
             <div class='modal-content'>
               <div class='modal-header'>
                 <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4 class='modal-title'>Acceptance Terms</h4>
+                <h4 class='modal-title'>Termos de Uso</h4>
               </div>
               <div class='modal-body' style=''>$content</div>
               <div class='modal-footer' style='text-align: center;'>

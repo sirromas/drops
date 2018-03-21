@@ -77,7 +77,7 @@ class Nav extends Utils
             $list .= "<li class=''><a id='page_$id' title='$title' href='#' onclick='return false;'>$title</a></li>";
         }
 
-        $list .= "<li class=''><a id='page_contact' title='Contact Page' class='' href='#' onclick='return false;'>Contact Page</a></li>";
+        $list .= "<li class=''><a id='page_contact' title='Página de Contato' class='' href='#' onclick='return false;'>Página de Contato</a></li>";
         $list .= "<li class=''><a id='page_news' title='News' class='' href='#' onclick='return false;'>News</a></li>";
         $list .= "<li class=''><a id='page_slider' title='Banner Sliders' class='' href='#' onclick='return false;'>Banner Sliders</a></li>";
 
@@ -114,13 +114,14 @@ class Nav extends Utils
         $list .= "<li class=''><a id='partners' title='Partners' class='' href='#' onclick='return false;'>Parceiros</a></li>";
         $list .= "<li class=''><a id='teachers'  title='Teachers' class='' href='#' onclick='return false;'>Professores</a></li>";
         $list .= "<li class=''><a id='students' title='Students' class='' href='#' onclick='return false;'>Alunos</a></li>";
-        $list .= "<li class=''><a id='add_manager' title='Add Manager' class='' href='#' onclick='return false;'>Add Administradore</a></li>";
+        $list .= "<li class=''><a id='add_manager' title='Add Manager' class='' href='#' onclick='return false;'>Adicionar Administrador</a></li>";
 
         $list .= "</ul>";
         $list .= "</li>";
 
         $list .= $pages;
 
+        /*
         $list .= "<li class='dropdown'>";
         $list .= "<a href='#' class='sf-with-ul' data-toggle='' title='Reports'>Relatórios<span class='mobile-arrow'></span></a>";
         $list .= "<ul class='dropdown-list' style='display: none;'>";
@@ -131,6 +132,10 @@ class Nav extends Utils
 
         $list .= "</ul>";
         $list .= "</li>";
+        */
+
+        $list .= "<li class=''><a id='revenue_rep' title='Denúncia' class='' href='#' onclick='return false;'>Denúncia</a></li>";
+
 
         return $list;
     }

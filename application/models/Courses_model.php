@@ -94,8 +94,8 @@ class Courses_model extends CI_Model
                                 <div class='summary'>
                                     <div class='no-overflow' style='margin-right:5%;'>
                                     <p style=''>$summary</p>
-                                    <div class='course-heading'><h6 class='coursename'>Cost: $cost BRL</h6>
-                                    <a class='btn btn-primary' style='margin-left: 15%;'  href='$courseurl'>Registo</a></div></div>
+                                    <div class='course-heading'><h6 class='coursename'>Valor: R$ $cost </h6>
+                                    <a class='btn btn-primary' style='margin-left: 15%;'  href='$courseurl'>Cadastrar</a></div></div>
                                     </div>
                                 </div>
                              <div class='course-media'><img src='$img_path' width='292' height='173'></div></div>
