@@ -7,7 +7,7 @@ use DrewM\MailChimp\MailChimp;
 
 class Maim
 {
-    const KEY = '173d1cc42781fa013c24e638756428cb-us12'; // Shevchenko key
+    const KEY = 'yifiugvmbvjuynkljhlgkhkjhvkjhvkj'; // dummy key
     //const KEY = '';
     public $db, $mailchimp, $from_name, $from_email, $reply_to, $templateid;
 
