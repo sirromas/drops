@@ -58,6 +58,12 @@ class Users extends Utils
      */
     function create_users_list($users)
     {
+        /*
+        echo "Users: <pre>";
+        print_r($users);
+        echo "</pre>";
+        */
+
         $list = "";
         $list .= "<table id='users_table' class='display' cellspacing='0' width='100%'>";
         $list .= "<thead>";

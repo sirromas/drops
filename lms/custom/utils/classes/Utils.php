@@ -84,11 +84,26 @@ class Utils
     {
         $users  = array();
         $userid = $this->user->id;
+        //echo "User ID: ".$userid."<br>";
+        //echo "Role ID for search: ".$roleid."<br>";
         if ($userid == 2) {
             $query
                 = "select * from mdl_role_assignments 
                             where roleid=$roleid group by userid";
-        } // end if
+            $num = $this->db->numrows($query);
+            if ($num > 0) {
+                $result = $this->db->query($query);
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $id         = $row['userid'];
+                    $del_status = $this->is_user_deleted($id);
+                    $sus_status = $this->is_user_suspended($id);
+                    if ($del_status == 0 && $sus_status == 0) {
+                        $users[] = $id;
+                    } // end if
+                } // end while
+            } // end if $num > 0
+            return $users;
+        } // end if $userid == 2
         else {
             if (count($courses) > 0) {
                 foreach ($courses as $courseid) {
@@ -156,14 +171,23 @@ class Utils
      */
     function get_user_details($userid)
     {
-        $query  = "select * from mdl_user where id=$userid";
-        $result = $this->db->query($query);
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $user = new stdClass();
-            foreach ($row as $key => $value) {
-                $user->$key = $value;
+        if ($userid > 0) {
+            $query  = "select * from mdl_user where id=$userid";
+            $result = $this->db->query($query);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $user = new stdClass();
+                foreach ($row as $key => $value) {
+                    $user->$key = $value;
+                }
             }
-        }
+        } // end if $userid>0
+        else {
+            $user             = new stdClass();
+            $user->firstname  = 'Friend';
+            $user->lastname   = 'User';
+            $user->email      = 'N/A';
+            $user->lastaccess = '0';
+        } // end else
 
         return $user;
     }

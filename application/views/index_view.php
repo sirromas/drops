@@ -24,10 +24,10 @@
                                 <div class="no-overflow">
                                     <div class="col-md-6">
                                         <!-- Here must be anouncements section -->
-                                        <div style="background-color: #f5f5f5;width: 100%;height:740px;"><?php echo $announcements; ?></div>
+                                        <div style="background-color: #FFFFFF;width: 100%;height:740px;"><?php echo $announcements; ?></div>
                                     </div>
                                         <!-- Text -->
-                                    <div class="col-md-6">&nbsp;</div>
+                                    <div class="col-md-6"> &nbsp</div>
 
                                     <div class="col-md-6">
                                         <div class="row" style="margin-left: 1px;">

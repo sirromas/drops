@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="footer-content clearfix">
-                    <p class="footer-text">Copyright © Learning Drops 2018. All rights reserved.</p>
+                    <p class="col-sm-4 footer-text" style="padding-top: 15px;margin-left: 37px; ">Copyright © Learning Drops 2018. All rights reserved. </p>  <!--<span style="padding-left: 52px;"><button class="btn btn-success btn-lg btn-icon-before" id="contact_suggest">Contact Us</button></span>-->
                     <ul class="social-list">
                         <!--
                         <li class="li-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -40,7 +40,7 @@
                         <li class="li-youtube-play"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                         <li class="li-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         -->
-                        <div class="sharethis-inline-share-buttons"></div>
+                        <div class="sharethis-inline-share-buttons" style="padding-top: 15px;"></div>
                     </ul>
                 </div>
             </div>
@@ -70,6 +70,12 @@
 
 </script>
 <script type="text/javascript">
+
+    $( document ).ready(function() {
+
+        $('[data-toggle="popover"]').popover();
+
+    }); // end of document ready
 
 </script>
 

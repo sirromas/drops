@@ -23,16 +23,18 @@ class Index extends CI_Controller
      */
     public function index()
     {
-        $about_section = $this->index_model->get_about_section();
-        $news_section = $this->index_model->get_news_section();
+        $about_section  = $this->index_model->get_about_section();
+        $news_section   = $this->index_model->get_news_section();
         $slider_section = $this->index_model->get_slider_section();
-        $map_data = $this->index_model->get_map_data();
+        $map_data       = $this->index_model->get_map_data();
         $this->index_model->create_courses_data(); // creates courses JSON data
-        $announcements=$this->index_model->get_announcements_block();
-        $data = array('about_section' => $about_section,
-                      'news_section' => $news_section,
-                      'slider_section' => $slider_section,
-                       'announcements'=>$announcements) ;
+        $announcements = $this->index_model->get_announcements_block();
+        $data          = array(
+            'about_section'  => $about_section,
+            'news_section'   => $news_section,
+            'slider_section' => $slider_section,
+            'announcements'  => $announcements
+        );
 
         $data2 = array('map_data' => $map_data);
 
@@ -46,9 +48,9 @@ class Index extends CI_Controller
      */
     public function search()
     {
-        $item = $this->uri->segment(3);
+        $item    = $this->uri->segment(3);
         $courses = $this->index_model->get_search_results(base64_decode($item));
-        $data = array('items' => $courses);
+        $data    = array('items' => $courses);
         $this->load->view('header_view');
         $this->load->view('search_view', $data);
         $this->load->view('footer_view');
@@ -59,18 +61,57 @@ class Index extends CI_Controller
      */
     public function get_subs_modal_dialog()
     {
-        $email = $this->input->post('email');
+        $email  = $this->input->post('email');
         $dialog = $this->index_model->get_subs_modal_dialog($email);
         echo $dialog;
     }
 
+
     /**
-     * @param $item
+     *
      */
-    public function add_subscriber($item)
+    public function add_subscriber()
     {
         $item = $this->input->post('item');
         $this->index_model->add_subscriber($item);
+    }
+
+    /**
+     *
+     */
+    public function get_suggest_box()
+    {
+        $id  = $this->input->post('id');
+        $box = $this->index_model->get_suggest_box($id);
+        echo $box;
+    }
+
+    /**
+     *
+     */
+    public function send_suggest_message()
+    {
+        $item = $this->input->post('item');
+        $this->index_model->send_suggest_item($item);
+    }
+
+    /**
+     *
+     */
+    public function get_suggest_box_company()
+    {
+        $id  = $this->input->post('id');
+        $box = $this->index_model->get_suggest_company($id);
+        echo $box;
+    }
+
+    /**
+     *
+     */
+    public function send_suggest_contact()
+    {
+        $item = $this->input->post('item');
+        $this->index_model->send_suggest_contact($item);
     }
 
 }

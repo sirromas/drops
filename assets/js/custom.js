@@ -153,8 +153,131 @@ $(document).ready(function () {
 
     $("body").click(function (event) {
 
+        var element_id = event.target.id;
+        var element_class = $(event.target).prop("class");
 
-        console.log('Click Event ID: ' + event.target.id);
+        console.log('Element ID: ' + event.target.id);
+        console.log('Element Class: ' + element_class);
+
+        /******************* Index page suggest modals *********************/
+
+        if (element_class == 'contact_suggest') {
+            var id = Math.round((new Date()).getTime() / 1000);
+            var url = '/index.php/index/get_suggest_box';
+            $.post(url, {id: id}).done(function (data) {
+                var modalID = '#' + id;
+                $("body").append(data);
+                //$("#myModal").modal('show');
+                $(modalID).modal('show');
+            });
+        }
+
+        if (event.target.id.indexOf("send_suggest_") >= 0) {
+            var modalID = event.target.id.replace("send_suggest_", "");
+
+            var type_elid = '#suggest_type_' + modalID;
+            var type = $(type_elid).val();
+            console.log('Type ID: '+type);
+
+            var course_elid = '#suggest_course_' + modalID;
+            var courseid = $(course_elid).val();
+            console.log('Course ID: '+courseid);
+
+            var text_elid = '#suggest_text_' + modalID;
+            var text = $(text_elid).val();
+            console.log('Message text: '+text);
+
+            var err_elid = '#suggest_err_' + modalID;
+            console.log('Error container: '+err_elid);
+
+            if (type == 0 || courseid == 0 || text == '') {
+
+                $(err_elid).html('Please provide mandatory fields');
+                return false;
+            } // end if
+            else {
+                $(err_elid).html('');
+                var item = {type: type, courseid: courseid, text: text};
+                var url = '/index.php/index/send_suggest_message';
+                $.post(url, {item: JSON.stringify(item)}).done(function () {
+                    $("[data-dismiss=modal]").trigger({type: "click"});
+                    $(modalID).remove();
+                    $('.modal-backdrop').remove();
+                });
+            } // end else
+        }
+
+        if (event.target.id == 'cancel_suggest') {
+            var id = Math.round((new Date()).getTime() / 1000);
+            var modalID = '#' + id;
+            $("[data-dismiss=modal]").trigger({type: "click"});
+            $(id).remove();
+            $('.modal-backdrop').remove();
+            $("body").scroll();
+        }
+
+        /******************* Index page contact modal *********************/
+
+        if (element_class == 'contact_suggest2') {
+            var id = Math.round((new Date()).getTime() / 1000);
+            var url = '/index.php/index/get_suggest_box_company';
+            $.post(url, {id: id}).done(function (data) {
+                var modalID = '#' + id;
+                $("body").append(data);
+                $(modalID).modal('show');
+            });
+        }
+
+        if (event.target.id.indexOf("send_suggestcompany_") >= 0) {
+            var modalID = event.target.id.replace("send_suggestcompany_", "");
+
+            console.log('Send Suggest company button ID:'+modalID);
+
+            var name_elid = '#suggest_company_name_' + modalID;
+            var name = $(name_elid).val();
+            console.log('Name: '+name);
+
+            var email_elid = '#suggest_company_email_' + modalID;
+            var email = $(email_elid).val();
+            console.log('Email: '+email);
+
+            var phone_elid = '#suggest_company_phone_' + modalID;
+            var phone = $(phone_elid).val();
+            console.log('{Phone: '+phone);
+
+            var company_elid = '#suggest_company_company_' + modalID;
+            var company = $(company_elid).val();
+            console.log('Company: '+company)
+
+            var msg_elid = '#suggest_company_text_' + modalID;
+            var msg = $(msg_elid).val();
+            console.log('Message Text: '+msg);
+
+            var err_elid = '#suggest_err_company_' + modalID;
+            console.log('Error container: '+err_elid);
+
+            var item = {name: name, phone: phone, email: email, company: company, text: msg};
+            console.log('Item: '+JSON.stringify(item));
+
+            if (name == '' || email == '' || phone == '' || company == '' || msg == '') {
+                $(err_elid).html('Please provide all mandatory fields');
+                return false;
+            } // end if
+            else {
+                $(err_elid).html('');
+                var url = '/index.php/index/send_suggest_contact';
+                $.post(url, {item: JSON.stringify(item)}).done(function () {
+                    $("[data-dismiss=modal]").trigger({type: "click"});
+                    $(modalID).remove();
+                    $('.modal-backdrop').remove();
+                });
+
+
+            } // end else
+
+        }
+
+        /******************* Register page terms & conditions *********************/
 
         if (event.target.id == 'terms') {
             if ($('#terms').prop('checked')) {
@@ -172,6 +295,8 @@ $(document).ready(function () {
             $("#myModal").remove();
             $('.modal-backdrop').remove();
         }
+
+        /******************* Registration form *********************/
 
         if (event.target.id == 'reg_continue') {
             var courseid = $('#courses').val();
@@ -280,16 +405,19 @@ $(document).ready(function () {
             });
         }
 
+        /******************* Index page search feature *********************/
 
         if (event.target.id == 'index_search') {
             var item = $('#theme-coursesearchbox').val();
             if (item != '') {
                 var clear_item = encodeURI(item);
                 console.log('Search item: ' + clear_item);
-                var url = '/index.php/index/search/' + Base64.encode(clear_item) ;
+                var url = '/index.php/index/search/' + Base64.encode(clear_item);
                 document.location = url;
             }
         }
+
+        /******************* Index page add subscriber feature *********************/
 
         if (event.target.id == 'add_subs') {
             var subs_email = $('#subs_email').val();
