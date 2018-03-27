@@ -192,9 +192,9 @@ class Index_model extends CI_Model
 
 
         $list .= "<div class='row' style='margin-left: 15px;margin-top: 35px;margin-right: 15px;'>";
-        $list .= "<span class='col-md-4'><a  data-trigger='hover' data-placement='top' href='#' onclick='return false;' data-toggle='popover' title='TORNE-SE UM INSTRUTOR AMIGO' data-content='Este instrutor é uma pessoa interessada em colaborar com algum curso para troca de informações e aprimoramento de conhecimento da mesma forma que ocorre em fóruns de discussão sobre uma temática específica. Este instrutor pode ser remunerado ou não de acordo com cada coordenador/gerente de gota.'><img class='contact_suggest' src='/assets/img/user-6.png' width='120px' height='120px' style='cursor: pointer;'></a></span>";
-        $list .= "<span class='col-md-4'><a  data-trigger='hover' data-placement='top' href='#' onclick='return false;' data-toggle='popover' title='TORNE-SE UM USUÁRIO APRENDIZ' data-content='Estes seriam usuários de gotas que desejam criar os seus cursos, contribuindopara a gota com envio periódico de sugestões e informações. Ele não éremunerado, ganhando com a troca de informações e acesso a informações privilegiadas de acordo com a anuência de cada coordenador/gerente de gota.'><img class='contact_suggest'  src='/assets/img/user-4.png' width='120px' height='120px' style='cursor: pointer;'></a></span>";
-        $list .= "<span class='col-md-4'><a  data-trigger='hover' data-placement='top' href='#' onclick='return false;' data-toggle='popover' title='ANUNCIE CONOSCO' data-content=' Amplie seus negócios anunciando no nosso portal. Nossos usuários podem conhecer melhor seus produtos e serviços. Divulgue conosco seus cursos de graduação, pós-graduação, tutoriais e ferramentas de educação.'><img class='contact_suggest2'  src='/assets/img/megaphone-1.png' width='120px' height='120px' style='cursor: pointer;'></a></span>";
+        $list .= "<span class='col-md-4'><a  data-trigger='hover' data-placement='top' href='#' onclick='return false;'  data-toggle='popover' title='TORNE-SE UM INSTRUTOR AMIGO' data-content='Este instrutor é uma pessoa interessada em colaborar com algum curso para troca de informações e aprimoramento de conhecimento da mesma forma que ocorre em fóruns de discussão sobre uma temática específica. Este instrutor pode ser remunerado ou não de acordo com cada coordenador/gerente de gota.'><img class='contact_suggest' title='TORNE-SE UM INSTRUTOR AMIGO' src='/assets/img/user-6.png' width='120px' height='120px' style='cursor: pointer;'><br><div class='contact_suggest'  title='TORNE-SE UM INSTRUTOR AMIGO' style='text-align: center;margin-top: 10px;'>TORNE-SE UM INSTRUTOR AMIGO</div></a></span>";
+        $list .= "<span class='col-md-4'><a  data-trigger='hover' data-placement='top' href='#' onclick='return false;'  data-toggle='popover' title='TORNE-SE UM USUÁRIO APRENDIZ' data-content='Estes seriam usuários de gotas que desejam criar os seus cursos, contribuindopara a gota com envio periódico de sugestões e informações. Ele não éremunerado, ganhando com a troca de informações e acesso a informações privilegiadas de acordo com a anuência de cada coordenador/gerente de gota.'><img class='contact_suggest' title='TORNE-SE UM USUÁRIO APRENDIZ' src='/assets/img/user-4.png' width='120px' height='120px' style='cursor: pointer;'><br><div class='contact_suggest' title='TORNE-SE UM USUÁRIO APRENDIZ' style='text-align: center;margin-top: 10px;'>TORNE-SE UM USUÁRIO APRENDIZ</div></a></span>";
+        $list .= "<span class='col-md-4'><a  data-trigger='hover' data-placement='top' href='#' onclick='return false;'  data-toggle='popover' title='ANUNCIE CONOSCO' data-content=' Amplie seus negócios anunciando no nosso portal. Nossos usuários podem conhecer melhor seus produtos e serviços. Divulgue conosco seus cursos de graduação, pós-graduação, tutoriais e ferramentas de educação.'><img class='contact_suggest2' title='ANUNCIE CONOSCO'  src='/assets/img/megaphone-1.png' width='120px' height='120px' style='cursor: pointer;'><br><div class='contact_suggest2' title='ANUNCIE CONOSCO' style='text-align: center;margin-top: 10px;'>ANUNCIE CONOSCO</div></a></span>";
         $list .= "</div>";
 
 
@@ -416,9 +416,12 @@ class Index_model extends CI_Model
     /**
      * @return string
      */
-    function get_suggest_box($id)
+    function get_suggest_box($item)
     {
         $list    = "";
+        $data=json_decode($item);
+        $id=$data->id;
+        $title=$data->title;
         $types   = $this->get_suggest_types($id);
         $courses = $this->get_courses_list_box($id);
 
@@ -429,7 +432,7 @@ class Index_model extends CI_Model
             <div class='modal-content'>
               <div class='modal-header'>
                 <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4 class='modal-title'>Enviar Sugestão</h4>
+                <h4 class='modal-title'>$title</h4>
               </div>
               <div class='modal-body' style=''>
               
@@ -465,10 +468,12 @@ class Index_model extends CI_Model
         return $list;
     }
 
-    function get_suggest_company($id)
+    function get_suggest_company($item)
     {
         $list = "";
-
+        $data=json_decode($item);
+        $id=$data->id;
+        $title=$data->title;
         $list
             .= "<div id='$id' class='modal fade' role='dialog'>
           <div class='modal-dialog'>
@@ -476,7 +481,7 @@ class Index_model extends CI_Model
             <input type='hidden' id='modalid' value='$id'>
               <div class='modal-header'>
                 <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4 class='modal-title'>Enviar Sugestão</h4>
+                <h4 class='modal-title'>$title</h4>
               </div>
               <div class='modal-body' style=''>
               

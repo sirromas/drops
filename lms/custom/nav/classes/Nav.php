@@ -102,7 +102,7 @@ class Nav extends Utils
         $list .= "<li class=''><a id='contacts' title='Contacts' class='' href='#' onclick='return false;'>Feedback dos Usuários</a></li>";
         $list .= "<li class=''><a id='courses' title='Courses' class='' href='#' onclick='return false;'>Cursos</a></li>";
         $list .= "<li class=''><a id='subscribers' title='Subscribers' class='' href='#' onclick='return false;'>Inscrições</a></li>";
-        $list .= "<li class=''><a id='promotion' title='Send Promotion News Letter' class='' href='#' onclick='return false;'>Promotion Letter</a></li>";
+        $list .= "<li class=''><a id='promotion' title='Emails Promocionais' class='' href='#' onclick='return false;'>Emails Promocionais</a></li>";
 
         $list .= "</ul>";
         $list .= "</li>";
