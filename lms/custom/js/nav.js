@@ -1030,6 +1030,63 @@ $(document).ready(function () {
             document.location.reload();
         }
 
+        /********************** Promotion with mailchimp *********************/
+
+        if (event.target.id == 'promotion') {
+            var url = '/lms/custom/mailchimp/get_promotion_page.php';
+            $.post(url, {id: 1}).done(function (data) {
+                $('#page-content').html(data);
+                $('#promotion_table').dataTable();
+            });
+        }
+
+        if (event.target.id == 'check_all') {
+            if ($('#check_all').prop('checked')) {
+                $(".user").each(function () {
+                    this.checked = true;
+                });
+                $('#show_message_editor').prop('disabled', false);
+            } // end if
+            else {
+                $(".user").each(function () {
+                    this.checked = false;
+                    $('#show_message_editor').prop('disabled', true);
+                });
+            } // end else
+        }
+
+        if (event.target.id == 'show_message_editor') {
+            if ($('#msg_div').is(":visible")) {
+                $('#msg_div').hide();
+            } // end if
+            else {
+                $('#msg_div').show();
+            } // end else
+        }
+
+        if (event.target.id == 'add_mailchimp_campaign') {
+            var checkedVals = $('.user:checkbox:checked').map(function () {
+                return this.value;
+            }).get();
+            var users = checkedVals.join(",");
+            var subject = $('#msg_subject').val();
+            var msg = CKEDITOR.instances["msg_editor"].getData();
+            if (users == '' || subject == '' || msg == '') {
+                $('#campaign_err').html('Please select recipients and provide message subject/text');
+            } // end if
+            else {
+                $('#campaign_err').html('');
+                var item = {subject: subject, msg: msg, users: users};
+                $('#ajax_loader').show();
+                var url = '/lms/custom/mailchimp/add_new_campaign.php';
+                $.post(url, {item: JSON.stringify(item)}).done(function (data) {
+                    $('#ajax_loader').hide();
+                    $('#msg_div').html(data);
+                    $('#msg_div').show();
+                });
+            }
+
+        }
 
     }); // end of body click event
 
@@ -1037,6 +1094,20 @@ $(document).ready(function () {
     $("body").change(function (event) {
 
         console.log('Change Event ID: ' + event.target.id);
+
+        if ($(event.target).prop("class") == 'user') {
+            var checkedVals = $('.user:checkbox:checked').map(function () {
+                return this.value;
+            }).get();
+            var users = checkedVals.join(",");
+            console.log('Selected Users: ' + users);
+            if (users != '') {
+                $('#show_message_editor').prop('disabled', false);
+            } // end if
+            else {
+                $('#show_message_editor').prop('disabled', true);
+            } // end else
+        }
 
         if (event.target.id == 'categories') {
             var id = $('#categories').val();
