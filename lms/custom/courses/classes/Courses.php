@@ -164,10 +164,10 @@ class Courses extends Utils
                 $id             = $row['id'];
                 $url            = 'https://' . $_SERVER['SERVER_NAME']
                     . "/lms/course/view.php?id=$id";
-                $name           = $row['fullname'];
+                //$name           = mb_convert_encoding($row['fullname'], 'UTF-8', 'UTF-8');
+                $name           = utf8_encode($row['fullname']);
                 $link           = "<a href='$url' target='_blank'>$name</a>";
-                $catname
-                                = $this->get_course_category_name($row['category']);
+                $catname = utf8_encode($this->get_course_category_name($row['category']));
                 $path           = $this->get_course_thumb($row['img_path']);
                 $top            = ($row['top'] == 0) ? 'No' : 'Yes';
                 $total_enrolled = $this->get_course_users_num($id);
@@ -678,8 +678,7 @@ class Courses extends Utils
         $list   .= "</thead>";
 
         $list .= "<tbody>";
-        $query
-              = "select * from mdl_paypal_payments where userid=$userid and refunded=0";
+        $query = "select * from mdl_paypal_payments where userid=$userid and refunded=0";
         $num  = $this->db->numrows($query);
         if ($num > 0) {
             $result = $this->db->query($query);

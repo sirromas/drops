@@ -350,7 +350,7 @@ class Feedback extends Utils
                 $name  = $row['name'];
                 $email = $row['email'];
                 $phone = $row['phone'];
-                $msg   = $row['msg'];
+                $msg   = utf8_encode($row['msg']);
                 $date  = date('m-d-Y', $row['added']);
                 $list  .= "<tr>";
                 $list  .= "<td>$name</td>";
@@ -434,7 +434,7 @@ class Feedback extends Utils
         if (count($items) > 0) {
             foreach ($items as $item) {
 
-                $msg        = $item->msg;
+                $msg        = utf8_encode($item->msg);
                 $coursename = $this->get_coursename($item->courseid);
                 $userdata   = $this->get_user_details($item->userid);
                 $name       = $userdata->firstname . ' ' . $userdata->lastname;

@@ -50,7 +50,7 @@ class Subscribers extends Utils
             $result = $this->db->query($query);
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $id = $row['id'];
-                $name = $row['name'];
+                $name = utf8_encode($row['name']);
                 $email = $row['email'];
                 $status = ($row['status'] == 1) ? 'Yes' : 'No';
                 $ops = $this->get_ops_items($id);

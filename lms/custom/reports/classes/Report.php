@@ -67,8 +67,8 @@ class Report extends Utils
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $userid      = $row['userid'];
                 $courseid    = $row['courseid'];
-                $catname     = $this->get_course_category($row['courseid']);
-                $coursename  = $this->get_course_name($courseid);
+                $catname     = utf8_encode($this->get_course_category($row['courseid']));
+                $coursename  = utf8_encode($this->get_course_name($courseid));
                 $date        = date('m-d-Y h:i:s', $row['pdate']);
                 $userdata    = $this->get_user_details($userid);
                 $fname       = $userdata->firstname;

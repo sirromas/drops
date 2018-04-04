@@ -100,15 +100,14 @@ class Promotion extends Utils
                 $lastname  = $user->lastname;
                 $email     = $user->email;
 
-                $name
-                            = "<span style='margin-left:9px;'><input type='checkbox' class='user' data-userid='"
+                $name = "<span style='margin-left:9px;'><input type='checkbox' class='user' data-userid='"
                     . $row['userid']
                     . "' data-email='$email' value='$email'></span>&nbsp;"
-                    . $firstname . ' '
-                    . $lastname . '<br>' . '<span style="margin-left: 23px;">'
+                    . utf8_encode($firstname) . ' '
+                    . utf8_encode($lastname) . '<br>' . '<span style="margin-left: 23px;">'
                     . $email . '</span>';
                 $courseid   = $this->get_courseid_by_context($row['contextid']);
-                $coursename = $this->get_course_name($courseid);
+                $coursename = utf8_encode($this->get_course_name($courseid));
                 $rolename   = $this->get_user_rolename($row['roleid']);
 
                 $list .= "<tr>";
